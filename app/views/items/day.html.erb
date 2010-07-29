@@ -1,0 +1,21 @@
+<%= render 'partials' %>
+
+<table class="items">
+  <thead>
+    <tr>
+      <% [:date, :sum, :category, :description].each do |attr| %>
+        <th><%= Item.human_attribute_name attr %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td class="date"><%= link_to I18n.l(item.date), [:edit, item] %></td>
+        <td class="sum"><%= sum(item.sum) %></td>
+        <td class="category"><%= item.category_name %></td>
+        <td class="description"><%= item.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

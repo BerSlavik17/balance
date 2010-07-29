@@ -1,0 +1,13 @@
+<div class="item">
+  <div class="form">
+    <%= form_for @item do |item| %>
+      <%= item.error_messages %>
+
+      <%= item.date_select :date %>
+      <%= item.text_field :summa, :class => :sum %>
+      <%= item.select :category_id, grouped_options_for_select(@categories, @item.category_id) %>
+      <%= item.text_field :description %>
+      <%= item.submit 'сохранить' %>
+    <% end %>
+  </div>
+</div>

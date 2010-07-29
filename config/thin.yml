@@ -1,0 +1,17 @@
+--- 
+pid: tmp/pids/thin.pid
+address: 127.0.0.1
+wait: 30
+port: 5000
+timeout: 1
+log: log/thin.log
+max_conns: 1024
+require: []
+
+environment: production
+max_persistent_conns: 512
+servers: 1
+daemonize: true
+chdir: /home/tksasha/rails/balans
+user: tksasha
+group: tksasha

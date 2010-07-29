@@ -1,0 +1,18 @@
+<table class="consolidate">
+  <tbody>
+    <tr>
+      <% @consolidates.each do |item| %>
+        <td class="<%= item.category_income ? 'income' : 'expense' %>">
+          <div class="category">
+            <div class="name">
+              <%= item.category_name %>
+            </div>
+            <div class="sum">
+              <%= link_to sum(item.sum), "/#{@year}/#{@month}/#{item.category_url}" %>
+            </div>
+          </div>
+        </td>
+        <% end %>
+    </tr>
+  </tbody>
+</table>

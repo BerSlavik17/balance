@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Balans3</title>
+    <%= stylesheet_link_tag 'style.css' %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div class="header">
+      <div class="months">
+        <% (1..12).each do |month| %>
+          <%= link_to I18n.t(:'date.standalone_month_names')[month], "/#{ @year }/#{ '%02d' % month }", :class => (@month == month ? 'bold' : nil) %>
+        <% end %>
+      </div>
+
+      <div class="years">
+        <% (2008..Date.today.year).each do |year| %>
+          <%= link_to year, "/#{ year }/#{ '%02d' % @month }", :class => (@year == year ? 'bold' : nil) %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= yield %>
+
+    <br/><br/>
+    <%= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-rails.js' %>
+  </body>
+</html>

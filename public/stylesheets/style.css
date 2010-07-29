@@ -1,0 +1,54 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-weight:normal;
+  font-size: 13px;
+  font-family: sans-serif
+}
+
+a { color: green }
+
+table { border-collapse: collapse }
+
+.header { 
+  background: #eee; 
+  border-bottom: 1px solid #999;
+  padding: 5px;
+  text-align: center;
+}
+
+.bold { font-weight: bold }
+.right { text-align: right }
+
+.item > .form { text-align: center; padding: 5px }
+.item > .form > form > input.sum { text-align: right; width: 80px }
+.item > .form > form > input.description { color: #ccc }
+
+optgroup { font-weight:bold }
+
+table.cashes { width: 25%; margin: 3px 37%; background: #eee }
+table.cashes > tbody > tr > td { border: 1px solid #999; padding: 5px }
+table.cashes > tbody > tr > td.sum { text-align: right }
+table.cashes > tbody > tr > td.new { text-align: right; padding: 0 }
+table.cashes > tbody > tr > td.new > a { font-size: 0.8em }
+
+table.consolidate { width:99.2%; margin: 5px 0.4% }
+table.consolidate > tbody > tr > td { border: 1px solid #999; padding: 3px }
+table.consolidate > tbody > tr > td.income { background: #eee }
+table.consolidate > tbody > tr > td.expense { background: white }
+
+table.items { width: 50%; margin: 5px 25% }
+table.items > thead > tr > th { font-weight: bold; border: 1px solid #999; padding: 3px; background: #eee }
+table.items > tbody > tr.odd { background: #eee }
+table.items > tbody > tr.even { background: white }
+table.items > tbody > tr > td { border: 1px solid #999; padding: 3px }
+table.items > tbody > tr > td.date { text-align: center }
+table.items > tbody > tr > td.sum { text-align: right }
+table.items > tbody > tr > td.category { padding-left: 10px }
+
+.cash { margin: 10px; text-align: center }
+.cash > form > input.sum { text-align: right; width: 80px }
+
+.cash > .destroy { margin-left: 20px }
+
+option { padding-right: 10px }

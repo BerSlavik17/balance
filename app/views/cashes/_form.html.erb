@@ -1,0 +1,14 @@
+<div class="cash">
+  <%= form_for @cash do |cash| %>
+    <%= cash.error_messages %>
+
+      <%= cash.label :sum%>
+      <%= cash.text_field :sum, :class => :sum %>
+
+      <%= cash.label :name %>
+      <%= cash.text_field :name %>
+    
+      <%= cash.submit %>
+  <% end %>
+</div>
+
