@@ -1,6 +1,6 @@
 module ApplicationHelper
   def sum sum
-    number_with_delimiter '%.2f' % sum
+    number_with_delimiter '%.2f' % sum.to_f
   end
 
   def transliterate value
