@@ -12,9 +12,10 @@ class ItemsController < ApplicationController
 
   def index
     @cashes   = Cash.all
-    @at_begin = Cash.at_begin
     @at_end   = Cash.at_end  
     @balans   = Cash.balans
+    
+    @at_begin = Setting.at_begin.value
 
     range = DateRange.new params
     @items = Item.where(:date => range.range).includes(:category).order('date DESC')
