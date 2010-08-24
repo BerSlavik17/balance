@@ -5,5 +5,9 @@ Balans::Application.routes.draw do
     match '/:year(/:month(/:day))(/:category)' => 'items#index', :via => :get
   end
 
+  match '/at_begin' => 'settings#at_begin', :as => :at_begin
+
+  resources :settings
+
   root :to => 'items#index'
 end
