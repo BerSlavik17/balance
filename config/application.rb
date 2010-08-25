@@ -33,7 +33,7 @@ module Balans
     # Configure generators values. Many other options are available, be sure to check the documentation.
     config.generators do |g|
       g.orm             :active_record
-      g.template_engine :erb
+      g.template_engine :erubis
       g.test_framework  :test_unit, :fixture => false, :fixture_replacement => :factory_girl
     end
 
