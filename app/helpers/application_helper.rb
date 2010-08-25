@@ -1,6 +1,6 @@
 module ApplicationHelper
   def sum sum
-    number_with_delimiter '%.2f' % sum.to_f
+    number_with_delimiter '%.2f' % sum.to_f, :delimiter => '&nbsp;'
   end
 
   def transliterate value
