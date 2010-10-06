@@ -23,6 +23,7 @@ table { border-collapse: collapse }
 .item > .form { text-align: center; padding: 5px }
 .item > .form > form > input.sum { text-align: right; width: 80px }
 .item > .form > form > input.description { color: #ccc }
+.item > .form > form > fieldset { border: 0 } 
 
 optgroup { font-weight:bold }
 
