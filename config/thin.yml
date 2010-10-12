@@ -12,6 +12,6 @@ environment: production
 max_persistent_conns: 512
 servers: 1
 daemonize: true
-chdir: /home/tksasha/rails/balans
+chdir: /home/tksasha/rails/balance
 user: tksasha
 group: tksasha

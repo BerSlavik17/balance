@@ -2,10 +2,12 @@ ru:
   income: Приход
   expense: Расход
 
+  save: Сохранить
+
   begin: На начало
   end: На конец
 
-  balans: Баланс
+  balance: Баланс
 
   activerecord:
     attributes:
@@ -14,6 +16,10 @@ ru:
         sum: Сумма
         category: Категория
         description: Описание
+
+      cash:
+        name: Название
+        sum: Сумма
     # Сообщения об ошибке (валидации) ActiveRecord
     errors:
       # Для всех сообщений доступны макросы {{model}}, %{attribute}, {{value}}.

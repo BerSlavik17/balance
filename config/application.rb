@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
-module Balans 
+module Balance 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -29,13 +29,6 @@ module Balans
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ru
-
-    # Configure generators values. Many other options are available, be sure to check the documentation.
-    config.generators do |g|
-      g.orm             :active_record
-      g.template_engine :erubis
-      g.test_framework  :test_unit, :fixture => false, :fixture_replacement => :factory_girl
-    end
 
     # JavaScript files you want as :defaults (application.js is always included).
     config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
