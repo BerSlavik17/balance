@@ -8,18 +8,18 @@
     <% @cashes.each do |cash| %>
       <tr>
         <td class="name"><%= cash.name %></td>
-        <td class="sum"><%= link_to sum(cash.sum), [:edit, cash] %></td>
+        <td class="sum"><%= link_to sum(cash.sum), [:edit, cash], :id => "cash-#{ cash.id }", :class => :cash %></td>
       </tr>
     <% end %>
 
     <tr>
       <td class="name"><%= I18n.t :end %></td>
-      <td class="sum"><%= sum @at_end %></td>
+      <td class="sum" id="at_end">0.00</td>
     </tr>
 
     <tr>
-      <td class="name"><%= I18n.t :balans %></td>
-      <td class="sum"><%= sum @balans %></td>
+      <td class="name"><%= I18n.t :balance %></td>
+      <td class="sum" id="balance">0.00</td>
     </tr>
 
     <tr>

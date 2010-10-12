@@ -4,11 +4,10 @@ class Cash < ActiveRecord::Base
   end
 
   def self.at_end
-    # округлим до двух знаков после точки
-    ('%.2f' % (self.at_begin + Item.income.sum(:sum) - Item.expense.sum(:sum))).to_f
+    self.at_begin + Item.income.sum(:sum) - Item.expense.sum(:sum)
   end
 
-  def self.balans
+  def self.balance
     self.sum(:sum) - self.at_end
   end
 end

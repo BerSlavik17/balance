@@ -1,8 +1,5 @@
-require 'date_range'
-
 class ItemsController < ApplicationController
-  before_filter :group_categories, 
-    :only => [:index, :new, :create, :edit]
+  respond_to :json
   
   before_filter :find_item, 
     :only  => [:edit, :update, :destroy]
@@ -11,53 +8,45 @@ class ItemsController < ApplicationController
     :only => [:index, :new]
 
   def index
-    @cashes   = Cash.all
-    @at_end   = Cash.at_end  
-    @balans   = Cash.balans
-    
-    @at_begin = Setting.at_begin.value
+    @items = Item.get_all_by_date(params).order('date DESC').includes(:category)
 
-    range = DateRange.new params
-    @items = Item.where(:date => range.range).includes(:category).order('date DESC')
-    
-    month = DateRange.new(:year => @year, :month => @month).range
-    @consolidates = Item.consolidate month
-
-    if params[:category]
-      @items = @items.where('categories.url=?', params[:category])
-    end
-
-    if params[:day] || params[:category]
-      render :day
-    else
-      @items = @items.select('SUM(sum) AS sum, date, category_id').group('date, category_id')
-      render :month
+    respond_with(@items) do |format|
+      format.html {
+        @categories = Category.group_by_income
+        @cashes     = Cash.scoped
+        @at_begin   = Setting.at_begin.value
+        
+        render
+      }
+      format.json
     end
   end
 
   def create
     @item = Item.new params[:item]
 
-    if @item.save
-      redirect_to items_path
-    else
-      render :new
-    end
+    @item.save
+
+    respond_with @item
+  end
+
+  def edit
+    respond_with @item
   end
 
   def update
-    if @item.update_attributes params[:item]
-      redirect_to items_path
-    else
-      render :edit
-    end
+    @item.update_attributes params[:item]
+
+    respond_with @item
+  end
+
+  def consolidates
+    @consolidates = Item.consolidates params
+
+    respond_with @consolidates
   end
 
   private
-  def group_categories
-    @categories = Category.group_by_income
-  end
-
   def find_item
     @item = Item.find params[:id]
   end

@@ -1,14 +1,14 @@
 <div class="item">
-  <div class="form">
-    <%= form_for @item do |item| %>
-      <%= item.error_messages %>
-      <fieldset>
-        <%= item.date_select :date %>
-        <%= item.text_field :summa, :class => :sum %>
-        <%= item.select :category_id, grouped_options_for_select(@categories, @item.category_id) %>
-        <%= item.text_field :description %>
-        <%= item.submit 'сохранить' %>
-      </fieldset>
-    <% end %>
-  </div>
+  <%= form_for @item, :method do |item| %>
+    <fieldset>
+      <%= hidden_field_tag '_method', 'post', :id => 'hidden_method' %>
+      <%= item.text_field :date, :class => :date %>
+      <%= item.text_field :summa, :class => :sum %>
+      <%= item.select :category_id, grouped_options_for_select(@categories, @item.category_id) %>
+      <%= item.text_field :description %>
+      <%= item.submit 'сохранить' %>
+      <span id="cancel" class="hidden">или <a href="#/cancel" id="cancel_button">отметить</a></span>
+    </fieldset>
+  <% end %>
 </div>
+
