@@ -1,0 +1,9 @@
+<%=
+  {
+    :id => @item.id,
+    :date => I18n.l(@item.date),
+    :summa => '%.2f' % @item.sum,
+    :category_name => @item.category_name, 
+    :description => @item.description
+  }.to_json.html_safe
+%>

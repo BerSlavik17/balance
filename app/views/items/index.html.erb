@@ -1,0 +1,43 @@
+<%= render 'partials' %>
+
+<table class="items" id="items">
+  <thead>
+    <tr>
+      <% [:date, :sum, :category, :description].each do |attr| %>
+        <th><%= Item.human_attribute_name attr %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td colspan="4">&nbsp;</td></tr>
+  </tbody>
+</table>
+
+<div id="ajax-loader">
+  <%= image_tag 'ajax-loader.gif' %>
+</div>
+
+<div id="errors">
+  <ul>
+    <li><strong>foo</strong>: something wrong</li>
+  </ul>
+</div>
+
+<%= form_tag '', :id => 'edit-cash', :method => :put do %>
+  <div class="input">
+    <%= label_tag :cash_name, Cash.human_attribute_name(:name) %>
+    <%= text_field_tag :cash_name, nil, :name => 'cash[name]'  %>
+  </div>
+  <div class="input">
+    <%= label_tag :cash_sum, Cash.human_attribute_name(:sum) %>
+    <%= text_field_tag :cash_sum, nil, :name => 'cash[sum]'  %>
+  </div>
+  <div class="input submit">
+    <%= submit_tag I18n.t :save %>
+  </div>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag 'jquery-ui-1.8.5.custom.min', 'jquery.ui.datepicker-ru', 'jquery.form', 'items/index' %>
+<% end %>
+
