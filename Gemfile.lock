@@ -1,39 +1,39 @@
 GIT
   remote: git://github.com/rspec/rspec-core.git
-  revision: 33a8847c2904034cfcaaf0c69ca2740d9ce5179b
+  revision: 10d9377e0795e81790a8dcbc5d44a0dc5be546e6
   specs:
-    rspec-core (2.0.0.rc)
+    rspec-core (2.0.0)
 
 GIT
   remote: git://github.com/rspec/rspec-expectations.git
-  revision: 6967fd6393a4c9a3aafc25045f64a54d17545834
+  revision: 6dffc93471ad31cdb846a02a28fc79df95ab65d5
   specs:
-    rspec-expectations (2.0.0.rc)
+    rspec-expectations (2.0.0)
       diff-lcs (>= 1.1.2)
 
 GIT
   remote: git://github.com/rspec/rspec-mocks.git
-  revision: 361f31542f8ef4aa1a0cb8102893627022fcc88b
+  revision: 4830d09ac955b15f0b6155c6b87a12912e94f60c
   specs:
-    rspec-mocks (2.0.0.rc)
-      rspec-core (= 2.0.0.rc)
-      rspec-expectations (= 2.0.0.rc)
+    rspec-mocks (2.0.0)
+      rspec-core (= 2.0.0)
+      rspec-expectations (= 2.0.0)
 
 GIT
   remote: git://github.com/rspec/rspec-rails.git
-  revision: bfb7792a7871c6cf1d6714795091f6c00475e539
+  revision: 953eefc7e2e67a8bd9fbed2a164b65dd84d70bf2
   specs:
-    rspec-rails (2.0.0.rc)
-      rspec (= 2.0.0.rc)
+    rspec-rails (2.0.0)
+      rspec (= 2.0.0)
 
 GIT
   remote: git://github.com/rspec/rspec.git
-  revision: bf20df3f6652f15f014c7d6d546edd9456749196
+  revision: 18b895444cd9d30b8b8b8c8a6aee24452e5b73fc
   specs:
-    rspec (2.0.0.rc)
-      rspec-core (= 2.0.0.rc)
-      rspec-expectations (= 2.0.0.rc)
-      rspec-mocks (= 2.0.0.rc)
+    rspec (2.0.0)
+      rspec-core (= 2.0.0)
+      rspec-expectations (= 2.0.0)
+      rspec-mocks (= 2.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -78,7 +78,7 @@ GEM
       rails (>= 3.0.0.beta4)
     i18n (0.4.1)
     linecache (0.43)
-    mail (2.2.6.1)
+    mail (2.2.7)
       activesupport (>= 2.3.6)
       mime-types
       treetop (>= 1.4.5)
