@@ -1,6 +1,6 @@
 class Cash < ActiveRecord::Base
   def self.at_begin
-    Setting.at_begin.value.to_f
+    Setting.at_begin
   end
 
   def self.at_end

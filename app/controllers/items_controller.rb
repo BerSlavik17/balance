@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
       format.html {
         @categories = Category.group_by_income
         @cashes     = Cash.scoped
-        @at_begin   = Setting.at_begin.value
+        @at_begin   = Cash.at_begin
         
         render
       }

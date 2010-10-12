@@ -21,5 +21,11 @@ describe Cash do
 
     it { should == 40_000.69 }
   end
+
+  describe 'at_begin' do
+    subject { Cash.at_begin }
+
+    it { should == Setting.at_begin }
+  end
 end
 
