@@ -12,8 +12,6 @@ class DateRange
 
     @from = day ? date : date.beginning_of_month
     @till = day ? date : date.end_of_month
-
-    (@from..@till)
   end
 
   def range
