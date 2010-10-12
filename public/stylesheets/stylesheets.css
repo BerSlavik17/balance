@@ -1,0 +1,86 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-weight:normal;
+  font-size: 13px;
+  font-family: sans-serif
+}
+
+a { color: green }
+
+table { border-collapse: collapse }
+
+.header { 
+  background: #eee; 
+  border-bottom: 1px solid #999;
+  padding: 5px;
+  text-align: center;
+}
+
+.current { font-weight: bold }
+.right { text-align: right }
+
+.item { text-align: center; padding: 5px }
+.item > form > fieldset { border: 0 } 
+.item > form > fieldset > input.sum { text-align: right; width: 60px }
+.item > form > fieldset > input.date { width: 80px }
+.item > form > fieldset > input.description { color: #ccc }
+
+optgroup { font-weight:bold }
+
+table.cashes { width: 25%; margin: 3px 37%; background: #eee }
+table.cashes > tbody > tr > td { border: 1px solid #999; padding: 5px }
+table.cashes > tbody > tr > td.sum { text-align: right }
+table.cashes > tbody > tr > td.new { text-align: right; padding: 0 }
+table.cashes > tbody > tr > td.new > a { font-size: 0.8em }
+
+table#consolidates { width:99.2%; margin: 5px 0.4% }
+table#consolidates > tbody > tr > td { border: 1px solid #999; padding: 3px }
+table#consolidates > tbody > tr > td.income { background: #eee }
+table#consolidates > tbody > tr > td.expense { background: white }
+
+table.items { width: 50%; margin: 5px 25%; display: none }
+table.items > thead > tr > th { font-weight: bold; border: 1px solid #999; padding: 3px; background: #eee }
+table.items > tbody > tr.odd { background: #eee }
+table.items > tbody > tr.even { background: white }
+table.items > tbody > tr > td { border: 1px solid #999; padding: 3px }
+table.items > tbody > tr > td.date { text-align: center }
+table.items > tbody > tr > td.sum { text-align: right }
+table.items > tbody > tr > td.category { padding-left: 10px }
+
+option { padding-right: 10px }
+
+.notice { color: green; font-weight: bold; text-align: center }
+.center { text-align: center }
+
+#ajax-loader{ 
+  text-align: center; 
+  display: none; 
+  z-index: 2;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
+
+#errors { display: none }
+form#edit-cash { display: none }
+
+form#edit-cash label {
+  float: left;  
+  width: 80px;  
+  text-align: right;  
+  margin: 2px 10px;  
+}
+
+form#edit-cash input { padding: 0 2px }
+form#edit-cash input#cash_name{ width: 150px }
+form#edit-cash input#cash_sum{ width: 150px; text-align: right }
+form#edit-cash div.input { margin-bottom: 10px }
+form#edit-cash div.submit { text-align: right }
+form#edit-cash input[type='submit']{ width: 80px; margin-right: 14px }
+
+strong { font-weight: bold }
+
+ul { margin-left: 10px }
+
+.hidden { display: none }
