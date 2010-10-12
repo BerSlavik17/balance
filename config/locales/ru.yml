@@ -20,6 +20,7 @@ ru:
       cash:
         name: Название
         sum: Сумма
+        deleted: Удалить
     # Сообщения об ошибке (валидации) ActiveRecord
     errors:
       # Для всех сообщений доступны макросы {{model}}, %{attribute}, {{value}}.

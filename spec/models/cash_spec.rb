@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Cash do
+  it { should have_db_column(:deleted).of_type(:boolean).with_options(:default => false) }
+
   describe 'balance' do
     before :each do
       Factory :cash, :sum => 40_000.69
@@ -26,6 +28,20 @@ describe Cash do
     subject { Cash.at_begin }
 
     it { should == Setting.at_begin }
+  end
+
+  describe 'deleted cashes' do
+    before :each do
+      @one    = Factory :cash
+      @two    = Factory :cash, :deleted => true
+      @three  = Factory :cash
+    end
+
+    subject { Cash.all }
+
+    it 'should not select' do
+      should =~ [@one, @three]
+    end
   end
 end
 

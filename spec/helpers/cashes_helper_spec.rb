@@ -12,7 +12,8 @@ describe CashesHelper do
       {
         :id => @cash.id,
         :sum => '1567.88',
-        :name => @cash.name
+        :name => @cash.name,
+        :deleted => @cash.deleted?
       }
     end
 

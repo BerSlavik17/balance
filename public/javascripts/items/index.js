@@ -5,10 +5,11 @@ $(document).ready(function() {
   var months  = $('a.month');
   var years   = $('a.year');
   
-  var cashes      = $('a.cash');
-  var edit_cash   = $('form#edit-cash');
-  var cash_name   = $('input#cash_name');
-  var cash_sum    = $('input#cash_sum');
+  var cashes        = $('a.cash');
+  var edit_cash     = $('form#edit-cash');
+  var cash_name     = $('input#cash_name');
+  var cash_sum      = $('input#cash_sum');
+  var cash_deleted  = $('input#cash_deleted');
 
   var balance = $('#balance');
   var at_end  = $('#at_end');
@@ -56,6 +57,7 @@ $(document).ready(function() {
     width: '300px',
     open: function() {
       cash_sum.focus();
+      cash_deleted.attr('checked', false);
     }
   })
 
@@ -210,6 +212,7 @@ $(document).ready(function() {
   })
 
   // Обрабатываем нажатие на ссылку "отметить"
+  // в форме редактирования Item
   cancel_button.click(function() {
     item_submit.val('сохранить');
     new_item_form.attr('action', '/items');
@@ -228,7 +231,11 @@ $(document).ready(function() {
   edit_cash.ajaxForm({
     dataType: 'json',
     success: function(cash) {
-      $('a#cash-' + cash.id).text(cash.sum);
+      if(cash.deleted == true) {
+        $('a#cash-' + cash.id).parents('tr').remove();
+      } else {
+        $('a#cash-' + cash.id).text(cash.sum);
+      }
       
       getBalance();
       getAtEnd();

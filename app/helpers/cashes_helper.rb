@@ -5,7 +5,8 @@ module CashesHelper
     {
       :id => @cash.id,
       :sum => '%.2f' % @cash.sum,
-      :name => @cash.name
+      :name => @cash.name,
+      :deleted => @cash.deleted?
     }
   end
 end

@@ -1,4 +1,6 @@
 class Cash < ActiveRecord::Base
+  default_scope where(:deleted => false)
+
   def self.at_begin
     Setting.at_begin
   end
