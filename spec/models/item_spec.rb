@@ -10,18 +10,6 @@ describe Item do
     it { subject.category_name.should == subject.category.name }
   end
 
-  describe 'get_all_by_date' do
-    before :each do
-      (7..9).each do |month| Factory :item, :date => Date.new(2010, month, 17) end
-    end
-
-    subject { Item.get_all_by_date(:month => '7', :year => '2010') }
-
-    it 'should get all items by date' do 
-      should == Item.where(:date => (Date.new(2010,7,1)..Date.new(2010,7,31)))
-    end
-  end
-
   describe 'consolidates' do
     before :each do
       @food   = Factory :category, :name => 'food'

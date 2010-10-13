@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
     :only => [:index, :new]
 
   def index
-    @items = Item.get_all_by_date(params).order('date DESC').includes(:category)
+    @items = Item.where(:date => DateRange::month(params)).order('date DESC').includes(:category)
 
     respond_with(@items) do |format|
       format.html {

@@ -35,6 +35,13 @@ GIT
       rspec-expectations (= 2.0.0)
       rspec-mocks (= 2.0.0)
 
+GIT
+  remote: git://github.com/tksasha/date_range.git
+  revision: ad085b02d7d1594f10ba58839fdd6c61e45ddbf6
+  specs:
+    date_range (0.1.0)
+      activesupport
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -121,6 +128,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  date_range!
   factory_girl_rails
   rails (= 3.0.0)
   rails3-generators
