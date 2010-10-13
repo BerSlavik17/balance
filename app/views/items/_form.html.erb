@@ -6,6 +6,10 @@
       <%= item.text_field :summa, :class => :sum %>
       <%= item.select :category_id, grouped_options_for_select(@categories, @item.category_id) %>
       <%= item.text_field :description %>
+      <span class="hidden" id="delete_button">
+        <%= label_tag :item_deleted, Item.human_attribute_name(:deleted) %>
+        <%= check_box_tag 'item[deleted]' %>
+      </span>
       <%= item.submit 'сохранить' %>
       <span id="cancel" class="hidden">или <a href="#/cancel" id="cancel_button">отметить</a></span>
     </fieldset>

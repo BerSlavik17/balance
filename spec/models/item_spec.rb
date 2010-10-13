@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Item do
+  it { should have_db_column(:deleted).of_type(:boolean).with_options(:default => false) }
+
   describe 'category_name' do
     subject { Factory :item }
 
@@ -57,4 +59,18 @@ describe Item do
       it { should == consolidates }
     end
   end
- end
+
+  describe 'deleted' do
+    subject { Item.all }
+
+    before :each do
+      @one    = Factory :item
+      @two    = Factory :item, :deleted => true
+      @three  = Factory :item
+    end
+
+    it 'should not select' do
+      should =~ [@one, @three]
+    end
+  end
+end

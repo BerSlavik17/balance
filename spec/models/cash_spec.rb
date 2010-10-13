@@ -30,7 +30,7 @@ describe Cash do
     it { should == Setting.at_begin }
   end
 
-  describe 'deleted cashes' do
+  describe 'deleted' do
     before :each do
       @one    = Factory :cash
       @two    = Factory :cash, :deleted => true

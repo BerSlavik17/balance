@@ -23,6 +23,7 @@ $(document).ready(function() {
   var cancel            = $('#cancel');
   var cancel_button     = $('#cancel_button');
   var hidden_method     = $('#hidden_method');
+  var delete_button     = $('#delete_button');
 
   var errors      = $('#errors');
   var ajax_loader = $('#ajax-loader');
@@ -205,6 +206,7 @@ $(document).ready(function() {
         new_item_form.attr('action', '/items/' + item.id);
         hidden_method.val('put');
         cancel.show();
+        delete_button.show().find('#item_deleted').attr('checked', false);
       }
     );
     
@@ -224,6 +226,8 @@ $(document).ready(function() {
     item_description.val('');
 
     cancel.hide();
+    delete_button.hide().find('#item_delete').attr('checked', false);
+
     return false;    
   })
 
@@ -257,21 +261,26 @@ $(document).ready(function() {
       if(hidden_method.val() == 'post') {
         items_container.prepend(function() { return item2html(item, klass) })
       } else if(hidden_method.val() == 'put') {
-        $('tr#item_' + item.id).html(function() {
-          var html = '';
-          
-          html += '<td class="date">' + item.date + '</td>';
-          html += '<td class="sum"><a href="/items/' + item.id +'/edit" class="item">' + item.summa + '</a></td>';
-          html += '<td class="category">' + item.category_name + '</td>';
-          html += '<td>' + item.description + '</td>';
+        if(item.deleted == true) {
+          $('tr#item_' + item.id).remove();
+        } else {
+          $('tr#item_' + item.id).html(function() {
+            var html = '';
+            
+            html += '<td class="date">' + item.date + '</td>';
+            html += '<td class="sum"><a href="/items/' + item.id +'/edit" class="item">' + item.summa + '</a></td>';
+            html += '<td class="category">' + item.category_name + '</td>';
+            html += '<td>' + item.description + '</td>';
 
-          return html;  
-        })
+            return html;  
+          })
+        }
 
         item_submit.val('сохранить');
         new_item_form.attr('action', '/items');
         hidden_method.val('post');
         cancel.hide();
+        delete_button.hide().find('#item_delete').attr('checked', false);
       }
 
       item_date.val('');

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101012181910) do
+ActiveRecord::Schema.define(:version => 20101012190205) do
 
   create_table "cashes", :force => true do |t|
     t.float   "sum"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20101012181910) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "summa"
+    t.boolean  "deleted",     :default => false
   end
 
   add_index "items", ["date", "category_id"], :name => "index_balans_items_on_date_and_category_id"

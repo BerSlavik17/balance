@@ -16,6 +16,7 @@ ru:
         sum: Сумма
         category: Категория
         description: Описание
+        deleted: Удалить
 
       cash:
         name: Название

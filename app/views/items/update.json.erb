@@ -4,6 +4,7 @@
     :date => I18n.l(@item.date),
     :summa => '%.2f' % @item.sum,
     :category_name => @item.category_name, 
-    :description => @item.description
+    :description => @item.description,
+    :deleted => @item.deleted?
   }.to_json.html_safe
 %>

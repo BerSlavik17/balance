@@ -34,7 +34,7 @@
   </div>
   <div class="input">
     <%= label_tag :cash_deleted, Cash.human_attribute_name(:deleted) %>
-    <%= check_box_tag :cash_deleted, 1, false, :name => 'cash[deleted]'  %>
+    <%= check_box_tag 'cash[deleted]' %>
   </div>
   <div class="input submit">
     <%= submit_tag I18n.t :save %>
