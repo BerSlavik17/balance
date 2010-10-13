@@ -78,6 +78,11 @@ $(document).ready(function() {
     }
   };
 
+  // алиас
+  function parseUrl(url) {
+    return parse_url(url);
+  }
+
   // функция преобразования item в html
   function item2html(item, klass) {
     var html = '';
@@ -109,6 +114,7 @@ $(document).ready(function() {
     }
   }
 
+  // обновить список Item за указанный отчетный период
   function make_request() {
     var self = $(this);
     var self_class = self.attr('class');
@@ -123,14 +129,15 @@ $(document).ready(function() {
     var url = parse_url(self.attr('href'));
 
     $.getJSON(url, parse_items);
-    
-    return false;  
+    getConsolidates(url);  
   }
 
   // получить сводный отчет за месяц
-  function getConsolidates() {
+  function getConsolidates(url) {
+    if(url == undefined) { url = '/' };
+
     $.getJSON(
-      '/items/consolidates', 
+      '/items/consolidates' + url, 
       function(items) {
         consolidates.html(function() {
           return $.map(items, function(item) {
