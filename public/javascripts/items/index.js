@@ -11,6 +11,11 @@ $(document).ready(function() {
   var cash_sum      = $('input#cash_sum');
   var cash_deleted  = $('input#cash_deleted');
 
+  var new_cash      = $('a#new_cash');
+  var new_cash_form = $('#new_cash_form'); 
+  var new_cash_name = $('input#new_cash_name');
+  var new_cash_sum  = $('input#new_cash_sum');
+
   var balance = $('#balance');
   var at_end  = $('#at_end');
 
@@ -59,6 +64,20 @@ $(document).ready(function() {
     open: function() {
       cash_sum.focus();
       cash_deleted.attr('checked', false);
+    }
+  })
+
+  // Инициализация окна для нового остатка
+  new_cash_form.dialog({
+    autoOpen: false,
+    modal: true,
+    title: 'Новый остаток',
+    width: '300px',
+    open: function() {
+      new_cash_sum.val('');
+      new_cash_name.val('');
+      $('#new_cash_submit').attr('disabled', false);
+      $('#errors_for_new_cash').text('');
     }
   })
 
@@ -195,6 +214,13 @@ $(document).ready(function() {
     );
 
     return false;    
+  })
+
+  // Показываем форму для создания остатка при нажатии на ссылку #new_cash
+  new_cash.click(function() {
+    new_cash_form.dialog('open');
+
+    return false;
   })
 
   // Показываем форму для редактирования item при нажатии на ее сумму

@@ -25,6 +25,16 @@ describe CashesController do
     it { response.should render_template(:balance) }
   end
 
+  describe 'POST create as JSON' do
+    before :each do
+      post :create, :cash => Factory.attributes_for(:cash), :format => 'json'
+    end
+
+    it { should respond_with(:success) }
+    it { should respond_with_content_type(:json) }
+    it { should render_template(:create) }
+  end
+
   describe 'with instance' do
     before :each do
       @cash = Factory :cash

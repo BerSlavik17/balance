@@ -1,7 +1,13 @@
 class CashesController < ApplicationController
-  respond_to :json
+  respond_to :js
 
   before_filter :find_cash, :only => [:edit, :update, :destroy]
+
+  def index
+    @cashes = Cash.scoped
+
+    respond_with @cashes
+  end
 
   def update
     @cash.update_attributes params[:cash]
@@ -16,10 +22,16 @@ class CashesController < ApplicationController
   def create
     @cash = Cash.new params[:cash]
 
-    if @cash.save
-      redirect_to root_path
-    else
-      render :new
+    @cash.save
+
+    respond_with @cash do |format|
+      format.js do
+        if @cash.errors.empty?
+          render :create
+        else
+          render :error
+        end
+      end
     end
   end
 

@@ -4,7 +4,7 @@ class SettingTest < ActiveSupport::TestCase
   should validate_presence_of(:key)
   should validate_presence_of(:value)
 
-  context 'Setting' do
+  context 'Setting instance' do
     setup do
       Factory :setting
     end
@@ -12,42 +12,43 @@ class SettingTest < ActiveSupport::TestCase
     should validate_uniqueness_of(:key)
   end
 
-  test 'set' do
-    key   = 'key'
-    value = 'value'
+  context 'Setting::get' do
+    setup do
+      Factory :setting, :key => 'foo', :value => 'bar' 
+    end
 
-    # Если ключ не найден то создаем новую запись
-    assert_equal false, Setting.exists?(:key => key)
-    assert setting = Setting.set(key, value)
-    assert_equal setting, Setting.get(key)
-    assert_equal value, setting.value
+    should 'with key as String' do
+      assert_equal 'bar', Setting::get('foo')
+    end
 
-    # Если ключ существует то обновляем значение
-    assert_equal true, Setting.exists?(:key => key)
-    assert setting = Setting.set(key, 'new value')
-    assert_equal setting, Setting.get(key)
-    assert_equal 'new value', setting.value
+    should 'with key as Symbol' do
+      assert_equal 'bar', Setting::get(:foo)
+    end
+
+    should 'nil when to try to get unexisten key' do
+      assert_equal nil, Setting::get('baz')
+    end
   end
 
-  test 'get' do
-    setting = Factory(:setting, :key => 'key', :value => 'value')
+  context 'Setting::at_begin' do
+    context 'when key "at_begin" is exists' do
+      setup do
+        Factory :setting, :key => 'at_begin', :value => '42.69'
+      end
 
-    assert_equal setting, Setting.get('key')
-  end
+      should 'get 42.69' do
+        assert_equal 42.69, Setting::at_begin
+      end
+    end
 
-  test 'at_begin' do
-    # если в Setting существует ключ at_begin возвращаеем его
-    Factory :setting, :key => 'at_begin', :value => '42.69'
-    assert setting = Setting.at_begin
-    assert_equal 'at_begin', setting.key
-    assert_equal '42.69', setting.value
-    
-    # если такого ключа нету то создаем новый с значением "0"
-    Setting.delete_all :key => 'at_begin'
-    assert_equal false, Setting.exists?(:key => 'at_begin')
+    context 'when key "at_begin" is unexists' do
+      setup do
+        Factory :setting
+      end
 
-    assert setting = Setting.at_begin
-    assert_equal 'at_begin', setting.key
-    assert_equal '0', setting.value
+      should 'get 0.00' do
+        assert_equal 0.00, Setting::at_begin
+      end
+    end
   end
 end

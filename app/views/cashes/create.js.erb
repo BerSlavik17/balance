@@ -1,0 +1,7 @@
+$('#cashes').append("<%= escape_javascript(render @cash) %>")
+
+$('#at_end').html("<%= sum Cash.at_end %>")
+
+$('#balance').html("<%= sum Cash.balance %>")
+
+$('#new_cash_form').dialog('close')

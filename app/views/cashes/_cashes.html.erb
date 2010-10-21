@@ -4,14 +4,15 @@
       <td class="name"><%= I18n.t :begin %></td>
       <td class="sum"><%= link_to sum(@at_begin), at_begin_path %></td>
     </tr>
+  </tbody>
 
+  <tbody id="cashes">
     <% @cashes.each do |cash| %>
-      <tr>
-        <td class="name"><%= cash.name %></td>
-        <td class="sum"><%= link_to sum(cash.sum), [:edit, cash], :id => "cash-#{ cash.id }", :class => :cash %></td>
-      </tr>
+      <%= render cash %>
     <% end %>
+  </tbody>
 
+  <tbody>
     <tr>
       <td class="name"><%= I18n.t :end %></td>
       <td class="sum" id="at_end">0.00</td>
@@ -23,8 +24,41 @@
     </tr>
 
     <tr>
-      <td class="new" colspan="2"><%= link_to '+++', new_cash_path %></td>
+      <td class="new" colspan="2"><%= link_to '+++', '#/cashes/new', :id => 'new_cash' %></td>
     </tr>
   </tbody>
 </table>
+
+<%= form_tag '', :id => 'edit-cash', :class => 'for_cash', :method => :put do %>
+  <div class="input">
+    <%= label_tag :cash_name, Cash.human_attribute_name(:name) %>
+    <%= text_field_tag :cash_name, nil, :name => 'cash[name]', :class => 'cash_name' %>
+  </div>
+  <div class="input">
+    <%= label_tag :cash_sum, Cash.human_attribute_name(:sum) %>
+    <%= text_field_tag :cash_sum, nil, :name => 'cash[sum]', :class => 'cash_sum' %>
+  </div>
+  <div class="input" id="delete_cash_button">
+    <%= label_tag :cash_deleted, Cash.human_attribute_name(:deleted) %>
+    <%= check_box_tag 'cash[deleted]' %>
+  </div>
+  <div class="input submit">
+    <%= submit_tag I18n.t :save %>
+  </div>
+<% end %>
+
+<%= form_tag cashes_path, :id => 'new_cash_form', :class => 'for_cash', :method => :post, :remote => true do %>
+  <div class="errors" id="errors_for_new_cash"></div>
+  <div class="input">
+    <%= label_tag :new_cash_name, Cash.human_attribute_name(:name) %>
+    <%= text_field_tag :cash_name, nil, :name => 'cash[name]', :id => :new_cash_name, :class => 'cash_name' %>
+  </div>
+  <div class="input">
+    <%= label_tag :new_cash_sum, Cash.human_attribute_name(:sum) %>
+    <%= text_field_tag :cash_sum, nil, :name => 'cash[sum]', :id => :new_cash_sum, :class => 'cash_sum' %>
+  </div>
+  <div class="input submit">
+    <%= submit_tag I18n.t(:save), :id => 'new_cash_submit' %>
+  </div>
+<% end %>
 
