@@ -30,6 +30,25 @@ class SettingTest < ActiveSupport::TestCase
     end
   end
 
+  context 'Setting::set' do
+    context 'when key is unexists' do
+      setup do
+        Setting::set :foo, 'baz'
+      end
+
+      should('successfully create pair'){ assert_equal 'baz', Setting::get(:foo) }
+    end
+
+    context 'when key is exists' do
+      setup do
+        Factory :setting, :key => 'jar', :value => 'zar'
+        Setting::set :jar, 'var' 
+      end
+
+      should('successfully update pair'){ assert_equal 'var', Setting::get(:jar) }
+    end
+  end
+
   context 'Setting::at_begin' do
     context 'when key "at_begin" is exists' do
       setup do

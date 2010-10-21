@@ -1,0 +1,18 @@
+var form = $('form#for_cash')
+
+form.attr('action', '/update_at_begin')
+
+form.find('input[name="_method"]').val('put')
+
+form.dialog({
+  autoOpen: true,
+  modal: true,
+  title: 'Править остаток "<%= I18n.t :begin %>"',
+  open: function() {
+    $('#cash_name').val('<%= I18n.t :begin %>')
+    $('#cash_sum').val('<%= @at_begin %>').focus()
+    $('#delete_cash_button').hide()
+    $('#cash_deleted').attr('checked', false)
+    $('#cash_errors').text('');
+  }
+})

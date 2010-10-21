@@ -15,7 +15,8 @@ Balance::Application.routes.draw do
     get :at_end, :on => :collection
   end
 
-  match '/at_begin' => 'settings#at_begin', :as => :at_begin
+  match '/at_begin' => 'cashes#at_begin', :via => :get
+  match '/update_at_begin' => 'cashes#update_at_begin', :via => :put
 
   match '/balance' => 'cashes#balance'
 

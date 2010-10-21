@@ -58,6 +58,18 @@ class CashesController < ApplicationController
     respond_with @cash
   end
 
+  def at_begin
+    @at_begin = Cash.at_begin
+
+    respond_with @at_begin
+  end
+
+  def update_at_begin
+    @at_begin = Setting::set :at_begin, params[:cash][:sum]
+    
+    respond_with @at_begin
+  end
+
   private
   def find_cash
     @cash = Cash.find params[:id]

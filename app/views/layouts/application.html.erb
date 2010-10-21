@@ -10,13 +10,13 @@
     <div class="header">
       <div class="months">
         <% (1..12).each do |month| %>
-          <%= link_to I18n.t(:'date.standalone_month_names')[month], "#/#{ @year }/#{ '%02d' % month }", :class => (@month == month ? 'month current' : 'month') %>
+          <%= link_to I18n.t(:'date.standalone_month_names')[month], "/#{ @year }/#{ '%02d' % month }", :class => (@month == month ? 'month current' : 'month'), :remote => true %>
         <% end %>
       </div>
 
       <div class="years">
         <% (2008..Date.today.year).each do |year| %>
-          <%= link_to year, "#/#{ year }/#{ '%02d' % @month }", :class => (@year == year ? 'year current' : 'year') %>
+          <%= link_to year, "/#{ year }/#{ '%02d' % @month }", :class => (@year == year ? 'year current' : 'year'), :remote => true %>
         <% end %>
       </div>
     </div>
