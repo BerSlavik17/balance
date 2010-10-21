@@ -4,17 +4,6 @@ $(document).ready(function() {
 
   var months  = $('a.month');
   var years   = $('a.year');
-  
-  var cashes        = $('a.cash');
-  var edit_cash     = $('form#edit-cash');
-  var cash_name     = $('input#cash_name');
-  var cash_sum      = $('input#cash_sum');
-  var cash_deleted  = $('input#cash_deleted');
-
-  var new_cash      = $('a#new_cash');
-  var new_cash_form = $('#new_cash_form'); 
-  var new_cash_name = $('input#new_cash_name');
-  var new_cash_sum  = $('input#new_cash_sum');
 
   var balance = $('#balance');
   var at_end  = $('#at_end');
@@ -54,32 +43,6 @@ $(document).ready(function() {
     modal: true,
     title: 'Ошибки:'
   });
-
-  // Инициализация окна для редактирования остатка
-  edit_cash.dialog({
-    autoOpen: false,
-    modal: true,
-    title: 'Редактирование остатка',
-    width: '300px',
-    open: function() {
-      cash_sum.focus();
-      cash_deleted.attr('checked', false);
-    }
-  })
-
-  // Инициализация окна для нового остатка
-  new_cash_form.dialog({
-    autoOpen: false,
-    modal: true,
-    title: 'Новый остаток',
-    width: '300px',
-    open: function() {
-      new_cash_sum.val('');
-      new_cash_name.val('');
-      $('#new_cash_submit').attr('disabled', false);
-      $('#errors_for_new_cash').text('');
-    }
-  })
 
   function parse_url(url) {
     var default_url = '/';
@@ -199,30 +162,7 @@ $(document).ready(function() {
   // Вешаем события на нажатие на ссылку с месяцем или годом
   $(months).click(make_request);
   $(years).click(make_request);
-
-  // Показываем форму для редактирования остатка при нажатии на ссылку с остатком
-  cashes.click(function() {
-    var self = $(this);
-
-    $.getJSON(
-      self.attr('href'),  
-      function(cash) {
-        cash_sum.val(cash.sum);
-        cash_name.val(cash.name);
-        edit_cash.attr('action', '/cashes/' + cash.id).dialog('open');
-      }
-    );
-
-    return false;    
-  })
-
-  // Показываем форму для создания остатка при нажатии на ссылку #new_cash
-  new_cash.click(function() {
-    new_cash_form.dialog('open');
-
-    return false;
-  })
-
+  
   // Показываем форму для редактирования item при нажатии на ее сумму
   $('a.item').live('click', function() {
     var self = $(this);
@@ -262,23 +202,6 @@ $(document).ready(function() {
     delete_button.hide().find('#item_delete').attr('checked', false);
 
     return false;    
-  })
-
-  // Обновляем остаток
-  edit_cash.ajaxForm({
-    dataType: 'json',
-    success: function(cash) {
-      if(cash.deleted == true) {
-        $('a#cash-' + cash.id).parents('tr').remove();
-      } else {
-        $('a#cash-' + cash.id).text(cash.sum);
-      }
-      
-      getBalance();
-      getAtEnd();
-      
-      edit_cash.dialog('close');
-    } 
   })
 
   // Создание новой записи

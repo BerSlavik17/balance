@@ -65,21 +65,21 @@ option { padding-right: 10px }
 #errors { display: none }
 .errors { color: red }
 
-form.for_cash { display: none }
+form#for_cash { display: none }
 
-form.for_cash label {
+form#for_cash label {
   float: left;  
   width: 80px;  
   text-align: right;  
   margin: 2px 10px;  
 }
 
-form.for_cash input{ padding: 0 2px }
-form.for_cash input.cash_name{ width: 150px }
-form.for_cash input.cash_sum{ width: 150px; text-align: right }
-form.for_cash div.input { margin-bottom: 10px }
-form.for_cash div.submit { text-align: right }
-form.for_cash input[type='submit']{ width: 80px; margin-right: 14px }
+form#for_cash input{ padding: 0 2px }
+form#for_cash input.cash_name{ width: 150px }
+form#for_cash input.cash_sum{ width: 150px; text-align: right }
+form#for_cash div.input { margin-bottom: 10px }
+form#for_cash div.submit { text-align: right }
+form#for_cash input[type='submit']{ width: 80px; margin-right: 14px }
 
 strong { font-weight: bold }
 

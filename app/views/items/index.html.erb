@@ -1,4 +1,54 @@
-<%= render 'partials' %>
+<%= render 'form' %>
+
+<table class="cashes">
+  <tbody>
+    <tr>
+      <td class="name"><%= I18n.t :begin %></td>
+      <td class="sum"><%= link_to sum(@at_begin), at_begin_path %></td>
+    </tr>
+  </tbody>
+
+  <tbody id="cashes">
+    <%= render 'cashes/cashes', { :cashes => @cashes } %>
+  </tbody>
+
+  <tbody>
+    <tr>
+      <td class="name"><%= I18n.t :end %></td>
+      <td class="sum" id="at_end">0.00</td>
+    </tr>
+
+    <tr>
+      <td class="name"><%= I18n.t :balance %></td>
+      <td class="sum" id="balance">0.00</td>
+    </tr>
+
+    <tr>
+      <td class="new" colspan="2"><%= link_to '+++', [:new, :cash], :remote => true %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= form_tag '', :id => 'for_cash', :method => :put, :remote => true do %>
+  <div class="errors" id="errors_for_new_cash"></div>
+  <div class="input">
+    <%= label_tag :cash_name, Cash.human_attribute_name(:name) %>
+    <%= text_field_tag :cash_name, nil, :name => 'cash[name]', :class => 'cash_name' %>
+  </div>
+  <div class="input">
+    <%= label_tag :cash_sum, Cash.human_attribute_name(:sum) %>
+    <%= text_field_tag :cash_sum, nil, :name => 'cash[sum]', :class => 'cash_sum' %>
+  </div>
+  <div class="input" id="delete_cash_button">
+    <%= label_tag :cash_deleted, Cash.human_attribute_name(:deleted) %>
+    <%= check_box_tag 'cash[deleted]' %>
+  </div>
+  <div class="input submit">
+    <%= submit_tag I18n.t :save %>
+  </div>
+<% end %>
+
+<%= render 'consolidates' %>
 
 <table class="items" id="items">
   <thead>

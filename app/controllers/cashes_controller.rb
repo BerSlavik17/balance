@@ -17,6 +17,8 @@ class CashesController < ApplicationController
 
   def new
     @cash = Cash.new
+
+    respond_with @cash
   end
 
   def create
