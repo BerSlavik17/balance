@@ -34,19 +34,19 @@ table.cashes > tbody > tr > td.sum { text-align: right }
 table.cashes > tbody > tr > td.new { text-align: right; padding: 0 }
 table.cashes > tbody > tr > td.new > a { font-size: 0.8em }
 
-table#consolidates { width:99.2%; margin: 5px 0.4% }
-table#consolidates > tbody > tr > td { border: 1px solid #999; padding: 3px }
-table#consolidates > tbody > tr > td.income { background: #eee }
-table#consolidates > tbody > tr > td.expense { background: white }
+table.consolidates { width:99.2%; margin: 5px 0.4% }
+table.consolidates > tbody > tr > td { border: 1px solid #999; padding: 3px }
+table.consolidates > tbody > tr > td.income { background: #eee }
+table.consolidates > tbody > tr > td.expense { background: white }
 
-table.items { width: 50%; margin: 5px 25%; display: none }
+table.items { width: 60%; margin: 10px 20% }
 table.items > thead > tr > th { font-weight: bold; border: 1px solid #999; padding: 3px; background: #eee }
 table.items > tbody > tr.odd { background: #eee }
 table.items > tbody > tr.even { background: white }
-table.items > tbody > tr > td { border: 1px solid #999; padding: 3px }
-table.items > tbody > tr > td.date { text-align: center }
-table.items > tbody > tr > td.sum { text-align: right }
-table.items > tbody > tr > td.category { padding-left: 10px }
+table.items td { border: 1px solid #999; padding: 5px }
+table.items td.date { text-align: center }
+table.items td.sum { text-align: right }
+table.items td.category { padding-left: 10px }
 
 option { padding-right: 10px }
 
@@ -83,6 +83,7 @@ form#for_cash input[type='submit']{ width: 80px; margin-right: 14px }
 
 strong { font-weight: bold }
 
-ul { margin-left: 10px }
-
 .hidden { display: none }
+
+#item_errors { width: 20%; margin: 5px 40% }
+#item_errors ul { text-align: left }

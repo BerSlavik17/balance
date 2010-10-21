@@ -1,4 +1,4 @@
-$('#cashes').html("<%= escape_javascript(render 'cashes', { :cashes => Cash.scoped }) %>");
+$('#cashes').html("<%= escape_javascript(render :partial => 'cash', :collection => Cash.scoped) %>");
 
 $('#at_end').html("<%= sum Cash.at_end %>")
 $('#balance').html("<%= sum Cash.balance %>")

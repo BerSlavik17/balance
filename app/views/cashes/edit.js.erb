@@ -13,6 +13,7 @@ form.dialog({
     $('#cash_sum').val('<%= '%.2f' % @cash.sum %>').focus()
     $('#delete_cash_button').show()
     $('#cash_deleted').attr('checked', false)
+    $('#cash_errors').text('');
   }
 })
 

@@ -1,7 +1,7 @@
 <div class="item">
-  <%= form_for @item, :method do |item| %>
+  <%= form_for @item, :remote => true do |item| %>
+    <div id="item_errors" class="errors"></div>
     <fieldset>
-      <%= hidden_field_tag '_method', 'post', :id => 'hidden_method' %>
       <%= item.text_field :date, :class => :date %>
       <%= item.text_field :summa, :class => :sum %>
       <%= item.select :category_id, grouped_options_for_select(@categories, @item.category_id) %>

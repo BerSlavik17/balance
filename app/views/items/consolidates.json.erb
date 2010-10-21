@@ -1,9 +1,0 @@
-<%=
-  @consolidates.map{ |item|
-    { 
-      :category_name => item[:category_name], 
-      :sum => sum(item[:sum]),
-      :income => item[:income] 
-    }
-  }.to_json.html_safe
-%>

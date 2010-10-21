@@ -4,23 +4,23 @@
   <tbody>
     <tr>
       <td class="name"><%= I18n.t :begin %></td>
-      <td class="sum"><%= link_to sum(@at_begin), at_begin_path %></td>
+      <td class="sum"><%= link_to sum(Cash.at_begin), at_begin_path, :remote => true %></td>
     </tr>
   </tbody>
 
   <tbody id="cashes">
-    <%= render 'cashes/cashes', { :cashes => @cashes } %>
+    <%= render :partial => 'cashes/cash', :collection => @cashes %>
   </tbody>
 
   <tbody>
     <tr>
       <td class="name"><%= I18n.t :end %></td>
-      <td class="sum" id="at_end">0.00</td>
+      <td class="sum" id="at_end"><%= sum Cash.at_end %></td>
     </tr>
 
     <tr>
       <td class="name"><%= I18n.t :balance %></td>
-      <td class="sum" id="balance">0.00</td>
+      <td class="sum" id="balance"><%= sum Cash.balance %></td>
     </tr>
 
     <tr>
@@ -30,7 +30,7 @@
 </table>
 
 <%= form_tag '', :id => 'for_cash', :method => :put, :remote => true do %>
-  <div class="errors" id="errors_for_new_cash"></div>
+  <div class="errors" id="cash_errors"></div>
   <div class="input">
     <%= label_tag :cash_name, Cash.human_attribute_name(:name) %>
     <%= text_field_tag :cash_name, nil, :name => 'cash[name]', :class => 'cash_name' %>
@@ -48,9 +48,9 @@
   </div>
 <% end %>
 
-<%= render 'consolidates' %>
+<%= render 'consolidates', { :consolidates => @consolidates } %>
 
-<table class="items" id="items">
+<table class="items">
   <thead>
     <tr>
       <% [:date, :sum, :category, :description].each do |attr| %>
@@ -58,8 +58,8 @@
       <% end %>
     </tr>
   </thead>
-  <tbody>
-    <tr><td colspan="4">&nbsp;</td></tr>
+  <tbody id="items">
+    <%= render :partial => 'item', :collection => @items %>
   </tbody>
 </table>
 

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  respond_to :json
+  respond_to :js
   
   before_filter :find_item, 
     :only  => [:edit, :update, :destroy]
@@ -12,9 +12,9 @@ class ItemsController < ApplicationController
 
     respond_with(@items) do |format|
       format.html {
-        @categories = Category.group_by_income
-        @cashes     = Cash.scoped
-        @at_begin   = Cash.at_begin
+        @categories   = Category.group_by_income
+        @cashes       = Cash.scoped
+        @consolidates = Item.consolidates
         
         render
       }
@@ -25,9 +25,11 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new params[:item]
 
-    @item.save
-
-    respond_with @item
+    if @item.save
+      respond_with @item
+    else
+      render :error
+    end
   end
 
   def edit

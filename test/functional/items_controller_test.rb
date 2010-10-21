@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class ItemsControllerTest < ActionController::TestCase
+  should route(:get, '/items').to(:action => :index)
+  should route(:post, '/items').to(:action => :create)
+
   test "routing" do
     options = { :controller => 'items', :action => 'index', :year => '2010' }
     
@@ -14,12 +17,28 @@ class ItemsControllerTest < ActionController::TestCase
     assert_recognizes(options.merge(:month => '6', :day => '17', :category => 'salary'), '/2010/6/17/salary')
   end
 
-  test 'index' do
-    Factory :item
+  context 'GET index as HTML' do
+    setup do
+      Factory :item
+      get :index
+    end
 
-    get :index
+    should respond_with(:success)
+    should render_template(:index)
+    should respond_with_content_type(:html)
+    should('assert assigns(:items)'){ assert assigns(:items) }
+    should('assert assigns(:cashes)'){ assert assigns(:cashes) }
+    should('assert assigns(:consolidates)'){ assert assigns(:consolidates) }
+  end
 
-    assert_response :success
-    assert assigns(:items)
+  context 'POST create as JS' do
+    setup do
+      post :create, :item => Factory.build(:item).attributes, :format => 'js'
+    end
+
+    should respond_with(:success)
+    should respond_with_content_type(:js)
+    should render_template(:create)
+    should('assert assigns(:item)'){ assert assigns(:item).is_a?(Item) }
   end
 end

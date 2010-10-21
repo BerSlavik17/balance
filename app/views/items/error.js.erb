@@ -1,0 +1,3 @@
+<% errors = @item.errors.map{ |k,v| "<li><strong>#{ k }</strong>: #{ v }</li>" } %>
+
+$('#item_errors').html("<%= raw escape_javascript(%Q(<ul>#{ errors }</ul>)) %>")
