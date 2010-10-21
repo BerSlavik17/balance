@@ -3,6 +3,11 @@ require 'spec_helper'
 describe Cash do
   it { should have_db_column(:deleted).of_type(:boolean).with_options(:default => false) }
 
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:sum) }
+  it { should validate_numericality_of(:sum) }
+  it { should_not allow_value(-0.5).for(:sum) }
+  
   describe 'balance' do
     before :each do
       Factory :cash, :sum => 40_000.69

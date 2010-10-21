@@ -1,32 +1,49 @@
 require 'test_helper'
 
 class CashTest < ActiveSupport::TestCase
-  test 'at_begin' do
-    assert_equal Setting.at_begin.value.to_f, Cash.at_begin
+  should have_db_column(:deleted).of_type(:boolean).with_options(:default => false)
+
+  should validate_presence_of(:name)
+  should validate_presence_of(:sum)
+  should validate_numericality_of(:sum)
+  should_not allow_value(-0.5).for(:sum)
+
+  context 'Cash::at_begin' do
+    should 'equal Setting::at_begin' do
+      assert_equal Setting::at_begin, Cash::at_begin
+    end
   end
 
-  test 'at_end' do
-    fill_db
+  context 'Cash::balance' do
+    setup do
+      Factory :cash, :sum => 40_000.69
+    end
 
-    assert_equal (100 + 9 - 5 - 6), Cash.at_end
+    should 'equal 40_000.69' do
+      assert_equal 40_000.69, Cash::balance
+    end
   end
 
-  test 'balans' do
-    fill_db
+  context 'Cash::at_end' do
+    setup do
+      category = Factory :category, :income => true 
+      Factory :item, :summa => '40000.69', :category => category
+    end
 
-    assert_equal (Cash.sum(:sum) - Cash.at_end), Cash.balans
+    should 'equal 40_000.69' do
+      assert_equal 40_000.69, Cash::at_end
+    end
   end
 
-  private
-  def fill_db
-    food   = Factory :category, :name => 'food',   :income => false 
-    sex    = Factory :category, :name => 'sex',    :income => false
-    salary = Factory :category, :name => 'salary', :income => true 
+  context 'Cash::scoped' do
+    setup do
+      @one    = Factory :cash
+      @two    = Factory :cash, :deleted => true
+      @three  = Factory :cash
+    end
 
-    Setting.set 'at_begin', '100'
-    
-    Factory :item, :summa => '5.00', :category => food
-    Factory :item, :summa => '6.00', :category => sex
-    Factory :item, :summa => '9.00', :category => salary
+    should 'not select deleted cashes' do
+      assert_equal [@one, @three], Cash::scoped
+    end
   end
 end
