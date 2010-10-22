@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     @items = Item.where(:date => DateRange::month(params)).order('date DESC').includes(:category)
     @categories   = Category.group_by_income
     @cashes       = Cash.scoped
-    @consolidates = Item.consolidates
+    @consolidates = Item.consolidates params
 
     respond_with @items
   end
