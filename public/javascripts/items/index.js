@@ -12,8 +12,7 @@ $(document).ready(function() {
   });
   $('input#item_date').datepicker(); 
 
-  // расскрасим таблицу Items
-  $('#items').children('tr:odd').addClass('odd');
-      
+  // получим записи за текущий месяц 
+  $.get('/items'); 
 })
 

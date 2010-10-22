@@ -28,6 +28,22 @@ class ItemsControllerTest < ActionController::TestCase
     should respond_with_content_type(:html)
     should('assert assigns(:items)'){ assert assigns(:items) }
     should('assert assigns(:cashes)'){ assert assigns(:cashes) }
+    should('assert assigns(:categories)'){ assert assigns(:categories) }
+    should('assert assigns(:consolidates)'){ assert assigns(:consolidates) }
+  end
+
+  context 'GET index as JS' do
+    setup do
+      Factory :item
+      get :index, :format => 'js'
+    end
+
+    should respond_with(:success)
+    should render_template(:index)
+    should respond_with_content_type(:js)
+    should('assert assigns(:items)'){ assert assigns(:items) }
+    should('assert assigns(:cashes)'){ assert assigns(:cashes) }
+    should('assert assigns(:categories)'){ assert assigns(:categories) }
     should('assert assigns(:consolidates)'){ assert assigns(:consolidates) }
   end
 

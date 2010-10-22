@@ -3,12 +3,10 @@ $('#item_errors').text('')
 $('#at_end').html("<%= sum Cash.at_end %>")
 $('#balance').html("<%= sum Cash.balance %>")
 
-$('#consolidates').html("<%= escape_javascript(render 'consolidates', :consolidates => Item.consolidates) %>")
-
 $('#item_date').val('')
 $('#item_summa').val('')
 $('#item_category_id').val($('#item_category_id').find('option:first').val())
 $('#item_description').val('')
 
-$('#items').html("<%= escape_javascript(render :partial => 'item', :collection => Item.where(:date => DateRange::month(params)).order('date DESC').includes(:category)) %>")
-    
+// Обновим список записей
+$.get('/items')

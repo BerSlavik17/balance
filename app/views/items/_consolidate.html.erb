@@ -1,0 +1,10 @@
+<td class="<%= consolidate[:income] ? 'income' : 'expence' %>">
+  <div class="category">
+    <div class="name">
+      <%= consolidate[:category_name] %>
+    </div>
+    <div class="sum">
+      <a href="#"><%= sum consolidate[:sum] %></a>
+    </div>
+  </div>
+</td>

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  respond_to :js
+  respond_to :js, :html
   
   before_filter :find_item, 
     :only  => [:edit, :update, :destroy]
@@ -9,17 +9,11 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.where(:date => DateRange::month(params)).order('date DESC').includes(:category)
+    @categories   = Category.group_by_income
+    @cashes       = Cash.scoped
+    @consolidates = Item.consolidates
 
-    respond_with(@items) do |format|
-      format.html {
-        @categories   = Category.group_by_income
-        @cashes       = Cash.scoped
-        @consolidates = Item.consolidates
-        
-        render
-      }
-      format.json
-    end
+    respond_with @items
   end
 
   def create

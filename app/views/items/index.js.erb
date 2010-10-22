@@ -1,0 +1,15 @@
+$('#months').html("<%= escape_javascript(render 'months') %>")
+$('#years').html("<%= escape_javascript(render 'years') %>")
+
+$('#items').html("<%= 
+  if @items.any? 
+    escape_javascript(render :partial => 'item', :collection => @items) 
+  else
+    escape_javascript(render 'not_found') 
+  end
+%>")
+
+$('#consolidates').html("<%= escape_javascript(render :partial => 'consolidate', :collection => @consolidates) %>")
+
+// расскрасим таблицу Items
+$('#items').children('tr:odd').addClass('odd');

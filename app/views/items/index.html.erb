@@ -48,7 +48,9 @@
   </div>
 <% end %>
 
-<%= render 'consolidates', { :consolidates => @consolidates } %>
+<table class="consolidates">
+  <tr id="consolidates"></tr>
+</table>
 
 <table class="items">
   <thead>
@@ -58,19 +60,11 @@
       <% end %>
     </tr>
   </thead>
-  <tbody id="items">
-    <%= render :partial => 'item', :collection => @items %>
-  </tbody>
+  <tbody id="items"></tbody>
 </table>
 
 <div id="ajax-loader">
   <%= image_tag 'ajax-loader.gif' %>
-</div>
-
-<div id="errors">
-  <ul>
-    <li><strong>foo</strong>: something wrong</li>
-  </ul>
 </div>
 
 <%= content_for :javascripts do %>
