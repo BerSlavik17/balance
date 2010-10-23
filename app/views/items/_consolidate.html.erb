@@ -4,7 +4,7 @@
       <%= consolidate[:category_name] %>
     </div>
     <div class="sum">
-      <a href="#"><%= sum consolidate[:sum] %></a>
+      <%= link_to sum(consolidate[:sum]), "/#{ @year }/#{ @month }/#{ consolidate[:category_url] }", :remote => true %>
     </div>
   </div>
 </td>

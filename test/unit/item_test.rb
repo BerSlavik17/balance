@@ -46,9 +46,9 @@ class ItemTest < ActiveSupport::TestCase
     context 'for default date' do
       setup do
         @consolidates = [
-          { :category_name => @salary.name, :sum => 400, :income => @salary.income? }, 
-          { :category_name => @food.name, :sum => 15.0 + 20.0, :income => @food.income? }, 
-          { :category_name => @sex.name, :sum => 16.9, :income => @sex.income? } 
+          { :category_name => @salary.name, :sum => 400, :income => @salary.income?, :category_url => 'salary' }, 
+          { :category_name => @food.name, :sum => 15.0 + 20.0, :income => @food.income?, :category_url => 'food' }, 
+          { :category_name => @sex.name, :sum => 16.9, :income => @sex.income?, :category_url => 'sex' } 
         ]
       end
 
@@ -58,7 +58,7 @@ class ItemTest < ActiveSupport::TestCase
     context 'for custom date' do
       setup do 
         @consolidates = [
-          { :category_name => @sex.name, :sum => 43.0, :income => @sex.income? }
+          { :category_name => @sex.name, :sum => 43.0, :income => @sex.income?, :category_url => 'sex' }
         ]
       end
       
@@ -76,5 +76,20 @@ class ItemTest < ActiveSupport::TestCase
     end
 
     should('not select deleted items'){ assert_same_elements @items, Item.all }
+  end
+
+  context 'Item::search_by' do
+    setup do
+      food = Factory :category, :name => 'Food'
+      sex  = Factory :category, :name => 'Sex'
+
+      @one    = Factory :item, :date => Date.new(2010,9,1), :category => sex
+      @two    = Factory :item, :date => Date.new(2010,9,1)
+      @three  = Factory :item, :date => Date.today, :category => food
+    end
+
+    should('search by date'){ assert_same_elements [@one, @two], Item::search_by(:month => 9, :year => 2010) }
+    should('search by category url'){ assert_same_elements [@three], Item::search_by(:category => 'food') }
+    should('search by date and category url'){ assert_same_elements [@one], Item::search_by(:month => 9, :year => 2010, :category => 'sex') }
   end
 end

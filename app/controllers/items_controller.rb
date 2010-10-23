@@ -5,11 +5,16 @@ class ItemsController < ApplicationController
     :only  => [:edit, :update, :destroy]
 
   def index
-    @items = Item.where(:date => DateRange::month(params)).order('date DESC').includes(:category)
-    @cashes       = Cash.scoped
-    @consolidates = Item.consolidates params
+    @cashes = Cash.scoped
 
-    respond_with @items
+    respond_to do |format|
+      format.js do
+        @items = Item.search_by params
+        @consolidates = Item.consolidates params
+      end
+
+      format.html
+    end
   end
 
   def create

@@ -20,14 +20,25 @@ class Item < ActiveRecord::Base
 
   def self.consolidates params={}
     items = where(:date => DateRange::month(params))
-    items = items.select('SUM(sum) AS sum, category_id, categories.name AS c_name, categories.income AS income')
+    items = items.select('SUM(sum) AS sum, category_id, categories.name AS c_name, categories.income AS income, categories.url AS url')
     items = items.group(:category_id)
     items = items.joins(:category)
     items = items.order('categories.income DESC')
     
     items.map do |item|
-      { :category_name => item.c_name, :sum => item.sum, :income => item.income? }
+      { :category_name => item.c_name, :sum => item.sum, :income => item.income?, :category_url => item.url }
     end
+  end
+
+  def self.search_by params={}
+    items = where :date => DateRange::month(params)
+
+    if params[:category]
+      items = items.where(:category_id => Category.find_by_url(params[:category]))
+    end
+
+    items = items.order('date DESC')
+    items = items.includes('category')
   end
 
   private

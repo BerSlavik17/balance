@@ -4,4 +4,4 @@ $('#balance').html("<%= sum Cash.balance %>")
 $('#new_item').html('<%= escape_javascript(render 'form', { :item => Item.new }) %>')
 
 // Обновим список записей
-$.get('/items')
+$.getScript('/items')
