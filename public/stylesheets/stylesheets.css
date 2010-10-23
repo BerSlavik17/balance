@@ -21,10 +21,9 @@ table { border-collapse: collapse }
 .right { text-align: right }
 
 .item { text-align: center; padding: 5px }
-.item > form > fieldset { border: 0 } 
-.item > form > fieldset > input.sum { text-align: right; width: 60px }
-.item > form > fieldset > input.date { width: 80px }
-.item > form > fieldset > input.description { color: #ccc }
+.item > form input.sum { text-align: right; width: 60px }
+.item > form input.date { width: 80px }
+.item > form input.description { color: #ccc }
 
 optgroup { font-weight:bold }
 

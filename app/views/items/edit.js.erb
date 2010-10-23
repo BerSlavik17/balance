@@ -1,0 +1,14 @@
+$('#edit_item').html('<%= escape_javascript(render 'form', { :item => @item }) %>')
+
+$('#edit_item').dialog({
+  autoOpen: true,
+  modal: true,
+  title: 'Править запись',
+  width: '830px',
+  open: function() {
+    $('#edit_item_summa').focus();
+  }
+})
+
+$('#edit_item_date').datepicker();
+

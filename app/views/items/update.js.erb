@@ -1,7 +1,7 @@
 $('#at_end').html("<%= sum Cash.at_end %>")
 $('#balance').html("<%= sum Cash.balance %>")
 
-$('#new_item').html('<%= escape_javascript(render 'form', { :item => Item.new }) %>')
-
 // Обновим список записей
 $.get('/items')
+
+$('#edit_item').dialog('close')

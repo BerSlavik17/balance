@@ -4,12 +4,8 @@ class ItemsController < ApplicationController
   before_filter :find_item, 
     :only  => [:edit, :update, :destroy]
 
-  before_filter :build_item, 
-    :only => [:index, :new]
-
   def index
     @items = Item.where(:date => DateRange::month(params)).order('date DESC').includes(:category)
-    @categories   = Category.group_by_income
     @cashes       = Cash.scoped
     @consolidates = Item.consolidates params
 
@@ -31,9 +27,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.update_attributes params[:item]
-
-    respond_with @item
+    if @item.update_attributes params[:item]
+      render :update
+    else
+      render :error
+    end
   end
 
   def consolidates
@@ -45,9 +43,5 @@ class ItemsController < ApplicationController
   private
   def find_item
     @item = Item.find params[:id]
-  end
-
-  def build_item
-    @item = Item.new
   end
 end

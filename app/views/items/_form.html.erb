@@ -1,18 +1,18 @@
-<div class="item">
-  <%= form_for @item, :remote => true do |item| %>
-    <div id="item_errors" class="errors"></div>
-    <fieldset>
-      <%= item.text_field :date, :class => :date %>
-      <%= item.text_field :summa, :class => :sum %>
-      <%= item.select :category_id, grouped_options_for_select(@categories, @item.category_id) %>
-      <%= item.text_field :description %>
-      <span class="hidden" id="delete_button">
-        <%= label_tag :item_deleted, Item.human_attribute_name(:deleted) %>
-        <%= check_box_tag 'item[deleted]' %>
-      </span>
-      <%= item.submit 'сохранить' %>
-      <span id="cancel" class="hidden">или <a href="#/cancel" id="cancel_button">отметить</a></span>
-    </fieldset>
+<div class="item" id="new_item">
+  <%= form_for item, :remote => true do |i| %>
+    <div class="errors"></div>
+    <div>
+      <%= i.text_field :date, :value => date(item.try(:date)), :class => :date, :id => (item ? :edit_item_date : :item_date) %>
+      <%= i.text_field :summa, :class => :sum, :id => (item ? :edit_item_summa : :item_summa) %>
+      <%= i.select :category_id, grouped_options_for_select(Category.group_by_income, item.try(:category_id)), {}, :id => nil %>
+      <%= i.text_field :description, :id => nil %>
+      <%= i.submit 'сохранить', :id => nil %>
+      <% unless item.new_record? %>
+        или
+        <%= link_to I18n.t(:delete), item, :method => :delete, :confirm => I18n.t(:'are you sure'), :remote => true %>
+      <% end %>
+    </div>
   <% end %>
 </div>
 
+<div id="edit_item"></div>

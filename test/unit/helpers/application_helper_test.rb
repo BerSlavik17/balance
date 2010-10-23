@@ -14,4 +14,10 @@ class ApplicationHelperTest < ActionView::TestCase
       assert_equal '-0.01', sum(-0.01)
     end
   end
+
+  context 'ApplicationHelper::date' do
+    should('return I18n.l(:date) when :date is a Date'){ assert_equal I18n.l(Date.today), date(Date.today) }
+
+    should('return nil when :date is a nil'){ assert_nil date(nil) }
+  end
 end

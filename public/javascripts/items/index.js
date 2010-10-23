@@ -10,7 +10,7 @@ $(document).ready(function() {
     buttonImage: '/images/calendar.gif',
     showOn: 'both'
   });
-  $('input#item_date').datepicker(); 
+  $('input#item_date, input#edit_item_date').datepicker(); 
 
   // получим записи за текущий месяц 
   $.get('/items'); 
