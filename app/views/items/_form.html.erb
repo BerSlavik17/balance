@@ -2,8 +2,8 @@
   <%= form_for item, :remote => true do |i| %>
     <div class="errors"></div>
     <div>
-      <%= i.text_field :date, :value => date(item.try(:date)), :class => :date, :id => (item ? :edit_item_date : :item_date) %>
-      <%= i.text_field :summa, :class => :sum, :id => (item ? :edit_item_summa : :item_summa) %>
+      <%= i.text_field :date, :value => date(item.try(:date)), :class => :date, :id => (item.new_record? ? :item_date : :edit_item_date) %>
+      <%= i.text_field :summa, :class => :sum, :id => (item.new_record? ? :item_summa : :edit_item_summa) %>
       <%= i.select :category_id, grouped_options_for_select(Category.group_by_income, item.try(:category_id)), {}, :id => nil %>
       <%= i.text_field :description, :id => nil %>
       <%= i.submit 'сохранить', :id => nil %>
