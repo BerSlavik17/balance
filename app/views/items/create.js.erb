@@ -3,5 +3,7 @@ $('#balance').html("<%= sum Cash.balance %>")
 
 $('#new_item').html('<%= escape_javascript(render 'form', { :item => Item.new }) %>')
 
+$('input#item_date').datepicker()
+
 // Обновим список записей
 $.getScript('/items')
