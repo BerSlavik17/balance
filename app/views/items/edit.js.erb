@@ -6,7 +6,7 @@ $('#edit_item').dialog({
   title: 'Править запись',
   width: '830px',
   open: function() {
-    $('#edit_item_summa').focus();
+    $('#edit_item_summa').val('<%= '%.2f' % @item.sum %>').focus();
   }
 })
 
