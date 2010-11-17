@@ -45,6 +45,12 @@ class ItemsController < ApplicationController
     respond_with @consolidates
   end
 
+  def destroy
+    @item.update_attribute :deleted, true
+
+    respond_with @item
+  end
+
   private
   def find_item
     @item = Item.find params[:id]

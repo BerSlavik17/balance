@@ -3,6 +3,8 @@ require 'spec_helper'
 describe ItemsController do
   render_views
 
+  before { Factory :item }
+
   describe 'GET index as JSON' do
     before :each do
       @items = 2.times.map { Factory :item }
@@ -73,6 +75,14 @@ describe ItemsController do
       it { assigns(:item).sum.should == 5.0 }
       it { assigns(:item).summa.should == '3+2' }
     end
+  end
+
+  describe 'DELETE destroy as JS' do
+    before { delete :destroy, :id => Item.first, :format => 'js' }
+
+    it { should respond_with(:success) }
+    it { should render_template(:destroy) }
+    it { assigns(:item).deleted?.should be true }
   end
 end
 

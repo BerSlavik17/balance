@@ -9,7 +9,7 @@
       <%= i.submit 'сохранить', :id => nil %>
       <% unless item.new_record? %>
         или
-        <%= link_to I18n.t(:delete), item, :method => :delete, :confirm => I18n.t(:'are you sure'), :remote => true %>
+        <%= link_to I18n.t(:delete), item, :method => :delete, :confirm => :'are you sure', :remote => true %>
       <% end %>
     </div>
   <% end %>
