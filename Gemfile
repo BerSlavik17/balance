@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0' 
+gem 'rails'
 
 gem 'russian'
 gem 'sqlite3-ruby', :require => 'sqlite3'
@@ -17,5 +17,6 @@ end
 
 group :test, :development do
   gem 'ruby-debug'
+  gem 'rspec-rails'
 end
 
