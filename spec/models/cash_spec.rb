@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Cash do
-  it { should have_db_column(:deleted).of_type(:boolean).with_options(:default => false) }
+  it { should have_db_column(:deleted_at).of_type(:time) }
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:sum) }
@@ -35,18 +35,18 @@ describe Cash do
     it { should == Setting.at_begin }
   end
 
-  describe 'deleted' do
-    before :each do
+  describe 'destroy' do
+    before {
       @one    = Factory :cash
-      @two    = Factory :cash, :deleted => true
+      @two    = Factory :cash
       @three  = Factory :cash
-    end
 
-    subject { Cash.all }
+      @two.destroy
+    }
 
-    it 'should not select' do
-      should =~ [@one, @three]
-    end
+    subject { Cash.scoped }
+
+    it { should == [@one, @three] }
   end
 end
 

@@ -1,5 +1,5 @@
 class Cash < ActiveRecord::Base
-  default_scope where(:deleted => false)
+  acts_as_paranoid
 
   validates :name, :sum, :presence => true
 

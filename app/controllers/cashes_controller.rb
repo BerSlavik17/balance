@@ -1,5 +1,5 @@
 class CashesController < ApplicationController
-  respond_to :js
+  respond_to :js, :html
 
   before_filter :find_cash, :only => [:edit, :update, :destroy]
 
@@ -39,7 +39,6 @@ class CashesController < ApplicationController
 
   def destroy
     @cash.destroy
-    redirect_to root_path
   end
 
   def at_end

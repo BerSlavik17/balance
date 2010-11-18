@@ -1,0 +1,5 @@
+<%= simple_form_for cash do |f| %>
+  <%= f.input :name, :input_html => { :class => :cash_name } %>
+  <%= f.input :sum, :as => :string, :input_html => { :class => :cash_sum } %>
+  <%= f.submit %>
+<% end %>

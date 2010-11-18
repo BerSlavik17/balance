@@ -29,24 +29,7 @@
   </tbody>
 </table>
 
-<%= form_tag '', :id => 'for_cash', :method => :put, :remote => true do %>
-  <div class="errors" id="cash_errors"></div>
-  <div class="input">
-    <%= label_tag :cash_name, Cash.human_attribute_name(:name) %>
-    <%= text_field_tag :cash_name, nil, :name => 'cash[name]', :class => 'cash_name' %>
-  </div>
-  <div class="input">
-    <%= label_tag :cash_sum, Cash.human_attribute_name(:sum) %>
-    <%= text_field_tag :cash_sum, nil, :name => 'cash[sum]', :class => 'cash_sum' %>
-  </div>
-  <div class="input" id="delete_cash_button">
-    <%= label_tag :cash_deleted, Cash.human_attribute_name(:deleted) %>
-    <%= check_box_tag 'cash[deleted]' %>
-  </div>
-  <div class="input submit">
-    <%= submit_tag I18n.t :save %>
-  </div>
-<% end %>
+<div id="cash_form"></div>
 
 <table class="consolidates">
   <tr id="consolidates"></tr>

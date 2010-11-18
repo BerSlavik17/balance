@@ -10,12 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101012190205) do
+ActiveRecord::Schema.define(:version => 20101117193646) do
 
   create_table "cashes", :force => true do |t|
-    t.float   "sum"
-    t.string  "name"
-    t.boolean "deleted", :default => false
+    t.float  "sum"
+    t.string "name"
+    t.time   "deleted_at"
   end
 
   create_table "categories", :force => true do |t|

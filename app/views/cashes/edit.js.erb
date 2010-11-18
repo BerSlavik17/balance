@@ -1,19 +1,8 @@
-var form = $('form#for_cash')
-
-form.attr('action', '<%= url_for @cash %>')
-
-form.find('input[name="_method"]').val('put')
-
-form.dialog({
+$('#cash_form').html('<%= escape_javascript render('form', :cash => @cash) %>').dialog({
   autoOpen: true,
   modal: true,
   title: 'Править остаток "<%= @cash.name %>"',
   open: function() {
-    $('#cash_name').val('<%= @cash.name %>')
     $('#cash_sum').val('<%= '%.2f' % @cash.sum %>').focus()
-    $('#delete_cash_button').show()
-    $('#cash_deleted').attr('checked', false)
-    $('#cash_errors').text('');
   }
-})
-
+}) 

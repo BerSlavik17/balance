@@ -3,6 +3,8 @@ require 'spec_helper'
 describe CashesController do
   render_views 
 
+  before { @cash = Factory :cash }
+
   describe 'GET at_end as JSON' do
     before :each do
       get :at_end, :format => 'json'
@@ -62,5 +64,13 @@ describe CashesController do
       it { assigns(:cash).name.should == 'two' }
       it { response.should render_template(:update) }
     end
+  end
+
+  describe 'DELETE destroy as JS' do
+    before { delete :destroy, :id => @cash.id, :format => 'js' }
+
+    it { should respond_with(:success) }
+    it { should render_template(:destroy) }
+    it { @cash.reload.deleted_at.should_not be nil }
   end
 end
