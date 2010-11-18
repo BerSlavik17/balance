@@ -3,12 +3,6 @@ class CashesController < ApplicationController
 
   before_filter :find_cash, :only => [:edit, :update, :destroy]
 
-  def index
-    @cashes = Cash.scoped
-
-    respond_with @cashes
-  end
-
   def update
     @cash.update_attributes params[:cash]
 
@@ -29,18 +23,6 @@ class CashesController < ApplicationController
 
   def destroy
     @cash.destroy
-  end
-
-  def at_end
-    @at_end = Cash.at_end
-
-    respond_with @at_end 
-  end
-
-  def balance
-    @balance = Cash.balance
-
-    respond_with @balance
   end
 
   def edit
