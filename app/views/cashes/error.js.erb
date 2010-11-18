@@ -1,3 +1,0 @@
-<% error_messages = @cash.errors.map{ |k,v| %Q(<li><strong>#{k}</strong>: #{v}</li>) }%>
-
-$('#cash_errors').html("<%= raw escape_javascript(%Q(<ul>#{ error_messages }</ul>)) %>")

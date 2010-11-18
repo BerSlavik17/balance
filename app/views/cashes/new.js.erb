@@ -1,19 +1,8 @@
-var form = $('form#for_cash')
-
-form.attr('action', '<%= url_for :cashes %>')
-
-form.find('input[name="_method"]').val('post')
-
-form.dialog({
+$('#cash_form').html('<%= escape_javascript render('form', :cash => @cash) %>').dialog({
   autoOpen: true,
   modal: true,
   title: 'Добавить остаток',
   open: function() {
-    $('#cash_name').val('')
-    $('#cash_sum').val('0.00')
-    $('#delete_cash_button').hide()
-    $('#cash_deleted').attr('checked', false)
-    $('#cash_errors').text('');
+    $('#cash_sum').val('<%= '%.2f' % @cash.sum.to_f %>').focus()
   }
-})
-
+}) 

@@ -1,5 +1,5 @@
 class CashesController < ApplicationController
-  respond_to :js, :html
+  respond_to :js
 
   before_filter :find_cash, :only => [:edit, :update, :destroy]
 
@@ -22,19 +22,9 @@ class CashesController < ApplicationController
   end
 
   def create
-    @cash = Cash.new params[:cash]
+    @cash = Cash.create params[:cash]
 
-    @cash.save
-
-    respond_with @cash do |format|
-      format.js do
-        if @cash.errors.empty?
-          render :create
-        else
-          render :error
-        end
-      end
-    end
+    respond_with @cash
   end
 
   def destroy

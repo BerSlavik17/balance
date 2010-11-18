@@ -1,5 +1,10 @@
-<%= simple_form_for cash do |f| %>
+<%= simple_form_for cash, :remote => true do |f| %>
   <%= f.input :name, :input_html => { :class => :cash_name } %>
   <%= f.input :sum, :as => :string, :input_html => { :class => :cash_sum } %>
   <%= f.submit %>
+
+  <% unless cash.new_record? %>
+    или 
+    <%= link_to 'Удалить', cash, :method => :delete, :confirm => 'are you sure?', :remote => true %>
+  <% end %>
 <% end %>
