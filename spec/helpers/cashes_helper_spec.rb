@@ -8,15 +8,15 @@ describe CashesHelper do
 
     subject { cash2hash(@cash) }
 
-    def make_hash
+    def cashes
       {
         :id => @cash.id,
         :sum => '1567.88',
         :name => @cash.name,
-        :deleted => @cash.deleted?
+        :deleted_at => @cash.deleted_at
       }
     end
 
-    it { should == make_hash }
+    it { should == cashes }
   end
 end

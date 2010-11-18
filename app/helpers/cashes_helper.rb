@@ -6,7 +6,7 @@ module CashesHelper
       :id => @cash.id,
       :sum => '%.2f' % @cash.sum,
       :name => @cash.name,
-      :deleted => @cash.deleted?
+      :deleted_at => @cash.deleted_at
     }
   end
 end

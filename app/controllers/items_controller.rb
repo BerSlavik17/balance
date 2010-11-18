@@ -18,13 +18,9 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new params[:item]
+    @item = Item.create params[:item]
 
-    if @item.save
-      respond_with @item
-    else
-      render :error
-    end
+    respond_with @item.save
   end
 
   def edit
@@ -32,21 +28,13 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update_attributes params[:item]
-      render :update
-    else
-      render :error
-    end
-  end
+    @item.update_attributes params[:item]
 
-  def consolidates
-    @consolidates = Item.consolidates params
-
-    respond_with @consolidates
+    respond_with @item
   end
 
   def destroy
-    @item.update_attribute :deleted, true
+    @item.destroy
 
     respond_with @item
   end

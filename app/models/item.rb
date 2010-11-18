@@ -1,8 +1,8 @@
 class Item < ActiveRecord::Base
+  acts_as_paranoid
+
   delegate :year, :month, :day, :to => :date
   delegate :url, :name, :income, :to => :category, :prefix => true
-
-  default_scope where(:deleted => false)
 
   scope :income, 
     includes(:category).where('categories.income IN(?)', [1, true])
