@@ -1,44 +1,25 @@
 require 'spec_helper'
 
 describe CashesController do
-  render_views 
+  it { should be_a_kind_of(InheritedResources::Base) }
 
-  before { @cash = Factory :cash }
+  it { subject.mimes_for_respond_to.should include(:js) }
 
   describe 'POST create as JS' do
-    before :each do
-      post :create, :cash => Factory.attributes_for(:cash), :format => 'js'
+    describe 'with valid attributes' do
+      before { post :create, :cash => Factory.build(:cash).attributes, :format => 'js' }
+
+      it { should respond_with(:success) }
+      it { should render_template(:create) }
+      it { should assign_to(:cash).with_kind_of(Cash) }
     end
 
-    it { should respond_with(:success) }
-    it { should respond_with_content_type(:js) }
-    it { should render_template(:create) }
-  end
+    describe 'with invalid attributes' do
+      before { post :create, :cash => {}, :format => 'js' }
 
-  describe 'DELETE destroy as JS' do
-    before { delete :destroy, :id => @cash.id, :format => 'js' }
-
-    it { should respond_with(:success) }
-    it { should render_template(:destroy) }
-    it { @cash.reload.deleted_at.should_not be nil }
-  end
-
-  describe 'PUT update as JS' do
-    before { put :update, :id => @cash.id, :cash => { :name => 'two', :sum => 54.87 }, :format => 'js' }
-
-    it { should respond_with(:success) }
-    it { should respond_with_content_type(:js) }
-    it { assigns(:cash).sum.should == 54.87 }
-    it { assigns(:cash).name.should == 'two' }
-    it { response.should render_template(:update) }
-  end
-
-  describe 'GET edit as JS' do
-    before { get :edit, :id => @cash.id, :format => 'js' } 
-
-    it { should respond_with(:success) }
-    it { should respond_with_content_type(:js) }
-    it { assigns(:cash).should == @cash }
-    it { response.should render_template(:edit) }
+      it { should respond_with(:success) }
+      it { should render_template(:new) }
+      it { should assign_to(:cash).with_kind_of(Cash) }
+    end
   end
 end

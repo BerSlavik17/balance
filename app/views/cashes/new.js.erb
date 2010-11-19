@@ -4,5 +4,6 @@ $('#cash_form').html('<%= escape_javascript render('form', :cash => @cash) %>').
   title: 'Добавить остаток',
   open: function() {
     $('#cash_sum').val('<%= '%.2f' % @cash.sum.to_f %>').focus()
-  }
+    },
+  width: '370px'
 }) 

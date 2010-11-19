@@ -6,10 +6,10 @@
       <%= i.text_field :summa, :class => :sum, :id => (item.new_record? ? :item_summa : :edit_item_summa) %>
       <%= i.select :category_id, grouped_options_for_select(Category.group_by_income, item.try(:category_id)), {}, :id => nil %>
       <%= i.text_field :description, :id => nil %>
-      <%= i.submit 'сохранить', :id => nil %>
+      <%= i.submit I18n.t(:'helpers.submit'), :id => nil %>
       <% unless item.new_record? %>
         или
-        <%= link_to I18n.t(:delete), item, :method => :delete, :confirm => :'are you sure', :remote => true %>
+        <%= link_to I18n.t(:delete), item, :method => :delete, :remote => true %>
       <% end %>
     </div>
   <% end %>

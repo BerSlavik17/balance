@@ -1,8 +1,8 @@
-class ItemsController < ApplicationController
-  respond_to :js, :html
-  
-  before_filter :find_item, 
-    :only  => [:edit, :update, :destroy]
+class ItemsController < InheritedResources::Base
+  respond_to :js
+  respond_to :html, :only => :index
+
+  actions :all, :except => :index
 
   def index
     @cashes = Cash.scoped
@@ -15,32 +15,5 @@ class ItemsController < ApplicationController
 
       format.html
     end
-  end
-
-  def create
-    @item = Item.create params[:item]
-
-    respond_with @item.save
-  end
-
-  def edit
-    respond_with @item
-  end
-
-  def update
-    @item.update_attributes params[:item]
-
-    respond_with @item
-  end
-
-  def destroy
-    @item.destroy
-
-    respond_with @item
-  end
-
-  private
-  def find_item
-    @item = Item.find params[:id]
   end
 end

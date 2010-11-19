@@ -1,10 +1,6 @@
-<% if @cash.valid? %>
-  $('#cashes').html("<%= escape_javascript(render :partial => 'cash', :collection => Cash.scoped) %>");
+$('#cashes').html("<%= escape_javascript(render :partial => 'cash', :collection => Cash.scoped) %>");
 
-  $('#at_end').html("<%= sum Cash.at_end %>")
-  $('#balance').html("<%= sum Cash.balance %>")
+$('#at_end').html("<%= sum Cash.at_end %>")
+$('#balance').html("<%= sum Cash.balance %>")
 
-  $('#cash_form').dialog('close')
-<% else %>
-  <%= render 'error', :cash => @cash %>
-<% end %>
+$('#cash_form').dialog('close')
