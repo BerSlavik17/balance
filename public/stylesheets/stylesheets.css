@@ -20,12 +20,13 @@ table { border-collapse: collapse }
 .years { padding-top: 3px }
 
 .current { 
-  font-weight: bold; 
+  font-weight: normal; 
   -webkit-border-radius: 5px; 
   border: 1px solid green; 
   color: white; 
-  background-color: green;
+  background-color: #494;
   padding: 0 5px;
+  text-decoration: none
 }
 
 .right { text-align: right }
