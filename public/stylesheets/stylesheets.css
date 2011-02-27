@@ -17,7 +17,17 @@ table { border-collapse: collapse }
   text-align: center;
 }
 
-.current { font-weight: bold }
+.years { padding-top: 3px }
+
+.current { 
+  font-weight: bold; 
+  -webkit-border-radius: 5px; 
+  border: 1px solid green; 
+  color: white; 
+  background-color: green;
+  padding: 0 5px;
+}
+
 .right { text-align: right }
 
 .item { text-align: center; padding: 5px }
