@@ -83,7 +83,7 @@ strong { font-weight: bold }
 #item_errors ul { text-align: left }
 
 input.cash_name { width: 100px; padding-left: 3px; }
-input.cash_sum  { width: 100px; }
+input.cash_sum  { width: 100px; text-align: right; }
 
 /* AtBegin Form */
 input#at_begin_sum { 
