@@ -1,0 +1,6 @@
+$('#cash_form').html('<%= escape_javascript(render 'form', :at_begin => @at_begin) %>').dialog({
+  autoOpen: true,
+  modal: true,
+  title: 'Править остаток'
+})
+
