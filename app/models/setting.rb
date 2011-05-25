@@ -20,4 +20,6 @@ class Setting < ActiveRecord::Base
       Setting.create :key => key, :value => value
     end
   end
+
+  #TODO: уйти от методов ::get и ::set. Вместо них использовать ::at_begin и ::at_begin= соответственно
 end
