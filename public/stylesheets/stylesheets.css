@@ -1,4 +1,4 @@
-* {
+body {
   padding: 0;
   margin: 0;
   font-weight:normal;
@@ -82,28 +82,14 @@ strong { font-weight: bold }
 #item_errors { width: 20%; margin: 5px 40% }
 #item_errors ul { text-align: left }
 
-/* copy-paste from SimpleForm documentation */
-.simple_form label {  
-  float: left;  
-  width: 80px;  
-  text-align: right;  
-  margin-right: 10px
-}  
+input.cash_name { width: 100px; padding-left: 3px; }
+input.cash_sum  { width: 100px; }
 
-.simple_form div.input {  
-  margin-bottom: 10px;  
-}  
+/* AtBegin Form */
+input#at_begin_sum { 
+  width: 80px;
+  margin: 5px 5px 10px 5px;
+  text-align: right;
+}
 
-.simple_form div.boolean, .simple_form input[type='submit'] {  
-  margin-left: 100px;  
-}  
-
-.simple_form div.boolean label {  
-  float: none;  
-  margin: 0;  
-}  
-
-.simple_form div.field_with_errors span.error { margin-left: 3px }
-
-input.cash_name { width: 100px }
-input.cash_sum  { width: 100px; text-align: right }
+input#at_begin_submit { margin-left: 145px }

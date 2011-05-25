@@ -2,14 +2,14 @@
 
 <table class="cashes">
   <tbody>
-    <tr id="at_begin">
+    <tr>
       <td class="name"><%= I18n.t :begin %></td>
-      <td class="sum"><%= link_to sum(Cash.at_begin), '/at_begin', :remote => true %></td>
+      <td class="sum" id="at_begin"><%= link_to sum(Cash.at_begin), [:edit, :at_begin], :remote => true %></td>
     </tr>
   </tbody>
 
   <tbody id="cashes">
-    <%= render :partial => 'cashes/cash', :collection => @cashes %>
+    <%= render @cashes %>
   </tbody>
 
   <tbody>

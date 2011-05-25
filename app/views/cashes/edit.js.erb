@@ -1,9 +1,8 @@
-$('#cash_form').html('<%= escape_javascript render('form', :cash => @cash) %>').dialog({
+$('#cash_form').html('<%= escape_javascript(render 'form', :cash => @cash) %>').dialog({
   autoOpen: true,
   modal: true,
-  width: '350px',
   title: 'Править остаток "<%= @cash.name %>"',
-  open: function() {
-    $('#cash_sum').val('<%= '%.2f' % @cash.sum %>').focus()
-  }
-}) 
+  width: '600px'
+})
+
+$('#cash_sum').focus();
