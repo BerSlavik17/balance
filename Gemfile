@@ -1,8 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails'
-
-gem 'russian', :git => 'git://github.com/yaroslav/russian.git'
+gem 'rake', '~> 0.8.7'
+gem 'russian'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'date_range', :git => 'git://github.com/tksasha/date_range.git'
 gem 'rails3_acts_as_paranoid'
@@ -20,7 +20,7 @@ group :development do
 end
 
 group :test, :development do
-  gem 'ruby-debug'
+  gem 'ruby-debug19'
   gem 'rspec-rails'
 end
 
