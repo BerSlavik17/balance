@@ -4,11 +4,9 @@ gem 'rails'
 gem 'rake', '~> 0.8.7'
 gem 'russian'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'date_range', :git => 'git://github.com/tksasha/date_range.git'
 gem 'rails3_acts_as_paranoid'
 gem 'simple_form'
 gem 'inherited_resources'
-
 
 group :test do
   gem 'shoulda'

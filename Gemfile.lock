@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/tksasha/date_range.git
-  revision: 4d7cba129d6805163533bb45050556edb89af535
-  specs:
-    date_range (0.2)
-      activesupport
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -122,7 +115,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  date_range!
   factory_girl_rails
   inherited_resources
   rails
