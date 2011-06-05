@@ -32,13 +32,16 @@ module Balance
     config.i18n.default_locale = :ru
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w(jquery rails jquery-ui-1.8.5.custom.min jquery.ui.datepicker-ru jquery.form)
+    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails jquery-ui-1.8.5.custom.min jquery.ui.datepicker-ru jquery.form)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    # Enable the asset pipeline
+    config.assets.enabled = true
   end
 end
 
