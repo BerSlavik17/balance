@@ -1,4 +1,4 @@
-<tr>
+<tr id="item_<%= item.id %>">
   <td class="date"><%= I18n.l item.date %></td>
   <td class="sum"><%= link_to sum(item.sum), [:edit, item], :remote => true %></td>
   <td class="category"><%= item.category_name %></td>

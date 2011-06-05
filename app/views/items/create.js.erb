@@ -5,5 +5,6 @@ $('#new_item').html('<%= escape_javascript(render 'form', { :item => Item.new })
 
 $('input#item_date').datepicker()
 
-// Обновим список записей
-$.getScript('/items')
+$('#items').prepend('<%= escape_javascript(render @item) %>')
+
+$('#consolidates').html("<%= escape_javascript(render :partial => 'items/consolidate', :collection => @consolidates) %>")

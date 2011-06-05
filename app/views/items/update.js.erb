@@ -1,8 +1,8 @@
 $('#at_end').html("<%= sum Cash.at_end %>")
 $('#balance').html("<%= sum Cash.balance %>")
 
+$('#item_<%= @item.id %>').replaceWith('<%= escape_javascript(render @item) %>');
+
+$('#consolidates').html("<%= escape_javascript(render :partial => 'items/consolidate', :collection => @consolidates) %>")
+
 $('#edit_item').dialog('close')
-
-// Обновим список записей
-$.getScript('/items')
-

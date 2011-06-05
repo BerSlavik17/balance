@@ -32,7 +32,9 @@
 <div id="cash_form"></div>
 
 <table class="consolidates">
-  <tr id="consolidates"></tr>
+  <tr id="consolidates">
+    <%= render :partial => 'consolidate', :collection => @consolidates %>
+  </tr>
 </table>
 
 <table class="items">
@@ -43,7 +45,9 @@
       <% end %>
     </tr>
   </thead>
-  <tbody id="items"></tbody>
+  <tbody id="items">
+    <%= render @items %>
+  </tbody>
 </table>
 
 <div id="ajax-loader">
