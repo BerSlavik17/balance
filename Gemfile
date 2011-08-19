@@ -9,6 +9,8 @@ gem 'inherited_resources'
 gem 'unicorn'
 gem 'jquery-rails'
 
+gem 'rack', '1.2.3'
+
 group :test do
   gem 'shoulda'
   gem 'factory_girl_rails'
