@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails'
+gem 'rails', '>=3.1.0.rc6'
 gem 'russian'
 gem 'sqlite3'
 gem 'rails3_acts_as_paranoid'
