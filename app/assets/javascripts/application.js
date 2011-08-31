@@ -17,6 +17,6 @@ $(document).ajaxStop(function() { $('#ajax-loader').hide() });
 $.datepicker.setDefaults($.datepicker.regional[ 'ru' ]);
 $.datepicker.setDefaults({  
   buttonImageOnly: true,
-  buttonImage: '/images/calendar.gif',
+  buttonImage: 'assets/calendar.gif',
   showOn: 'both'
 });
