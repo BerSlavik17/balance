@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Balance on AJAX</title>
-    <%= stylesheet_link_tag :all, :reqursive => true %>
+    <%= stylesheet_link_tag :application %>
     <%= csrf_meta_tag %>
   </head>
   <body>
@@ -18,7 +18,7 @@
 
     <%= yield %>
 
-    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag :application %>
     <%= yield :javascripts %>
   </body>
 </html>
