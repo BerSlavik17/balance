@@ -8,6 +8,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.ui.datepicker-ru.js
+//= require items/index.js
 
 // Глобальные AJAX-события
 $(document).ajaxStart(function() { $('#ajax-loader').show() });
@@ -16,7 +17,7 @@ $(document).ajaxStop(function() { $('#ajax-loader').hide() });
 // Инициализация поля с календариком
 $.datepicker.setDefaults($.datepicker.regional[ 'ru' ]);
 $.datepicker.setDefaults({  
-  //buttonImageOnly: true,
-  //buttonImage: 'calendar.gif',
-  showOn: 'focus'
+  buttonImageOnly: true,
+  buttonImage: '/assets/calendar.gif',
+  showOn: 'both'
 });
