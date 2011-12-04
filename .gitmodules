@@ -1,0 +1,3 @@
+[submodule "vendor/widgets"]
+	path = vendor/widgets
+	url = git://github.com/tksasha/widgets.git
