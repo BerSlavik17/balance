@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>=3.1.0'
+gem 'rails'
 gem 'russian'
 gem 'sqlite3'
 gem 'rails3_acts_as_paranoid'
@@ -9,16 +9,17 @@ gem 'inherited_resources'
 gem 'unicorn'
 gem 'jquery-rails'
 gem 'json'
-gem 'therubyracer'
+gem 'kgio'
 
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
+  gem 'therubyracer'
 end
 
 group :test do
-  gem 'shoulda'
+  gem 'shoulda', '~> 3.0.0.beta2'
   gem 'factory_girl_rails'
 end
 
@@ -28,7 +29,7 @@ end
 
 group :test, :development do
   gem 'ruby-debug'
-  gem 'linecache', '0.43' # for ruby-debug
+  gem 'linecache'
   gem 'rspec-rails'
 end
 

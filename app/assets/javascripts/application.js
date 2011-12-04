@@ -16,7 +16,7 @@ $(document).ajaxStop(function() { $('#ajax-loader').hide() });
 // Инициализация поля с календариком
 $.datepicker.setDefaults($.datepicker.regional[ 'ru' ]);
 $.datepicker.setDefaults({  
-  buttonImageOnly: true,
-  buttonImage: 'assets/calendar.gif',
-  showOn: 'both'
+  //buttonImageOnly: true,
+  //buttonImage: 'calendar.gif',
+  showOn: 'focus'
 });
