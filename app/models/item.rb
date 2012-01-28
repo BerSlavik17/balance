@@ -1,7 +1,7 @@
 require 'date_range'
 
 class Item < ActiveRecord::Base
-  acts_as_paranoid
+  #acts_as_paranoid
 
   delegate :year, :month, :day, :to => :date
   delegate :url, :name, :income, :to => :category, :prefix => true
@@ -11,6 +11,9 @@ class Item < ActiveRecord::Base
 
   scope :expense,
     includes(:category).where('categories.income IN(?)', [0, false])
+
+  #TODO: spec it
+  default_scope where(:deleted_at => nil)
 
   belongs_to :category
 

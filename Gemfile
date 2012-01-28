@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails'
 gem 'russian'
 gem 'sqlite3'
-gem 'rails3_acts_as_paranoid'
+#gem 'rails3_acts_as_paranoid'
 gem 'simple_form'
 gem 'inherited_resources'
 gem 'unicorn'
@@ -17,8 +17,6 @@ group :assets do
   gem 'uglifier'
   gem 'therubyracer'
 end
-
-gem 'rack'
 
 group :test do
   gem 'shoulda', '~> 3.0.0.beta2'

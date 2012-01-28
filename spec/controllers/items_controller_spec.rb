@@ -3,8 +3,12 @@ require 'spec_helper'
 describe ItemsController do
   it { should be_a_kind_of(InheritedResources::Base) }
 
-  it { subject.mimes_for_respond_to.should include(:js) }
-  it { subject.mimes_for_respond_to[:html].should == { :only => [:index] } }
+  #it { subject.mimes_for_respond_to.should include(:js) }
+  #it { subject.mimes_for_respond_to[:html].should == { :only => [:index] } }
+
+  its(:mimes_for_respond_to) { should include :js }
+  
+  its(:mimes_for_respond_to) { should include({ :html => { :only => ['index'] } }) }
 
   describe 'GET index as JS' do
     before { get :index, :format => :js }

@@ -4,7 +4,7 @@ $('#edit_item').html('<%= escape_javascript(render 'form', { :item => @item }) %
   title: 'Править запись',
   width: '890px',
   open: function() {
-    $('#edit_item_summa').val('<%= '%.2f' % @item.sum %>').focus();
+    $('#edit_item_summa').val('<%= @item.summa %>').focus();
   }
 })
 
