@@ -9,7 +9,6 @@ gem 'inherited_resources'
 gem 'unicorn'
 gem 'jquery-rails'
 gem 'json'
-gem 'kgio'
 
 group :assets do
   gem 'sass-rails'
@@ -28,8 +27,7 @@ group :development do
 end
 
 group :test, :development do
-  gem 'ruby-debug'
-  gem 'linecache'
+  gem 'ruby-debug19'
   gem 'rspec-rails'
 end
 
