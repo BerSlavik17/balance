@@ -1,3 +1,0 @@
-<% (1..12).each do |month| %>
-  <%= link_to I18n.t(:'date.standalone_month_names')[month], "/#{ @year }/#{ '%02d' % month }", :class => (@month == month ? 'month current' : 'month'), :remote => true %>
-<% end %>
