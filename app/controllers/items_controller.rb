@@ -1,41 +1,32 @@
-class ItemsController < InheritedResources::Base
-  include InheritedResources::DSL
+class ItemsController < ApplicationController
+  helper_method :collection, :build_resource, :resource
 
-  respond_to :js
-  respond_to :html, :only => :index
-
-  actions :all, :except => :index
-
-  before_filter :find_cashes, :find_items, :find_consolidates, :only => :index
-
-  create! do |success, failure|
-    success.js do
-      # в before_filter это выносить не стоит. 
-      # потому что пересчет сводного отчета должен происходить 
-      # после успешного создания записи
-      @consolidates = find_consolidates
+  def create
+    if build_resource.save
+      redirect_to :items
+    else
+      render :new
     end
   end
 
-  update! do |success, failure|
-    success.js do
-      # в before_filter это выносить не стоит. 
-      # потому что пересчет сводного отчета должен происходить 
-      # после успешного обновления записи
-      @consolidates = find_consolidates
+  def update
+    if resource.update_attributes params[:item]
+      redirect_to :root
+    else
+      render :edit
     end
   end
 
   private
-  def find_cashes
-    @cashes = Cash.scoped
+  def collection
+    @items ||= ItemDecorator.search
   end
 
-  def find_items
-    @items = Item.search_by params
+  def build_resource
+    @item ||= Item.new params[:item]
   end
 
-  def find_consolidates
-    @consolidates = Item.consolidates params
+  def resource
+    @item ||= ItemDecorator.find params[:id]
   end
 end

@@ -1,11 +1,8 @@
-class CashesController < InheritedResources::Base
-  respond_to :js
+class CashesController < ApplicationController
+  helper_method :collection
 
-  def create
-    super do |format|
-      format.js do
-        render :new unless @cash.valid?
-      end
-    end
+  private
+  def collection
+    @cashes ||= CashesDecorator.new Cash.scoped
   end
 end

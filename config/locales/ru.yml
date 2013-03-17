@@ -2,9 +2,6 @@ ru:
   income: Приход
   expense: Расход
 
-  save: Сохранить
-  delete: Удалить
-
   begin: На начало
   end: На конец
 
@@ -12,15 +9,11 @@ ru:
 
   activerecord:
     attributes:
-      item:
-        date: Дата
-        sum: Сумма
-        category: Категория
-        description: Описание
-        deleted: Удалить
-
       cash:
         name: Название
         sum: Сумма
         deleted: Удалить
 
+  months:
+    [nil, 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+      'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']

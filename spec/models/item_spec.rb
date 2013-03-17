@@ -1,15 +1,35 @@
 require 'spec_helper'
 
 describe Item do
-  it { should have_db_column(:deleted_at).of_type(:time) }
+  it { should belong_to :category }
 
-  describe 'category_name' do
-    subject { Factory :item }
+  describe '.search' do
+    before do
+      Item.should_receive(:where).with(date: Date.today.beginning_of_month..Date.today.end_of_month) do
+        double.tap { |a| a.should_receive(:order).with('created_at DESC') }
+      end
+    end
 
-    it { should respond_to :category_name }
-    it { subject.category_name.should == subject.category.name }
+    it { expect { Item.search }.to_not raise_error }
   end
 
+  describe 'calculate sum' do
+    before do
+      subject.summa = '2 + 2'
+      
+      subject.send :calculate_sum
+    end
+
+    its(:sum) { should eq 4 }
+  end
+
+  context 'before save callbacks' do
+    before { subject.should_receive :calculate_sum }
+
+    it { expect { subject.save }.to_not raise_error }
+  end
+
+  pending 'fixme' do
   describe 'consolidates' do
     before {
       @food   = Factory :category, :name => 'food'
@@ -62,5 +82,6 @@ describe Item do
     it 'should not select' do
       should == [@one, @three]
     end
+  end
   end
 end

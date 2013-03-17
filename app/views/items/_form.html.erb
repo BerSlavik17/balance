@@ -1,18 +1,22 @@
-<div class="item" id="new_item">
-  <%= form_for item, :remote => true do |i| %>
+<div class="item">
+  <%= form_for resource, :remote => false do |f| %>
     <div class="errors"></div>
+
     <div>
-      <%= i.text_field :date, :value => date(item.try(:date)), :class => :date, :id => (item.new_record? ? :item_date : :edit_item_date) %>
-      <%= i.text_field :summa, :class => :sum, :id => (item.new_record? ? :item_summa : :edit_item_summa), :placeholder => t(:'activerecord.attributes.item.sum') %>
-      <%= i.select :category_id, grouped_options_for_select(Category.group_by_income, item.try(:category_id)), {}, :id => nil %>
-      <%= i.text_field :description, :id => nil, :placeholder => t(:'activerecord.attributes.item.description') %>
-      <%= i.submit t(:'helpers.submit'), :id => nil %>
-      <% unless item.new_record? %>
+      <%= f.text_field :date, :class => :date, value: resource.date %>
+
+      <%= f.text_field :summa, :class => :sum, :placeholder => 'Сумма' %>
+      
+      <%= f.select :category_id, grouped_options_for_select(Category.group_by_income) %>
+      
+      <%= f.text_field :description, :placeholder => 'Описание' %>
+      
+      <%= f.submit 'Сохранить' %>
+      
+      <% if resource.persisted? %>
         или
-        <%= link_to t(:delete), item, :method => :delete, :remote => true %>
+        <%= link_to 'Удалить', resource, :method => :delete, :remote => false %>
       <% end %>
     </div>
   <% end %>
 </div>
-
-<div id="edit_item"></div>

@@ -1,0 +1,15 @@
+<div class="header" id="header">
+  <div class="months">
+    <% Month.all.each do |month| %>
+      <%= link_to month.name, "/#{ current_year }/#{ month }",
+        :class =>"month #{ 'current' if month == current_month } }", remote: false %>
+    <% end %>
+  </div>
+
+  <div class="years">
+    <% Year.all.each do |year| %>
+      <%= link_to year, "/#{ year }/#{ current_month }",
+        :class => "year #{ 'current' if year == current_year }", remote: false %>
+    <% end %>
+  </div>
+</div>

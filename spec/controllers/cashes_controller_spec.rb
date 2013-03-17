@@ -1,21 +1,15 @@
 require 'spec_helper'
 
 describe CashesController do
-  it { should be_a_kind_of(InheritedResources::Base) }
+  it { should have_helper_method :collection }
 
-  it { subject.mimes_for_respond_to.should include(:js) }
+  its(:collection) { should be_a CashesDecorator }
 
-  describe 'POST create as JS' do
-    describe 'with valid attributes' do
-      before { post :create, :cash => Factory.build(:cash).attributes, :format => 'js' }
+  describe 'GET index as JS' do
+    before { get :index, format: :js }
 
-      it { should render_template(:create) }
-    end
+    it { should render_template :index }
 
-    describe 'with invalid attributes' do
-      before { post :create, :cash => {}, :format => 'js' }
-
-      it { should render_template(:new) }
-    end
+    it { should respond_with_content_type :js }
   end
 end

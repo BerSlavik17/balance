@@ -1,23 +1,23 @@
-// This is a manifest file that'll be compiled into including all the files listed below.
-// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
-// be included in the compiled file accessible from http://example.com/assets/application.js
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
 //= require jquery
 //= require jquery-ui
-//= require jquery_ujs
-//= require jquery.ui.datepicker-ru.js
-//= require items/index.js
+//= require jquery.ui.datepicker-ru
+//= require rails
+//= require_self
 
-// Глобальные AJAX-события
-$(document).ajaxStart(function() { $('#ajax-loader').show() });
-$(document).ajaxStop(function() { $('#ajax-loader').hide() }); 
+$(function() {
+  // Глобальные AJAX-события
+  $(document).ajaxStart(function() { $('#ajax-loader').show() });
+  $(document).ajaxStop(function() { $('#ajax-loader').hide() }); 
 
-// Инициализация поля с календариком
-$.datepicker.setDefaults($.datepicker.regional[ 'ru' ]);
-$.datepicker.setDefaults({  
-  buttonImageOnly: true,
-  buttonImage: '/assets/calendar.gif',
-  showOn: 'both'
-});
+  // Инициализация поля с календариком
+  $.datepicker.setDefaults($.datepicker.regional[ 'ru' ]);
+  $.datepicker.setDefaults({  
+    buttonImageOnly: true,
+    buttonImage: '/assets/calendar.gif',
+    showOn: 'both'
+  });
+
+  $('.date').datepicker();
+
+  $.getScript('/cashes');
+})

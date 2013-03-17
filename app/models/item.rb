@@ -1,10 +1,28 @@
 require 'date_range'
 
 class Item < ActiveRecord::Base
+  belongs_to :category
+
+  before_save :calculate_sum
+
+  private
+  def calculate_sum
+    self.sum = Money.new(summa).to_f
+  end
+
+  class << self
+    def search
+      where(date: Date.today.beginning_of_month..Date.today.end_of_month).order('created_at DESC')
+    end
+  end
+end
+
+__END__
   #acts_as_paranoid
 
   delegate :year, :month, :day, :to => :date
-  delegate :url, :name, :income, :to => :category, :prefix => true
+
+  delegate :name, to: :category, prefix: true, allow_nil: true
 
   scope :income, 
     includes(:category).where('categories.income IN(?)', [1, true])
@@ -50,6 +68,13 @@ class Item < ActiveRecord::Base
   def calculate_sum
     #FIXME: "не ломаться" когда тип значение summa отличное от String
     self.sum = eval(self.summa.gsub(/[^0-9\+\-\.]/, ''))
+  end
+
+  class << self
+    # TODO: spec me
+    def search *args
+      order('created_at DESC').limit(100)
+    end
   end
 end
 

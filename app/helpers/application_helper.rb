@@ -1,12 +1,9 @@
 module ApplicationHelper
-  def sum sum
-    sum = sum.to_f
-    sum = sum.abs if sum > -0.01 && sum < 0
-    number_with_delimiter '%.2f' % sum.to_f, :delimiter => '&nbsp;'
+  def current_month
+    Month.new params[:month] || Month.current
   end
 
-  def date date
-    I18n.l(date) if date.is_a?(Date)
+  def current_year
+    Year.new params[:year] || Year.current
   end
 end
-
