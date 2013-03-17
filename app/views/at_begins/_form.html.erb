@@ -1,6 +1,0 @@
-<%= form_tag '/at_begin', :method => :put, :id => :at_begin_form, :remote => true do %>
-  <%= label_tag :at_begin_sum, 'Остаток на начало' %>
-  <%= text_field_tag :sum, ('%.2f' % @at_begin), :id => :at_begin_sum %>
-
-  <%= submit_tag 'Обновить', :id => :at_begin_submit %>
-<% end %>
