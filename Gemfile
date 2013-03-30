@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'unicorn'
 gem 'draper'
 gem 'russian'
+gem 'acts_as_paranoid'
 
 group :assets do
   gem 'sass-rails'
@@ -18,5 +19,5 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda-matchers', '1.4.2'
+  gem 'shoulda-matchers'
 end
