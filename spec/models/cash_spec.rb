@@ -1,53 +1,31 @@
 require 'spec_helper'
 
 describe Cash do
-  pending 'fixme' do
-  it { should have_db_column(:deleted_at).of_type(:time) }
+  it { should validate_presence_of :name }
 
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:sum) }
-  it { should validate_numericality_of(:sum) }
-  it { should_not allow_value(-0.5).for(:sum) }
+  it { should validate_presence_of :sum }
   
-  describe 'balance' do
-    before :each do
-      Factory :cash, :sum => 40_000.69
+  it { should validate_numericality_of :sum }
+
+  it { should_not allow_value(-0.5).for(:sum) }
+
+  describe '.at_end' do
+    before do
+      Item.should_receive(:income) { double.tap { |a| a.should_receive(:sum).with(:sum) { 10 } } }
+
+      Item.should_receive(:expense) { double.tap { |b| b.should_receive(:sum).with(:sum) { 6.5 } } }
     end
 
-    subject { Cash.balance }
-
-    it { should == 40_000.69 }
+    it { expect(Cash.at_end).to eq 3.5 }
   end
 
-  describe 'at_end' do
-    before :each do
-      income = Factory :category, :income => true
-      Factory :item, :summa => '40000.69', :category => income
+  describe '.balance' do
+    before do
+      Cash.should_receive(:sum).with(:sum) { 24 }
+
+      Cash.should_receive(:at_end) { 19.8 }
     end
 
-    subject { Cash.at_end }
-
-    it { should == 40_000.69 }
-  end
-
-  describe 'at_begin' do
-    subject { Cash.at_begin }
-
-    it { should == Setting.at_begin }
-  end
-
-  describe 'destroy' do
-    before {
-      @one    = Factory :cash
-      @two    = Factory :cash
-      @three  = Factory :cash
-
-      @two.destroy
-    }
-
-    subject { Cash.scoped }
-
-    it { should == [@one, @three] }
-  end
+    it { expect(Cash.balance).to eq 4.2 }
   end
 end

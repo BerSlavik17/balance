@@ -1,22 +1,17 @@
 class Cash < ActiveRecord::Base
-  #acts_as_paranoid
+  acts_as_paranoid
 
   validates :name, :sum, :presence => true
 
   validates :sum, :numericality => { :greater_than_or_equal_to => 0 }
 
-  #TODO: spec me
-  default_scope where(:deleted_at => nil)
+  class << self
+    def at_end
+      Item.income.sum(:sum) - Item.expense.sum(:sum)
+    end
 
-  def self.at_begin
-    Setting.at_begin
-  end
-
-  def self.at_end
-    self.at_begin + Item.income.sum(:sum) - Item.expense.sum(:sum)
-  end
-
-  def self.balance
-    self.sum(:sum) - self.at_end
+    def balance
+      (sum(:sum) - at_end).round(2)
+    end
   end
 end
