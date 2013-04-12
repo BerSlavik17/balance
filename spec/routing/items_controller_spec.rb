@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe ItemsController do
+  it { should route(:get, '/2011').to(action: :index, year: '2011') }
+
+  pending do
   it { expect(get: '/2011').to route_to(controller: 'items', action: 'index', year: '2011') }
 
   it { expect(get: '/2013/02').to route_to(controller: 'items', action: 'index', year: '2013', month: '02') }
@@ -16,4 +19,5 @@ describe ItemsController do
 
   it { expect(get: '/2008/05/17/food').
     to route_to(controller: 'items', action: 'index', year: '2008', month: '05', day: '17', category: 'food') }
+  end
 end

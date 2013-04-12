@@ -19,28 +19,30 @@ describe ItemsController do
 
   its(:build_resource) { should be_a Item }
     
-  its(:collection) { should be_a ItemsDecorator }
-
   describe 'GET index' do
     before { get :index }
 
     it { should render_template :index }
   end
 
-  describe 'POST create' do
+  describe 'POST create as JS' do
     before { Item.any_instance.stub save: true }
 
-    before { post :create }
+    before { post :create, format: :js }
 
-    it { should redirect_to :items }
+    it { should render_template :create }
+
+    it { should respond_with_content_type :js }
   end
 
-  describe 'POST create with invalid attributes' do
+  describe 'POST create as JS with invalid attributes' do
     before { Item.any_instance.stub save: false }
 
-    before { post :create }
+    before { post :create, format: :js }
 
     it { should render_template :new }
+
+    it { should respond_with_content_type :js }
   end
 
   describe 'GET edit' do

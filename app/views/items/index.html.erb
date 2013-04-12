@@ -1,30 +1,23 @@
-<%= render 'form', item: build_resource %>
+<div class="item">
+  <%= render 'form', resource: build_resource %>
+</div>
 
 <table class="cashes">
-  <tbody>
-    <tr>
-      <td class="name"><%#= I18n.t :begin %></td>
-      <td class="sum" id="at_begin"><%#= link_to sum(Cash.at_begin), [:edit, :at_begin], :remote => true %></td>
-    </tr>
-  </tbody>
-
-  <tbody id="cashes">
-    <%#= render @cashes %>
-  </tbody>
+  <tbody id="cashes"></tbody>
 
   <tbody>
     <tr>
-      <td class="name"><%#= I18n.t :end %></td>
-      <td class="sum" id="at_end"><%#= sum Cash.at_end %></td>
+      <td class="name">Остаток на конец:</td>
+      <td class="sum" id="at_end"><%= Cash.at_end %></td>
     </tr>
 
     <tr>
-      <td class="name"><%= I18n.t :balance %></td>
-      <td class="sum" id="balance"><%#= sum Cash.balance %></td>
+      <td class="name">Баланс:</td>
+      <td class="sum" id="balance"><%= Cash.balance %></td>
     </tr>
 
     <tr>
-      <td class="new" colspan="2"><%#= link_to '+++', [:new, :cash], :remote => true %></td>
+      <td class="new" colspan="2"><%= link_to '+++', [:new, :cash], :remote => true %></td>
     </tr>
   </tbody>
 </table>
@@ -43,7 +36,6 @@
       <th>Дата</th>
       <th>Сумма</th>
       <th>Категория</th>
-      <th>Описание</th>
     </tr>
   </thead>
 

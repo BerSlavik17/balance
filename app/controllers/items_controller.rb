@@ -1,9 +1,11 @@
 class ItemsController < ApplicationController
-  helper_method :collection, :build_resource, :resource
+  helper_method :collection, :resource, :build_resource
+
+  before_filter :build_resource, only: :create
 
   def create
-    if build_resource.save
-      redirect_to :items
+    if resource.save
+      render :create
     else
       render :new
     end
@@ -19,7 +21,7 @@ class ItemsController < ApplicationController
 
   private
   def collection
-    @items ||= ItemDecorator.search
+    @items ||= ItemsDecorator.new Item.search
   end
 
   def build_resource

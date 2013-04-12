@@ -1,9 +1,7 @@
 <tr id="item_<%= item.id %>">
-  <td class="date"><%= item.date %></td>
+  <td class="date"><%= link_to item.date, items_path(year: 2013, month: '03', day: 26) %></td>
 
-  <td class="sum"><%= link_to item.money, [:edit, item], :remote => false %></td>
+  <td class="sum"><%= item.money %></td>
   
   <td class="category"><%= item.category_name %></td>
-  
-  <td><%= item.description %></td>
 </tr>

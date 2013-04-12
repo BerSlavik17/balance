@@ -1,22 +1,20 @@
-<div class="item">
-  <%= form_for resource, :remote => false do |f| %>
-    <div class="errors"></div>
+<%= form_for Item.new, remote: true, html: { id: :item_form } do |f| %>
+  <div><%= resource.inspect %></div>
 
-    <div>
-      <%= f.text_field :date, :class => :date, value: resource.date %>
+  <div>
+    <%= f.text_field :date, :class => :date, value: resource.date %>
 
-      <%= f.text_field :summa, :class => :sum, :placeholder => 'Сумма' %>
-      
-      <%= f.select :category_id, grouped_options_for_select(Category.group_by_income) %>
-      
-      <%= f.text_field :description, :placeholder => 'Описание' %>
-      
-      <%= f.submit 'Сохранить' %>
-      
-      <% if resource.persisted? %>
-        или
-        <%= link_to 'Удалить', resource, :method => :delete, :remote => false %>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+    <%= f.text_field :summa, :class => :sum, :placeholder => 'Сумма' %>
+    
+    <%= f.select :category_id, grouped_options_for_select(Category.group_by_income) %>
+    
+    <%= f.text_field :description, :placeholder => 'Описание' %>
+    
+    <%= f.submit 'Сохранить' %>
+    
+    <% if resource.persisted? %>
+      или
+      <%= link_to 'Удалить', resource, :method => :delete, :remote => false %>
+    <% end %>
+  </div>
+<% end %>

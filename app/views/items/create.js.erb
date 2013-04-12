@@ -1,10 +1,5 @@
-$('#at_end').html("<%= sum Cash.at_end %>")
-$('#balance').html("<%= sum Cash.balance %>")
+(function() {
+  $('#items').prepend('<%= j render resource %>');
 
-$('#new_item').html('<%= escape_javascript(render 'form', { :item => Item.new }) %>')
-
-$('input#item_date').datepicker()
-
-$('#items').prepend('<%= escape_javascript(render @item) %>')
-
-$('#consolidates').html("<%= escape_javascript(render :partial => 'items/consolidate', :collection => @consolidates) %>")
+  $('#item_form').replaceWith('<%= j render 'form', resource: ItemFactory.build %>');
+}());

@@ -1,3 +1,5 @@
 (function() {
   $('#cashes').html('<%= j render collection %>');
+
+  $('#at_end').html('<%= number_with_delimiter Cash.at_end %>');
 }());

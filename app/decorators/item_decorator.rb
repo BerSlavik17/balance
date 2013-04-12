@@ -10,12 +10,6 @@ class ItemDecorator < Draper::Decorator
   end
 
   def date
-    I18n.l source.date, format: '%d.%m.%Y'
-  end
-
-  class << self
-    def search *args
-      decorate_collection source_class.search *args
-    end
+    I18n.l(source.date, format: '%d.%m.%Y') if source.date
   end
 end

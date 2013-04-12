@@ -5,14 +5,6 @@ describe ItemDecorator do
 
   subject { ItemDecorator.new item }
 
-  its(:class) { should respond_to :search }
-
-  describe '.search' do
-    before { Item.should_receive(:search).with(year: 2013) }
-
-    it { expect { ItemDecorator.search year: 2013 }.to_not raise_error }
-  end
-
   its(:category_name) { should be_nil }
 
   context 'stub category' do

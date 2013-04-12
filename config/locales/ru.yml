@@ -1,12 +1,4 @@
 ru:
-  income: Приход
-  expense: Расход
-
-  begin: На начало
-  end: На конец
-
-  balance: Баланс
-
   activerecord:
     attributes:
       cash:
