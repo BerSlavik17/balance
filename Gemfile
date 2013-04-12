@@ -6,6 +6,7 @@ gem 'unicorn'
 gem 'draper'
 gem 'russian'
 gem 'acts_as_paranoid'
+gem 'inherited_resources'
 
 group :assets do
   gem 'sass-rails'
@@ -16,6 +17,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'debugger'
 end
 
 group :test do
