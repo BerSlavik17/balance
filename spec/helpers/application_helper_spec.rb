@@ -1,31 +1,34 @@
-#encoding: utf-8
 require 'spec_helper'
 
 describe ApplicationHelper do
-  subject { helper }
+  describe '#current_date' do
+    subject { helper.current_date }
 
-  describe '#current_month' do
-    before { Month.stub current: 8 }
+    it { should eq Date.today }
 
-    its(:current_month) { should eq Month.new 8 }
+    context do
+      before { helper.stub params: { year: '2011' } }
 
-    context 'stub params' do
-      before { subject.stub params: { month: '09' } }
+      its(:year) { should eq 2011 }
+    end
 
-      its(:current_month) { should eq Month.new 9 }
+    context do
+      before { helper.stub params: { month: '11' } }
+
+      its(:month) { should eq 11 }
+    end
+
+    context do
+      before { helper.stub params: { day: '17' } }
+
+      its(:day) { should eq 17 }
     end
   end
 
-  describe '#current_year' do
-    before { Year.stub current: 2013 }
+  describe '#months' do
+    subject { helper.months }
 
-    its(:current_year) { should eq Year.new 2013 }
-
-    context 'stub params' do
-      before { subject.stub params: { year: 2012 } }
-
-      its(:current_year) { should eq Year.new 2012 }
-    end
+    it { should eq %w(Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь) }
   end
 end
 
