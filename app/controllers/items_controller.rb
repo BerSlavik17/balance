@@ -3,7 +3,7 @@ class ItemsController < InheritedResources::Base
 
   private
   def collection
-    @items ||= ItemsDecorator.new Item.search
+    @items ||= ItemsDecorator.new Item.search DateRange.build(params)
   end
 
   def resource

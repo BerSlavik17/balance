@@ -1,8 +1,6 @@
 module ApplicationHelper
   def current_date
-    Date.today.change year: (params[:year] ? params[:year].to_i : nil),
-      month: (params[:month] ? params[:month].to_i : nil),
-      day: (params[:day] ? params[:day].to_i : nil)
+    @current_date ||= DateFactory.build params
   end
 
   def months

@@ -1,6 +1,4 @@
-<%= form_for Item.new, remote: true, html: { id: :item_form } do |f| %>
-  <div><%= resource.inspect %></div>
-
+<%= form_for resource, remote: true, html: { id: :item_form } do |f| %>
   <div>
     <%= f.text_field :date, :class => :date, value: resource.date %>
 

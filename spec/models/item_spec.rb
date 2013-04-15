@@ -10,18 +10,16 @@ describe Item do
   its(:class) { should be_paranoid }
 
   describe '.search' do
+    let(:date_range) { DateRange.build }
+
     before do
-      from = Date.today.beginning_of_month
-
-      to = Date.today.end_of_month
-
       #
-      # Item.where(from..to).
+      # Item.where(date: date_range).
       #   select('SUM(sum) AS sum, date, category_id').
       #   group('date, category_id').
       #   order('date DESC')
       #
-      Item.should_receive(:where).with(date: from..to) do
+      Item.should_receive(:where).with(date: date_range) do
         double.tap do |a|
           a.should_receive(:select).with('SUM(sum) AS sum, date, category_id') do
             double.tap do |b|
@@ -34,11 +32,14 @@ describe Item do
       end
     end
 
-    it { expect { Item.search }.to_not raise_error }
+    it { expect { Item.search date_range }.to_not raise_error }
   end
 
   describe '.income' do
     before do
+      #
+      # stub: Item.includes(:category).where('categories.income' => true)
+      #
       Item.should_receive(:includes).with(:category) do
         double.tap { |a| a.should_receive(:where).with('categories.income' => true) }
       end
@@ -49,6 +50,9 @@ describe Item do
 
   describe '.expense' do
     before do
+      #
+      # stub: Item.includes(:category).where('categories.income' => false)
+      #
       Item.should_receive(:includes).with(:category) do
         double.tap { |a| a.should_receive(:where).with('categories.income' => false) }
       end
