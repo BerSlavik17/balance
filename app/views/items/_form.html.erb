@@ -1,14 +1,22 @@
-<%= form_for resource, remote: true, html: { id: :item_form } do |f| %>
-  <div>
-    <%= f.text_field :date, :class => :date, value: resource.date %>
+<%= form_for resource, remote: true, html: { id: :item_form, class: 'b-form' } do |f| %>
+  <div class="input-wrapper">
+    <%= f.text_field :date, class: :date, value: resource.date %>
+  </div>
 
-    <%= f.text_field :summa, :class => :sum, :placeholder => 'Сумма' %>
+  <div class="input-wrapper">
+    <%= f.text_field :summa, class: :sum, placeholder: 'Сумма', autocomplete: :off %>
+  </div>
     
-    <%= f.select :category_id, grouped_options_for_select(Category.group_by_income) %>
+  <div class="input-wrapper">
+    <%= f.select :category_id, grouped_options_for_select(Category.group_by_income), {}, class: :category %>
+  </div>
     
-    <%= f.text_field :description, :placeholder => 'Описание' %>
+  <div class="input-wrapper">
+    <%= f.text_field :description, class: :description, :placeholder => 'Описание' %>
+  </div>
     
-    <%= f.submit 'Сохранить' %>
+  <div class="input-wrapper">
+    <%= f.submit 'Сохранить', class: :submit %>
     
     <% if resource.persisted? %>
       или

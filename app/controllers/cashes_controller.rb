@@ -3,6 +3,6 @@ class CashesController < ApplicationController
 
   private
   def collection
-    @cashes ||= CashesDecorator.new Cash.scoped
+    cashes
   end
 end

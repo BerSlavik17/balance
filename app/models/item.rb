@@ -1,7 +1,9 @@
 class Item < ActiveRecord::Base
+  attr_accessible :date, :summa, :category_id, :description
+
   belongs_to :category
 
-  validates :date, :category_id, :presence => true
+  validates :date, :category_id, :summa, presence: true
 
   scope :income, -> { includes(:category).where('categories.income' => true) }
 

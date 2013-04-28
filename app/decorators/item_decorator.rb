@@ -10,6 +10,18 @@ class ItemDecorator < Draper::Decorator
   end
 
   def date
-    I18n.l(source.date, format: '%d.%m.%Y') if source.date
+    h.localize(source.date, format: '%d.%m.%Y') if source.date
+  end
+
+  def year
+    source.date.year
+  end
+
+  def month
+    '%02d' % source.date.month
+  end
+
+  def day
+    '%02d' % source.date.day
   end
 end

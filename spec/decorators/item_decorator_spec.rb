@@ -20,4 +20,16 @@ describe ItemDecorator do
 
     its(:money) { should eq '145.60' }
   end
+
+  context do
+    let(:date) { Date.new 2013, 5, 17 }
+
+    before { item.date = date }
+
+    its(:year) { should eq 2013 }
+
+    its(:month) { should eq '05' }
+
+    its(:day) { should eq '17' }
+  end
 end

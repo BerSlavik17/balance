@@ -1,5 +1,5 @@
 <tr id="item_<%= item.id %>">
-  <td class="date"><%= link_to item.date, items_path(year: 2013, month: '03', day: 26) %></td>
+  <td class="date"><%= link_to item.date, "/#{ item.year }/#{ item.month }/#{ item.day }" %></td>
 
   <td class="sum"><%= item.money %></td>
   

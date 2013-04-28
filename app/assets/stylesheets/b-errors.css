@@ -1,0 +1,9 @@
+.b-errors {
+ height: 13px;
+ width: 120px;
+}
+
+.b-errors .error {
+ font-size: 10px;
+ color: red;
+}

@@ -33,12 +33,7 @@ table { border-collapse: collapse }
   text-decoration: none
 }
 
-.right { text-align: right }
-
 .item { text-align: center; padding: 5px }
-.item > form input.sum { text-align: right; width: 60px }
-.item > form input.date { width: 80px }
-.item > form input.description { color: #ccc }
 
 optgroup { font-weight:bold }
 
@@ -76,15 +71,9 @@ option { padding-right: 10px }
   left: 40%;
 }
 
-#errors { display: none }
-.errors { color: red }
-
 strong { font-weight: bold }
 
 .hidden { display: none }
-
-#item_errors { width: 20%; margin: 5px 40% }
-#item_errors ul { text-align: left }
 
 input.cash_name { width: 100px; padding-left: 3px; }
 input.cash_sum  { width: 100px; text-align: right; }

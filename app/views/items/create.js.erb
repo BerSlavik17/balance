@@ -1,5 +1,7 @@
 (function() {
-  $('#items').prepend('<%= j render resource %>');
+  $('#item_form').replaceWith('<%= j render 'form', resource: Item.new %>');
 
-  $('#item_form').replaceWith('<%= j render 'form', resource: ItemFactory.build %>');
+  $('.date').datepicker();
+
+  $('#items').replaceWith('<%= j render items(DateRange.new(resource.source.date).month) %>');
 }());

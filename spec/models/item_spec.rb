@@ -1,16 +1,26 @@
 require 'spec_helper'
 
 describe Item do
+  it { should allow_mass_assignment_of :date }
+
+  it { should allow_mass_assignment_of :summa }
+
+  it { should allow_mass_assignment_of :category_id }
+
+  it { should allow_mass_assignment_of :description }
+
   it { should validate_presence_of :date }
 
   it { should validate_presence_of :category_id }
+
+  it { should validate_presence_of :summa }
 
   it { should belong_to :category }
 
   its(:class) { should be_paranoid }
 
   describe '.search' do
-    let(:date_range) { DateRange.build }
+    let(:date_range) { DateRange.new Date.today }
 
     before do
       #
