@@ -1,9 +1,9 @@
 class Item < ActiveRecord::Base
-  attr_accessible :date, :summa, :category_id, :description
+  attr_accessible :date, :formula, :category_id, :description
 
   belongs_to :category
 
-  validates :date, :category_id, :summa, presence: true
+  validates :date, :category_id, :formula, presence: true
 
   scope :income, -> { includes(:category).where('categories.income' => true) }
 
@@ -15,7 +15,7 @@ class Item < ActiveRecord::Base
 
   private
   def calculate_sum
-    self.sum = Money.new(summa).to_f
+    self.sum = Money.new(formula).to_f
   end
 
   class << self

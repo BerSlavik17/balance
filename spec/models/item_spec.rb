@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Item do
   it { should allow_mass_assignment_of :date }
 
-  it { should allow_mass_assignment_of :summa }
+  it { should allow_mass_assignment_of :formula }
 
   it { should allow_mass_assignment_of :category_id }
 
@@ -13,7 +13,7 @@ describe Item do
 
   it { should validate_presence_of :category_id }
 
-  it { should validate_presence_of :summa }
+  it { should validate_presence_of :formula }
 
   it { should belong_to :category }
 
@@ -73,7 +73,7 @@ describe Item do
 
   describe 'calculate_sum' do
     before do
-      subject.summa = '1.8+2.4'
+      subject.formula = '1.8+2.4'
 
       subject.should_receive(:sum=).with(4.2)
     end
