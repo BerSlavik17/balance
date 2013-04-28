@@ -1,0 +1,9 @@
+(function() {
+  $('#header').replaceWith('<%= j render 'layouts/header' %>');
+
+  <% if collection.any? %>
+    $('#items').html('<%= j render collection %>');
+  <% else %>
+    $('#items').html('<%= j render 'not_found' %>');
+  <% end %>
+}());

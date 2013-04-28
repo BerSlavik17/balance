@@ -3,5 +3,5 @@
 
   $('.date').datepicker();
 
-  $('#items').replaceWith('<%= j render items(DateRange.new(resource.source.date).month) %>');
+  $('#items').html('<%= j render items(DateRange.new(resource.source.date).month) %>');
 }());
