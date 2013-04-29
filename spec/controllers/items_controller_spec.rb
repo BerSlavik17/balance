@@ -32,6 +32,8 @@ describe ItemsController do
 
   it { should have_helper_method :cashes }
 
+  it { should have_helper_method :consolidates }
+
   describe 'POST create as JS with invalid attributes' do
     before { Item.any_instance.should_receive(:save) { false } }
 

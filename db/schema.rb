@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428182412) do
+ActiveRecord::Schema.define(:version => 20130429061956) do
 
   create_table "cashes", :force => true do |t|
     t.float  "sum"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20130428182412) do
   create_table "categories", :force => true do |t|
     t.string  "name"
     t.boolean "income", :default => false
-    t.string  "url"
+    t.string  "slug"
   end
 
   create_table "items", :force => true do |t|

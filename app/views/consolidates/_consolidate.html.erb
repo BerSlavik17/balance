@@ -1,0 +1,12 @@
+<td class="<%= consolidate.income? ? :income : :expence %>">
+  <div class="category">
+    <div class="name">
+      <%= consolidate.name %>
+    </div>
+
+    <div class="sum">
+      <%= link_to money(consolidate.sum), "/#{ consolidate.year }/#{ consolidate.month }/#{ consolidate.slug }",
+        remote: true %>
+    </div>
+  </div>
+</td>

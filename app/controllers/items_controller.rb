@@ -3,7 +3,7 @@ class ItemsController < InheritedResources::Base
 
   respond_to :html, :js
 
-  helper_method :items, :cashes
+  helper_method :items, :cashes, :consolidates
 
   create! do |success, failure|
     failure.js { render :new }
@@ -24,5 +24,9 @@ class ItemsController < InheritedResources::Base
 
   def items date_range
     @items ||= Draper::CollectionDecorator.new Item.search(date_range).includes(:category)
+  end
+
+  def consolidates
+    @consolidates ||= Consolidate.by DateRange.new(DateFactory.build params).month
   end
 end
