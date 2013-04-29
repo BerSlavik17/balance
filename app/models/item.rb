@@ -19,8 +19,12 @@ class Item < ActiveRecord::Base
   end
 
   class << self
-    def search date_range
-      includes(:category).where(date: date_range).order('date DESC')
+    def search date_range, slug=nil
+      if slug
+        where 'categories.slug' => slug
+      else
+        self
+      end.includes(:category).where(date: date_range).order('date DESC')
     end
   end
 end

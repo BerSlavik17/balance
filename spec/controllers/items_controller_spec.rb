@@ -48,9 +48,9 @@ describe ItemsController do
 
     before do
       #
-      # stub: Item.search(date_range).includes(:category)
+      # stub: Item.search(date_range, nil).includes(:category)
       #
-      Item.should_receive(:search).with(date_range) do
+      Item.should_receive(:search).with(date_range, nil) do
         double.tap { |a| a.should_receive(:includes).with(:category) { [item] } }
       end
     end

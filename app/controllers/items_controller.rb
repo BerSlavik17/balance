@@ -23,7 +23,7 @@ class ItemsController < InheritedResources::Base
   end
 
   def items date_range
-    @items ||= Draper::CollectionDecorator.new Item.search(date_range).includes(:category)
+    @items ||= Draper::CollectionDecorator.new Item.search(date_range, params[:category]).includes(:category)
   end
 
   def consolidates
