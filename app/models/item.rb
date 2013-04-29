@@ -20,8 +20,7 @@ class Item < ActiveRecord::Base
 
   class << self
     def search date_range
-      where(date: date_range).select('SUM(sum) AS sum, date, category_id').group('date, category_id').
-        order('date DESC')
+      includes(:category).where(date: date_range).order('date DESC')
     end
   end
 end

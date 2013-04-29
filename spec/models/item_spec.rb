@@ -24,19 +24,12 @@ describe Item do
 
     before do
       #
-      # Item.where(date: date_range).
-      #   select('SUM(sum) AS sum, date, category_id').
-      #   group('date, category_id').
-      #   order('date DESC')
+      # Item.includes(:category).where(date: date_range).order('date DESC')
       #
-      Item.should_receive(:where).with(date: date_range) do
+      Item.should_receive(:includes).with(:category) do
         double.tap do |a|
-          a.should_receive(:select).with('SUM(sum) AS sum, date, category_id') do
-            double.tap do |b|
-              b.should_receive(:group).with('date, category_id') do
-                double.tap { |c| c.should_receive(:order).with('date DESC') }
-              end
-            end
+          a.should_receive(:where).with(date: date_range) do
+            double.tap { |b| b.should_receive(:order).with('date DESC') }
           end
         end
       end
