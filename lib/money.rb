@@ -7,9 +7,10 @@ class Money
 
   def source
     @money.
-      gsub(/[^0-9\+\.]+/, '').  # only digits, '.' and '+' allowed
-      gsub(/\+{2,}/, '+').      # replaces '+++' with '+'
-      gsub(/\.{2,}/, '.')       # replaces '...' with '.'
+      gsub(/[^0-9\+\-\.]+/, '').  # only digits, dots, pluses and minuses allowed
+      gsub(/\+{2,}/, '+').        # replaces '+++' with '+'
+      gsub(/\-{2,}/, '-').        # replaces '---' with '-'
+      gsub(/\.{2,}/, '.')         # replaces '...' with '.'
   end
 
   def to_f
