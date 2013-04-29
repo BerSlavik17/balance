@@ -1,34 +1,8 @@
-<div>
-  <%= render 'form', resource: Item.new %>
-</div>
+<%= render 'form', resource: Item.new %>
 
-<table class="cashes">
-  <tbody id="cashes"><%= render cashes %></tbody>
+<%= render 'cashes/cashes', cashes: cashes %>
 
-  <tbody>
-    <tr>
-      <td class="name">Остаток на конец:</td>
-      <td class="sum" id="at_end"><%= money Cash.at_end %></td>
-    </tr>
-
-    <tr>
-      <td class="name">Баланс:</td>
-      <td class="sum" id="balance"><%= money Cash.balance %></td>
-    </tr>
-
-    <tr>
-      <td class="new" colspan="2"><%= link_to '+++', [:new, :cash], :remote => true %></td>
-    </tr>
-  </tbody>
-</table>
-
-<div id="cash_form"></div>
-
-<table class="consolidates">
-  <tr id="consolidates">
-    <%= render consolidates %>
-  </tr>
-</table>
+<%= render 'consolidates/consolidates', consolidates: consolidates %>
 
 <table class="items b-items">
   <thead>
@@ -47,7 +21,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div id="ajax-loader">
-  <%= image_tag 'ajax-loader.gif' %>
-</div>

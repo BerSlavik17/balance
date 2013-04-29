@@ -11,6 +11,10 @@
 
     <%= yield %>
 
+    <div id="ajax-loader">
+      <%= image_tag 'ajax-loader.gif' %>
+    </div>
+
     <%= javascript_include_tag :application %>
   </body>
 </html>
