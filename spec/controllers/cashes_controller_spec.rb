@@ -1,13 +1,9 @@
 require 'spec_helper'
 
 describe CashesController do
-  it { should have_helper_method :collection }
+  it { should be_a InheritedResources::Base }
 
-  describe 'GET index as JS' do
-    before { get :index, format: :js }
+  its(:mimes_for_respond_to) { should include :js }
 
-    it { should render_template :index }
-
-    it { should respond_with_content_type :js }
-  end
+  it { should have_helper_method :cashes }
 end

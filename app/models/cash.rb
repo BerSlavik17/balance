@@ -1,9 +1,11 @@
 class Cash < ActiveRecord::Base
+  attr_accessible :name, :sum
+
   acts_as_paranoid
 
-  validates :name, :sum, :presence => true
+  validates :name, :sum, presence: true
 
-  validates :sum, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :sum, numericality: { greater_than_or_equal_to: 0 }
 
   class << self
     def at_end

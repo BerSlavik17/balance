@@ -1,5 +1,7 @@
-class CashesController < ApplicationController
-  helper_method :collection
+class CashesController < InheritedResources::Base
+  respond_to :js
+
+  helper_method :cashes
 
   private
   def collection

@@ -1,8 +1,13 @@
-$('#cash_form').html('<%= escape_javascript(render 'form', :cash => @cash) %>').dialog({
-  autoOpen: true,
-  modal: true,
-  title: 'Править остаток "<%= @cash.name %>"',
-  width: '600px'
-})
+(function() {
+  var $dialog = $('#dialog');
 
-$('#cash_sum').focus();
+  if($dialog.length < 1) {
+    var dialog = document.createElement('div');
+
+    dialog.id = 'dialog';
+
+    $dialog = $(dialog);
+  }
+
+  $dialog.html('<%= j render 'form' %>').dialog();
+}());

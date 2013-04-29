@@ -1,6 +1,9 @@
-$('#cash_<%= @cash.id %> a').html('<%= sum @cash.sum %>');
+(function() {
+  $('#cashes').html('<%= j render cashes %>');
 
-$('#cash_form').dialog('close');
+  $('#at_end').html('<%= money Cash.at_end %>');
 
-$('#balance').html('<%= sum Cash.balance %>')
+  $('#balance').html('<%= money Cash.balance %>');
 
+  $('#dialog').dialog('close');
+}());
