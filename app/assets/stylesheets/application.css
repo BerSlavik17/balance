@@ -50,8 +50,6 @@ table.consolidates > tbody > tr > td.expense { background: white }
 
 table.items { width: 60%; margin: 10px 20% }
 table.items > thead > tr > th { font-weight: bold; border: 1px solid #999; padding: 3px; background: #eee }
-table.items > tbody > tr.odd { background: #eee }
-table.items > tbody > tr.even { background: white }
 table.items td { border: 1px solid #999; padding: 5px }
 table.items td.date { text-align: center }
 table.items td.sum { text-align: right }
