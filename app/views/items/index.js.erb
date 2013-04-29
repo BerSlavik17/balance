@@ -6,4 +6,6 @@
   <% else %>
     $('#items').html('<%= j render 'not_found' %>');
   <% end %>
+
+  $('#consolidates').html('<%= render consolidates %>')
 }());
