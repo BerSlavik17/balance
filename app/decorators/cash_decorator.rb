@@ -2,6 +2,6 @@ class CashDecorator < Draper::Decorator
   delegate_all
 
   def sum
-    h.number_with_delimiter Money.new(source.sum)
+    h.money Money.new(source.sum).to_f
   end
 end

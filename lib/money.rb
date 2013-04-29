@@ -14,14 +14,10 @@ class Money
   end
 
   def to_f
-    (eval source).to_f
-  end
-
-  def to_s
-    '%.2f' % to_f
+    (eval source).to_f.round(2)
   end
 
   def <=> another
-    to_s <=> another.to_s
+    to_f <=> another.to_f
   end
 end

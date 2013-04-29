@@ -6,7 +6,7 @@ class ItemDecorator < Draper::Decorator
   decorates_finders
 
   def money
-    Money.new source.sum
+    h.money Money.new(sum).to_f
   end
 
   def date

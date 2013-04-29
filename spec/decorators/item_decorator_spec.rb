@@ -13,7 +13,11 @@ describe ItemDecorator do
     its(:category_name) { should eq 'Food' }
   end
 
-  its(:money) { should be_a Money }
+  context do
+    before { item.sum = 100_200.34 }
+
+    its(:money) { should eq '100 200.34' }
+  end
 
   context 'stub sum' do
     before { item.stub sum: 145.6 }

@@ -20,9 +20,9 @@ describe ApplicationHelper do
   end
 
   describe '#money' do
-    subject { helper.money 4.2 }
+    subject { helper.money 400_500.2 }
 
-    it { should be_a Money }
+    it { should eq '400 500.20' }
   end
 end
 

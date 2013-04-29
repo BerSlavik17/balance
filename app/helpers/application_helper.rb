@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def money sum
-    Money.new sum
+    number_with_delimiter '%.2f' % Money.new(sum).to_f
   end
 end
