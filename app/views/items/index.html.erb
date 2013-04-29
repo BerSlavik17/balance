@@ -40,7 +40,11 @@
   </thead>
 
   <tbody id="items">
-    <%= render collection %>
+    <% if collection.any? %>
+      <%= render collection %>
+    <% else %>
+      <%= render 'not_found' %>
+    <% end %>
   </tbody>
 </table>
 
