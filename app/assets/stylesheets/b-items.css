@@ -1,3 +1,5 @@
+.b-items { width: 30%; margin: 10px auto }
+
 .b-items .odd { background: #eee }
 
 .b-items .even { background: white }
