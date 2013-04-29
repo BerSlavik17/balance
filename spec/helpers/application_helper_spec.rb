@@ -18,5 +18,11 @@ describe ApplicationHelper do
 
     it { should eq date }
   end
+
+  describe '#money' do
+    subject { helper.money 4.2 }
+
+    it { should be_a Money }
+  end
 end
 
