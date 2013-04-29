@@ -30,10 +30,6 @@ describe ItemDecorator do
 
     before { item.date = date }
 
-    its(:year) { should eq 2013 }
-
-    its(:month) { should eq '05' }
-
-    its(:day) { should eq '17' }
+    its(:date) { should eq '17.05.2013' }
   end
 end
