@@ -1,5 +1,9 @@
 .b-items { width: 30%; margin: 10px auto }
 
-.b-items .odd { background: #eee }
+.b-items .row.odd { background: #eee }
 
-.b-items .even { background: white }
+.b-items .row.even { background: white }
+
+.b-items .row:hover { background: #777; color: white; }
+
+.b-items .row:hover a { color: white }

@@ -1,4 +1,4 @@
-<tr class="<%= item_counter.odd? ? :odd : :even %>">
+<tr class="row <%= item_counter.odd? ? :odd : :even %>">
   <td class="date"><%= link_to item.date, "/#{ item.year }/#{ item.month }/#{ item.day }" %></td>
 
   <td class="sum"><%= item.money %></td>
