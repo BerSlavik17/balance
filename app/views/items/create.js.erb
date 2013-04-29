@@ -4,4 +4,8 @@
   $('.date').datepicker();
 
   $('#items').html('<%= j render items(DateRange.new(resource.source.date).month) %>');
+
+  $('#at_end').html('<%= money Cash.at_end %>');
+
+  $('#balance').html('<%= money Cash.balance %>');
 }());
