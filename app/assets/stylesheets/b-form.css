@@ -1,6 +1,17 @@
 .b-form {
-  width: 734px;
   margin: 5px auto;
+}
+
+.b-form#item_form {
+  width: 734px;
+}
+
+.b-form.new-cash {
+  width: 360px;
+}
+
+.b-form.edit-cash {
+  width: 450px;
 }
 
 .ui-dialog .b-form {
@@ -14,6 +25,7 @@
   height: 40px;
 }
 
+.b-form .input-wrapper .name,
 .b-form .input-wrapper .date,
 .b-form .input-wrapper .sum,
 .b-form .input-wrapper .category,

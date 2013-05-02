@@ -9,5 +9,25 @@
     $dialog = $(dialog);
   }
 
-  $dialog.html('<%= j render 'form' %>').dialog();
+  $dialog.html('<%= j render 'form' %>');
+
+  var openCallback = function() {
+    $('body').css('overflow', 'hidden');
+
+    $('.ui-widget-overlay').one('click', function() { $dialog.dialog('close') });
+
+    $('#cash_form').addClass('edit-cash');
+  };
+
+  var closeCallback = function() {
+    $('body').css('overflow', 'auto');
+  };
+  
+  $dialog.dialog({
+    modal: true,
+    width: 500,
+    height: 80,
+    open: openCallback,
+    close: closeCallback,
+  });
 }());

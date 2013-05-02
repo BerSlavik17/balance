@@ -88,3 +88,8 @@ input#at_begin_submit { margin-left: 145px }
 
 /* jQueryUI */
 .ui-dialog-titlebar { display: none }
+
+.ui-widget-overlay {
+  opacity: 0.6;
+  background: #151;
+}

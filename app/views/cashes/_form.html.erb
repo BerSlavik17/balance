@@ -1,12 +1,18 @@
-<%= form_for resource, :remote => true do |f| %>
-  <%= f.text_field :name %>
-  
-  <%= f.text_field :sum %>
-  
-  <%= f.submit %>
+<%= form_for resource, remote: true, html: { id: :cash_form, class: 'b-form' } do |f| %>
+  <div class="input-wrapper">
+    <%= f.text_field :sum, class: :sum, placeholder: 'Сумма' %>
+  </div>
 
-  <% unless resource.new_record? %>
+  <div class="input-wrapper">
+    <%= f.text_field :name, class: :name, placeholder: 'Название' %>
+  </div>
+
+  <div class="input-wrapper">
+    <%= f.submit 'Сохранить', class: :submit %>
+  </div>
+
+  <%= content_tag :div, class: 'input-wrapper' do %>
     или 
     <%= link_to 'Удалить', resource, :method => :delete, :remote => true %>
-  <% end %>
+  <% end unless resource.new_record? %>
 <% end %>

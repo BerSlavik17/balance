@@ -23,7 +23,9 @@ $(function() {
     $('.ui-widget-overlay').one('click', function() { $dialog.dialog('close') });
   };
 
-  var closeCallback = function() { $('body').css('overflow', 'auto'); }
+  var closeCallback = function() {
+    $('body').css('overflow', 'auto');
+  };
 
   $dialog.dialog({
     modal: true,

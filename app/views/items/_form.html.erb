@@ -8,7 +8,8 @@
   </div>
     
   <div class="input-wrapper">
-    <%= f.select :category_id, grouped_options_for_select(Category.group_by_income), {}, class: :category %>
+    <%= f.select :category_id,
+      grouped_options_for_select(Category.group_by_income, resource.category_id), {}, class: :category %>
   </div>
     
   <div class="input-wrapper">

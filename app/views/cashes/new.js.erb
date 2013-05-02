@@ -1,9 +1,33 @@
-$('#cash_form').html('<%= escape_javascript render('form', :cash => @cash) %>').dialog({
-  autoOpen: true,
-  modal: true,
-  title: 'Добавить остаток',
-  open: function() {
-    $('#cash_sum').val('<%= '%.2f' % @cash.sum.to_f %>').focus()
-    },
-  width: '370px'
-}) 
+(function() {
+  var $dialog = $('#dialog');
+
+  if($dialog.length < 1) {
+    var dialog = document.createElement('div');
+
+    dialog.id = 'dialog';
+
+    $dialog = $(dialog);
+  }
+
+  $dialog.html('<%= j render 'form' %>');
+
+  var openCallback = function() {
+    $('body').css('overflow', 'hidden');
+
+    $('.ui-widget-overlay').one('click', function() { $dialog.dialog('close') });
+
+    $('#cash_form').addClass('new-cash');
+  };
+
+  var closeCallback = function() {
+    $('body').css('overflow', 'auto');
+  };
+
+  $dialog.dialog({
+    modal: true,
+    width: 500,
+    height: 80,
+    open: openCallback,
+    close: closeCallback,
+  })
+}());
