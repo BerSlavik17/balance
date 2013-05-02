@@ -1,6 +1,11 @@
 .b-form {
-  width: 653px;
+  width: 734px;
   margin: 5px auto;
+}
+
+.ui-dialog .b-form {
+  height: 30px;
+  margin-top: 15px;
 }
 
 .b-form .input-wrapper {

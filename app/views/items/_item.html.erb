@@ -1,7 +1,7 @@
 <tr class="row <%= item_counter.odd? ? :odd : :even %>">
   <td class="date"><%= item.date %></td>
 
-  <td class="sum"><%= item.money %></td>
+  <td class="sum"><%= link_to item.money, [:edit, item], remote: true %></td>
   
   <td class="category"><%= item.category_name %></td>
 

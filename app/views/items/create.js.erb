@@ -1,7 +1,7 @@
 (function() {
   $('#item_form').replaceWith('<%= j render 'form', resource: Item.new %>');
 
-  $('.date').datepicker();
+  $('input.date').datepicker();
 
   $('#items').html('<%= j render items(DateRange.new(resource.source.date).month) %>');
 

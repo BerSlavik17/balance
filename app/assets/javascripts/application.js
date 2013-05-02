@@ -4,6 +4,7 @@
 //= require jquery.ui.datepicker-ru
 //= require jquery.ui.position
 //= require jquery.ui.widget
+//= require jquery.ui.button
 //= require jquery.ui.dialog
 //= require rails
 //= require_self
@@ -16,5 +17,5 @@ $(function() {
   // Инициализация поля с календариком
   $.datepicker.setDefaults($.datepicker.regional['ru']);
 
-  $('.date').datepicker();
+  $('input.date').datepicker();
 })

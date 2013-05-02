@@ -1,8 +1,15 @@
-$('#at_end').html("<%= sum Cash.at_end %>")
-$('#balance').html("<%= sum Cash.balance %>")
+(function() {
+  $('#item_form').replaceWith('<%= j render 'form', resource: Item.new %>');
 
-$('#item_<%= @item.id %>').replaceWith('<%= escape_javascript(render @item) %>');
+  $('input.date').datepicker();
 
-$('#consolidates').html("<%= escape_javascript(render :partial => 'items/consolidate', :collection => @consolidates) %>")
+  $('#items').html('<%= j render items(DateRange.new(resource.source.date).month) %>');
 
-$('#edit_item').dialog('close')
+  $('#at_end').html('<%= money Cash.at_end %>');
+
+  $('#balance').html('<%= money Cash.balance %>');
+
+  $('#consolidates').html('<%= j render consolidates %>');
+
+  $('#dialog').dialog('close');
+}());
