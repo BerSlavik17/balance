@@ -1,4 +1,6 @@
-//= require jquery-ui
+//= require jquery.ui.core
+//= require jquery.ui.datepicker
+//= require jquery.ui.dialog
 //= require_tree . 
 //= require_self
 
@@ -83,3 +85,6 @@ input#at_begin_sum {
 }
 
 input#at_begin_submit { margin-left: 145px }
+
+/* jQueryUI */
+.ui-dialog-titlebar { display: none }
