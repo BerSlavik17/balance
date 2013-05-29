@@ -1,5 +1,5 @@
 (function() {
-  $('#cashes').replaceWith('<%= j render 'cashes', cashes: collection %>')
+  $('#cashes').replaceWith('<%= j render collection %>')
 
   $('#at_end').html("<%= money Cash.at_end %>")
 

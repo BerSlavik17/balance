@@ -1,5 +1,5 @@
 (function() {
-  $('#cashes').html('<%= j render cashes %>');
+  $('#cash_<%= resource.id %>').replaceWith('<%= j render resource %>');
 
   $('#at_end').html('<%= money Cash.at_end %>');
 
