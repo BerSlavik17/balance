@@ -6,4 +6,8 @@
   $('#balance').html('<%= money Cash.balance %>');
 
   $('#consolidates').html('<%= j render consolidates %>');
+
+  $('#item_<%= resource.id %>').remove();
+
+  $('#dialog').dialog('close');
 }());

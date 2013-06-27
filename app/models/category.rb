@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
-  scope :income, where('income IN(?)', [1,true])
-  scope :expense, where('income IN(?)', [0, false]) 
+  scope :income, -> { where('income IN(?)', [1, true]) }
+
+  scope :expense, -> { where('income IN(?)', [0, false]) }
 
   def self.group_by_income
     [

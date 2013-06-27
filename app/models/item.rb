@@ -9,9 +9,9 @@ class Item < ActiveRecord::Base
 
   scope :expense, -> { includes(:category).where('categories.income' => false) }
 
-  acts_as_paranoid
-
   before_validation :calculate_sum
+
+  acts_as_paranoid
 
   private
   def calculate_sum

@@ -4,14 +4,14 @@
       <% index += 1 %>
 
       <%= link_to month, "/#{ current_date.year }/#{ '%02d' % index  }",
-        :class =>"month #{ 'current' if index == current_date.month } }", remote: true %>
+        :class =>"month#{ ' current' if index == current_date.month }", remote: true %>
     <% end %>
   </div>
 
   <div class="years">
     <% (2008..Date.today.year).each do |year| %>
       <%= link_to year, "/#{ year }/#{ '%02d' % current_date.month }",
-        :class => "year #{ 'current' if year == current_date.year }", remote: true %>
+        :class => "year#{ ' current' if year == current_date.year }", remote: true %>
     <% end %>
   </div>
 </div>
