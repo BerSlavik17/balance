@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Cash do
-  it { should allow_mass_assignment_of :name }
-
-  it { should allow_mass_assignment_of :sum }
-
   it { should validate_presence_of :name }
 
   it { should validate_presence_of :sum }

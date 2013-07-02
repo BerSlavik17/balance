@@ -32,7 +32,7 @@ describe ItemsController do
   describe 'POST create as JS with invalid attributes' do
     before { Item.any_instance.should_receive(:save) { false } }
 
-    before { post :create, format: :js }
+    before { post :create, item: { foo: 'foo' }, format: :js }
 
     it { should respond_with_content_type :js }
 
@@ -56,5 +56,40 @@ describe ItemsController do
     end
 
     it { expect(subject.send :items, date_range).to be_a Draper::CollectionDecorator }
+  end
+
+  describe '#resource_params' do
+    let(:params) do
+      {
+        item: { date: '2013-01-01', formula: '2+2', category_id: 3, description: 'Text', foo: 'FOO' },
+        method: 'put'
+      }
+    end
+
+    before { controller.stub params: ActionController::Parameters.new(params) }
+
+    subject { controller.send :resource_params }
+
+    it { should be_permitted }
+
+    its([:date]) { should eq '2013-01-01' }
+
+    its([:formula]) { should eq '2+2' }
+
+    its([:category_id]) { should eq 3 }
+
+    its([:description]) { should eq 'Text' }
+
+    it { should_not have_key :foo }
+  end
+
+  describe '#build_resource' do
+    before { controller.stub resource_params: { date: '2013-06-27' } }
+
+    before { Item.should_receive(:new).with(date: '2013-06-27') }
+
+    subject { controller.send :build_resource }
+
+    it { expect { subject }.to_not raise_error }
   end
 end

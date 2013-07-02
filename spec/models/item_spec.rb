@@ -1,14 +1,6 @@
 require 'spec_helper'
 
 describe Item do
-  it { should allow_mass_assignment_of :date }
-
-  it { should allow_mass_assignment_of :formula }
-
-  it { should allow_mass_assignment_of :category_id }
-
-  it { should allow_mass_assignment_of :description }
-
   it { should validate_presence_of :date }
 
   it { should validate_presence_of :category_id }

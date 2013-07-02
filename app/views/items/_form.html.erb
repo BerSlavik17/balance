@@ -21,7 +21,7 @@
     
     <% if resource.persisted? %>
       или
-      <%= link_to 'Удалить', resource, method: :delete, remote: true, confirm: 'Вы уверенны?' %>
+      <%= link_to 'Удалить', resource, method: :delete, remote: true, data: { confirm: 'Вы уверенны?' } %>
     <% end %>
   </div>
 <% end %>

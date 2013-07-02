@@ -1,6 +1,4 @@
 class Cash < ActiveRecord::Base
-  attr_accessible :name, :sum
-
   acts_as_paranoid
 
   validates :name, :sum, presence: true

@@ -6,7 +6,6 @@ gem 'unicorn'
 gem 'draper'
 gem 'russian'
 gem 'inherited_resources'
-gem 'protected_attributes'
 
 gem 'sass-rails'
 gem 'coffee-rails'
@@ -15,7 +14,6 @@ gem 'therubyracer'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'debugger'
 end
 
 group :test do

@@ -1,6 +1,4 @@
 class Item < ActiveRecord::Base
-  attr_accessible :date, :formula, :category_id, :description
-
   belongs_to :category
 
   validates :date, :category_id, :formula, presence: true

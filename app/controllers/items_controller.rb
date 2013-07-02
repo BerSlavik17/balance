@@ -19,7 +19,7 @@ class ItemsController < InheritedResources::Base
   end
 
   def build_resource
-    @item = ItemDecorator.new Item.new params[:item]
+    @item = ItemDecorator.new Item.new resource_params
   end
 
   def items date_range
@@ -28,5 +28,13 @@ class ItemsController < InheritedResources::Base
 
   def consolidates
     @consolidates ||= Consolidate.by DateRange.new(DateFactory.build params).month
+  end
+
+  def resource_params
+    params.require(:item).permit(:date, :formula, :category_id, :description)
+  end
+
+  def update_resource object, attributes
+    object.update_attributes attributes
   end
 end
