@@ -26,7 +26,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.0)
-    atomic (1.1.9)
+    atomic (1.1.10)
     builder (3.1.4)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -34,7 +34,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.2)
+    coffee-script-source (1.6.3)
     diff-lcs (1.2.4)
     draper (1.2.1)
       actionpack (>= 3.0)
@@ -116,6 +116,9 @@ GEM
     thread_safe (0.1.0)
       atomic
     tilt (1.4.1)
+    touringo-acts_as_paranoid (0.1.1)
+      activerecord (~> 4.0.0)
+      activesupport (~> 4.0.0)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -142,5 +145,6 @@ DEPENDENCIES
   shoulda-matchers
   sqlite3
   therubyracer
+  touringo-acts_as_paranoid
   uglifier
   unicorn

@@ -6,6 +6,7 @@ gem 'unicorn'
 gem 'draper'
 gem 'russian'
 gem 'inherited_resources'
+gem 'touringo-acts_as_paranoid', require: 'acts_as_paranoid'
 
 gem 'sass-rails'
 gem 'coffee-rails'
