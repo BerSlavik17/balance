@@ -30,6 +30,8 @@ describe CashesController do
 
     it { should respond_with_content_type :js }
 
+    its(:resource) { should be_a CashDecorator }
+
     its(:resource_params) { should be_permitted }
   end
 

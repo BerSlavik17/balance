@@ -10,11 +10,11 @@ class CashesController < ApplicationController
   end
 
   def create
-    @cash = Cash.new resource_params
+    @cash = Cash.new(resource_params).decorate
 
     respond_to do |format|
       format.js do
-        resource.save ?  render(:create) : render(:new)
+        resource.save ? render(:create) : render(:new)
       end
     end
   end
@@ -43,7 +43,7 @@ class CashesController < ApplicationController
 
   private
   def resource
-    @cash ||= Cash.find(params[:id])
+    @cash ||= Cash.find(params[:id]).decorate
   end
 
   def resource_params
