@@ -1,18 +1,52 @@
-class CashesController < InheritedResources::Base
+class CashesController < ApplicationController
+  helper_method :resource, :cashes
+
   respond_to :js
 
-  helper_method :cashes
+  def new
+    @cash = Cash.new
+
+    respond_with @cash
+  end
+
+  def create
+    @cash = Cash.new resource_params
+
+    respond_to do |format|
+      format.js do
+        resource.save ?  render(:create) : render(:new)
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      format.js do
+        if resource.update_attributes(resource_params)
+          render :update
+        else
+          render :edit
+        end
+      end
+    end
+  end
+
+  def destroy
+    respond_to do |format|
+      format.js do
+        resource.destroy
+
+        render :destroy
+      end
+    end
+  end
 
   private
-  def collection
-    cashes
+  def resource
+    @cash ||= Cash.find(params[:id])
   end
 
   def resource_params
-    params.require(:cash).permit(:name, :sum)
-  end
-
-  def update_resource object, attributes
-    object.update_attributes attributes
+    params.require(:cash).permit(:sum, :name)
   end
 end
