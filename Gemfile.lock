@@ -116,9 +116,6 @@ GEM
     thread_safe (0.1.0)
       atomic
     tilt (1.4.1)
-    touringo-acts_as_paranoid (0.1.1)
-      activerecord (~> 4.0.0)
-      activesupport (~> 4.0.0)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -145,6 +142,5 @@ DEPENDENCIES
   shoulda-matchers
   sqlite3
   therubyracer
-  touringo-acts_as_paranoid
   uglifier
   unicorn
