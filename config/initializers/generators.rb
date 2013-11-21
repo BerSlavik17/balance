@@ -3,6 +3,7 @@ Balance::Application.configure do
     g.orm :active_record, :migration => true
     g.test_framework :rspec, :fixtures => false
     g.helper false
+    g.decorator false
     g.controller :assets => false
   end
 end
