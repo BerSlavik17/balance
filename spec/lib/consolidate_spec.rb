@@ -20,7 +20,7 @@ describe Consolidate do
   describe '.by' do
     let(:category) { stub_model Category, name: 'Food', slug: 'food' }
 
-    let(:item) { stub_model Item, category: category }
+    let(:item) { stub_model Item, category: category, sum: 0.0 }
 
     let(:date_range) { DateRange.new(Date.today).month }
 

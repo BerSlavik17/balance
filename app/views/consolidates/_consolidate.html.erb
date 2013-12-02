@@ -5,8 +5,8 @@
     </div>
 
     <div class="sum">
-      <%= link_to money(consolidate.sum), "/#{ consolidate.year }/#{ consolidate.month }/#{ consolidate.slug }",
-        remote: true %>
+      <%= link_to_if consolidate.slug,
+        money(consolidate.sum), "/#{ consolidate.year }/#{ consolidate.month }/#{ consolidate.slug }", remote: true %>
     </div>
   </div>
 </td>

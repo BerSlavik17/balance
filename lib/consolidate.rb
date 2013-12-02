@@ -27,10 +27,20 @@ class Consolidate
 
   class << self
     def by date_range
-      Item.includes(:category).where(date: date_range).select('SUM(sum) AS sum, category_id').
-        group(:category_id).map do |item|
+      Item.includes(:category).where(date: date_range).select('SUM(sum) AS sum, category_id').group(:category_id).
+        map do |item|
           new name: item.category.name, sum: item.sum, slug: item.category.slug, income: item.category.income,
             year: date_range.begin.year, month: date_range.begin.month
+        end.
+        # TODO: spec me
+        tap do |items|
+          sum = items.inject(0) do |sum, item|
+            sum += item.sum unless item.income?
+
+            sum
+          end
+
+          items.push(Consolidate.new name: 'Сумма расходов', sum: sum)
         end
     end
   end
