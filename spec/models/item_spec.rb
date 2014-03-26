@@ -9,8 +9,6 @@ describe Item do
 
   it { should belong_to :category }
 
-  its(:class) { should be_paranoid }
-
   describe '.search' do
     let(:date_range) { DateRange.new Date.today }
 

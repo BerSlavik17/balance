@@ -9,8 +9,6 @@ class Item < ActiveRecord::Base
 
   before_validation :calculate_sum
 
-  acts_as_paranoid
-
   private
   def calculate_sum
     self.sum = Money.new(formula).to_f

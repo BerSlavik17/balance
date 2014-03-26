@@ -9,8 +9,6 @@ describe Cash do
 
   it { should_not allow_value(-0.5).for(:sum) }
 
-  its(:class) { should be_paranoid }
-
   describe '.at_end' do
     before do
       Item.should_receive(:income) { double.tap { |a| a.should_receive(:sum).with(:sum) { 10 } } }

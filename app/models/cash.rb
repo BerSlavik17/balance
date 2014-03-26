@@ -1,6 +1,4 @@
 class Cash < ActiveRecord::Base
-  acts_as_paranoid
-
   validates :name, :sum, presence: true
 
   validates :sum, numericality: { greater_than_or_equal_to: 0 }
