@@ -6,7 +6,7 @@ describe CashesController do
   it { should have_helper_method :cashes }
 
   describe 'GET new as JS' do
-    before { get :new, format: :js }
+    before { xhr :get, :new, format: :js }
 
     it { should render_template :new }
 
@@ -52,7 +52,7 @@ describe CashesController do
 
     before { Cash.stub(:find).with('47') { cash } }
 
-    before { get :edit, id: 47, format: :js }
+    before { xhr :get, :edit, id: 47, format: :js }
 
     it { should render_template :edit }
 

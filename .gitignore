@@ -5,4 +5,4 @@ tmp/
 vendor/bundle
 bin/
 public/assets/
-
+config/secrets.yml

@@ -16,7 +16,6 @@
       <string>/Users/tksasha/balance/config/unicorn.rb</string>
       <string>-E</string>
       <string>production</string>
-      <string>-D</string>
     </array>
     <key>KeepAlive</key><false/>
     <key>WorkingDirectory</key>
