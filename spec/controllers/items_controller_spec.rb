@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe ItemsController do
-  it { should be_a InheritedResources::Base }
-
   its(:mimes_for_respond_to) { should include :html }
   
   its(:mimes_for_respond_to) { should include :js }
@@ -23,20 +21,40 @@ describe ItemsController do
 
   it { should route(:get, '/2009/04/salary').to(action: :index, year: '2009', month: '04', category: 'salary') }
 
+	it { should have_helper_method :collection }
+
+	it { should have_helper_method :resource }
+
   it { should have_helper_method :items }
 
   it { should have_helper_method :cashes }
 
   it { should have_helper_method :consolidates }
 
-  describe 'POST create as JS with invalid attributes' do
+	describe '#index.js' do
+		before { xhr :get, :index, format: :js }
+
+		it { should render_template :index }
+	end
+
+	describe '#create.js' do
+		before { @item = Item.new }
+
+		before { Item.should_receive(:new).with('date' => '2014-04-22') { @item } }
+
+		before { @item.should_receive(:save) { true } }
+
+		before { post :create, item: { date: '2014-04-22' }, format: :js }
+
+		it { should render_template :create }
+	end
+
+  describe '#create.js with invalid attributes' do
     before { Item.any_instance.should_receive(:save) { false } }
 
     before { post :create, item: { foo: 'foo' }, format: :js }
 
-    it { should respond_with_content_type :js }
-
-    its(:resource) { should be_a ItemDecorator }
+		it { should render_template :new }
   end
 
   describe '#items' do
@@ -58,38 +76,27 @@ describe ItemsController do
     it { expect(subject.send :items, date_range).to be_a Draper::CollectionDecorator }
   end
 
-  describe '#resource_params' do
-    let(:params) do
-      {
-        item: { date: '2013-01-01', formula: '2+2', category_id: 3, description: 'Text', foo: 'FOO' },
-        method: 'put'
-      }
-    end
+	describe '#update.js' do
+		let(:item) { stub_model Item }
 
-    before { controller.stub params: ActionController::Parameters.new(params) }
+		before { Item.should_receive(:find).with('10') { item } }
 
-    subject { controller.send :resource_params }
+		before { item.should_receive(:update_attributes).with('date' => '2014-04-22') { true } }
 
-    it { should be_permitted }
+		before { put :update, id: 10, item: { date: '2014-04-22' }, format: :js }
 
-    its([:date]) { should eq '2013-01-01' }
+		it { should render_template :update }
+	end
 
-    its([:formula]) { should eq '2+2' }
+	describe '#destroy.js' do
+		let(:item) { stub_model Item }
 
-    its([:category_id]) { should eq 3 }
+		before { Item.should_receive(:find).with('13') { item } }
 
-    its([:description]) { should eq 'Text' }
+		before { item.should_receive(:destroy) }
 
-    it { should_not have_key :foo }
-  end
+		before { delete :destroy, id: 13, format: :js }
 
-  describe '#build_resource' do
-    before { controller.stub resource_params: { date: '2013-06-27' } }
-
-    before { Item.should_receive(:new).with(date: '2013-06-27') }
-
-    subject { controller.send :build_resource }
-
-    it { expect { subject }.to_not raise_error }
-  end
+		it { should render_template :destroy }
+	end
 end

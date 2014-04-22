@@ -1,13 +1,39 @@
-class ItemsController < InheritedResources::Base
-  include InheritedResources::DSL
-
+class ItemsController < ApplicationController
   respond_to :html, :js
 
-  helper_method :items, :cashes, :consolidates
+  helper_method :collection, :resource, :items, :cashes, :consolidates
 
-  create! do |success, failure|
-    failure.js { render :new }
+  def create
+		respond_to do |format|
+			format.js do
+				@item = Item.new(_params).decorate
+
+				unless @item.save
+					render :new
+				end
+			end
+		end
   end
+
+	def update
+		respond_to do |format|
+			format.js do
+				if resource.update_attributes(_params)
+					render :update
+				else
+					render :edit
+				end
+			end
+		end
+	end
+
+	def destroy
+		respond_to do |format|
+			format.js do
+				resource.destroy
+			end
+		end
+	end
 
   private
   def collection
@@ -15,11 +41,7 @@ class ItemsController < InheritedResources::Base
   end
 
   def resource
-    @item ||= ItemDecorator.find params[:id]
-  end
-
-  def build_resource
-    @item = ItemDecorator.new Item.new resource_params
+    @item ||= Item.find(params[:id]).decorate
   end
 
   def items date_range
@@ -30,7 +52,7 @@ class ItemsController < InheritedResources::Base
     @consolidates ||= Consolidate.by DateRange.new(DateFactory.build params).month
   end
 
-  def resource_params
+  def _params
     params.require(:item).permit(:date, :formula, :category_id, :description)
   end
 

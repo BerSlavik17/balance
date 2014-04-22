@@ -5,7 +5,6 @@ gem 'sqlite3'
 gem 'unicorn'
 gem 'draper'
 gem 'russian'
-gem 'inherited_resources'
 
 gem 'sass-rails'
 gem 'coffee-rails'
