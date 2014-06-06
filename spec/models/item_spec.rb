@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Item do
+RSpec.describe Item, type: :model do
   it { should validate_presence_of :date }
 
   it { should validate_presence_of :category_id }
@@ -17,10 +17,10 @@ describe Item do
         #
         # Item.includes(:category).where(date: date_range).order('date DESC')
         #
-        Item.should_receive(:includes).with(:category) do
+        expect(Item).to receive(:includes).with(:category) do
           double.tap do |a|
-            a.should_receive(:where).with(date: date_range) do
-              double.tap { |b| b.should_receive(:order).with('date DESC') }
+            expect(a).to receive(:where).with(date: date_range) do
+              double.tap { |b| expect(b).to receive(:order).with('date DESC') }
             end
           end
         end
@@ -34,12 +34,12 @@ describe Item do
         #
         # Item.where('categories.slug' => 'food').includes(:category).where(date: date_range).order('date DESC')
         #
-        Item.should_receive(:where).with('categories.slug' => 'food') do
+        expect(Item).to receive(:where).with('categories.slug' => 'food') do
           double.tap do |a|
-            a.should_receive(:includes).with(:category) do
+            expect(a).to receive(:includes).with(:category) do
               double.tap do |b|
-                b.should_receive(:where).with(date: date_range) do
-                  double.tap { |c| c.should_receive(:order).with('date DESC') }
+                expect(b).to receive(:where).with(date: date_range) do
+                  double.tap { |c| expect(c).to receive(:order).with('date DESC') }
                 end
               end
             end
@@ -56,8 +56,8 @@ describe Item do
       #
       # stub: Item.includes(:category).where('categories.income' => true)
       #
-      Item.should_receive(:includes).with(:category) do
-        double.tap { |a| a.should_receive(:where).with('categories.income' => true) }
+      expect(Item).to receive(:includes).with(:category) do
+        double.tap { |a| expect(a).to receive(:where).with('categories.income' => true) }
       end
     end
 
@@ -69,8 +69,8 @@ describe Item do
       #
       # stub: Item.includes(:category).where('categories.income' => false)
       #
-      Item.should_receive(:includes).with(:category) do
-        double.tap { |a| a.should_receive(:where).with('categories.income' => false) }
+      expect(Item).to receive(:includes).with(:category) do
+        double.tap { |a| expect(a).to receive(:where).with('categories.income' => false) }
       end
     end
 
@@ -81,14 +81,14 @@ describe Item do
     before do
       subject.formula = '1.8+2.4'
 
-      subject.should_receive(:sum=).with(4.2)
+      expect(subject).to receive(:sum=).with(4.2)
     end
 
     it { expect { subject.send :calculate_sum }.to_not raise_error }
   end
 
   context 'before_validation callbacks' do
-    before { subject.should_receive :calculate_sum }
+    before { expect(subject).to receive :calculate_sum }
 
     it { expect { subject.valid? }.to_not raise_error }
   end
