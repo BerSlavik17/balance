@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ApplicationController do
+RSpec.describe ApplicationController, type: :controller do
   describe '#cashes' do
     let(:cash) { stub_model Cash }
 
-    before { Cash.should_receive(:order).with(:name) { [cash] } }
+    before { expect(Cash).to receive(:order).with(:name) { [cash] } }
 
     it { expect(subject.send :cashes).to be_a Draper::CollectionDecorator }
   end

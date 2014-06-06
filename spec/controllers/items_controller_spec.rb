@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ItemsController do
-  its(:mimes_for_respond_to) { should include :html }
+RSpec.describe ItemsController, type: :controller do
+  it { expect(subject.mimes_for_respond_to).to include :html }
   
-  its(:mimes_for_respond_to) { should include :js }
+  it { expect(subject.mimes_for_respond_to).to include :js }
 
   it { should route(:post, '/items').to(action: :create) }
 
@@ -40,9 +40,9 @@ describe ItemsController do
 	describe '#create.js' do
 		before { @item = Item.new }
 
-		before { Item.should_receive(:new).with('date' => '2014-04-22') { @item } }
+		before { expect(Item).to receive(:new).with('date' => '2014-04-22') { @item } }
 
-		before { @item.should_receive(:save) { true } }
+		before { expect(@item).to receive(:save) { true } }
 
 		before { post :create, item: { date: '2014-04-22' }, format: :js }
 
@@ -50,7 +50,7 @@ describe ItemsController do
 	end
 
   describe '#create.js with invalid attributes' do
-    before { Item.any_instance.should_receive(:save) { false } }
+    before { expect_any_instance_of(Item).to receive(:save) { false } }
 
     before { post :create, item: { foo: 'foo' }, format: :js }
 
@@ -68,8 +68,8 @@ describe ItemsController do
       #
       # stub: Item.search(date_range, nil).includes(:category)
       #
-      Item.should_receive(:search).with(date_range, nil) do
-        double.tap { |a| a.should_receive(:includes).with(:category) { [item] } }
+      expect(Item).to receive(:search).with(date_range, nil) do
+        double.tap { |a| expect(a).to receive(:includes).with(:category) { [item] } }
       end
     end
 
@@ -79,9 +79,9 @@ describe ItemsController do
 	describe '#update.js' do
 		let(:item) { stub_model Item }
 
-		before { Item.should_receive(:find).with('10') { item } }
+		before { expect(Item).to receive(:find).with('10') { item } }
 
-		before { item.should_receive(:update_attributes).with('date' => '2014-04-22') { true } }
+		before { expect(item).to receive(:update_attributes).with('date' => '2014-04-22') { true } }
 
 		before { put :update, id: 10, item: { date: '2014-04-22' }, format: :js }
 
@@ -91,9 +91,9 @@ describe ItemsController do
 	describe '#destroy.js' do
 		let(:item) { stub_model Item }
 
-		before { Item.should_receive(:find).with('13') { item } }
+		before { expect(Item).to receive(:find).with('13') { item } }
 
-		before { item.should_receive(:destroy) }
+		before { expect(item).to receive(:destroy) }
 
 		before { delete :destroy, id: 13, format: :js }
 

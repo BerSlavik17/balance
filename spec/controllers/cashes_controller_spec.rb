@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe CashesController do
+RSpec.describe CashesController, type: :controller do
   it { should have_helper_method :resource }
 
   it { should have_helper_method :cashes }
@@ -10,7 +10,7 @@ describe CashesController do
 
     it { should render_template :new }
 
-    its(:resource) { should be_a Cash }
+    it { expect(subject.send :resource).to be_a Cash }
   end
 
   describe 'GET new as HTML' do
@@ -20,9 +20,9 @@ describe CashesController do
   end
 
   describe 'POST create as JS' do
-    let(:cash) { stub_model Cash, save: true }
+    before { @cash = stub_model Cash, save: true }
 
-    before { Cash.stub new: cash }
+    before { allow(Cash).to receive(:new) { @cash } }
 
     before { post :create, cash: { name: '', sum: 0.0 }, format: :js }
 
@@ -30,15 +30,15 @@ describe CashesController do
 
     it { should respond_with_content_type :js }
 
-    its(:resource) { should be_a CashDecorator }
+    it { expect(subject.send :resource).to be_a CashDecorator }
 
-    its(:resource_params) { should be_permitted }
+    it { expect(subject.send :resource_params).to be_permitted }
   end
 
   describe 'POST create as JS with invalid attributes' do
-    let(:cash) { stub_model Cash, save: false }
+    before { @cash = stub_model Cash, save: false }
 
-    before { Cash.stub new: cash }
+    before { allow(Cash).to receive(:new) { @cash } }
 
     before { post :create, cash: { name: '' }, format: :js }
 
@@ -50,7 +50,7 @@ describe CashesController do
   describe 'GET edit as JS' do
     let(:cash) { stub_model Cash }
 
-    before { Cash.stub(:find).with('47') { cash } }
+    before { allow(Cash).to receive(:find).with('47') { cash } }
 
     before { xhr :get, :edit, id: 47, format: :js }
 
@@ -58,13 +58,13 @@ describe CashesController do
 
     it { should respond_with_content_type :js }
 
-    its(:resource) { should eq cash }
+    it { expect(subject.send :resource).to eq cash }
   end
 
   describe 'PUT update as JS' do
     let(:cash) { stub_model Cash, save: true }
 
-    before { Cash.stub(:find).with('61') { cash } }
+    before { allow(Cash).to receive(:find).with('61') { cash } }
 
     before { put :update, id: 61, cash: { name: '' }, format: :js }
 
@@ -76,7 +76,7 @@ describe CashesController do
   describe 'PUT update as JS with invalid attributes' do
     let(:cash) { stub_model Cash, save: false }
 
-    before { Cash.stub(:find).with('73') { cash } }
+    before { allow(Cash).to receive(:find).with('73') { cash } }
 
     before { put :update, id: 73, cash: { name: '' }, format: :js }
 
@@ -86,11 +86,11 @@ describe CashesController do
   end
 
   describe 'DELETE destroy as JS' do
-    let(:cash) { Cash.new.tap { |c| c.stub(:persisted?) { true } } }
+    let(:cash) { Cash.new.tap { |c| allow(c).to receive(:persisted?) { true } } }
 
-    before { Cash.stub(:find).with('87') { cash } }
+    before { allow(Cash).to receive(:find).with('87') { cash } }
 
-    before { cash.should_receive(:destroy) { true } }
+    before { expect(cash).to receive(:destroy) { true } }
 
     before { delete :destroy, id: 87, format: :js }
 
