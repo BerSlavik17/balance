@@ -1,28 +1,28 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ItemDecorator do
+RSpec.describe ItemDecorator do
   let(:item) { Item.new }
 
   subject { ItemDecorator.new item }
 
-  its(:category_name) { should be_nil }
+  it { expect(subject.category_name).to be nil }
 
   context 'stub category' do
-    before { subject.stub category: double(name: 'Food') }
+    before { allow(subject).to receive(:category) { double name: 'Food' } }
 
-    its(:category_name) { should eq 'Food' }
+    it { expect(subject.category_name).to eq 'Food' }
   end
 
   context do
     before { item.sum = 100_200.34 }
 
-    its(:money) { should eq '100 200.34' }
+    it { expect(subject.money).to eq '100 200.34' }
   end
 
   context 'stub sum' do
-    before { item.stub sum: 145.6 }
+    before { allow(item).to receive(:sum) { 145.6 } }
 
-    its(:money) { should eq '145.60' }
+    it { expect(subject.money).to eq '145.60' }
   end
 
   context do
@@ -30,6 +30,6 @@ describe ItemDecorator do
 
     before { item.date = date }
 
-    its(:date) { should eq '17.05.2013' }
+    it { expect(subject.date).to eq '17.05.2013' }
   end
 end
