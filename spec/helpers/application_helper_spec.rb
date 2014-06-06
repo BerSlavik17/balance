@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ApplicationHelper do
+RSpec.describe ApplicationHelper, type: :helper do
   describe '#months' do
     subject { helper.months }
 
@@ -10,9 +10,9 @@ describe ApplicationHelper do
   describe '#current_date' do
     let(:date) { Date.new 2013, 6, 27 }
 
-    before { helper.stub params: { year: '2013', month: '06', day: '27' } }
+    before { allow(helper).to receive(:params) { { year: '2013', month: '06', day: '27' } } }
 
-    before { DateFactory.should_receive(:build).with(year: '2013', month: '06', day: '27') { date } }
+    before { expect(DateFactory).to receive(:build).with(year: '2013', month: '06', day: '27') { date } }
 
     subject { helper.current_date }
 
