@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe DateFactory do
+RSpec.describe DateFactory do
   describe '.build' do
-    before { Date.stub today: Date.new(2013, 3, 31) }
+    before { allow(Date).to receive(:today) { Date.new(2013, 3, 31) } }
 
     context do
       subject { DateFactory.build }
@@ -13,19 +13,19 @@ describe DateFactory do
     context do
       subject { DateFactory.build year: '2011' }
 
-      its(:year) { should eq 2011 }
+      it { expect(subject.year).to eq 2011 }
     end
 
     context do
       subject { DateFactory.build month: '11' }
 
-      its(:month) { should eq 11 }
+      it { expect(subject.month).to eq 11 }
     end
 
     context do
       subject { DateFactory.build day: '17' }
 
-      its(:day) { should eq 17 }
+      it { expect(subject.day).to eq 17 }
     end
 
     context do

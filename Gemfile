@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails'
 gem 'sqlite3'
 gem 'unicorn'
-gem 'draper'
+gem 'draper', git: 'git@github.com:drapergem/draper.git'
 gem 'russian'
 
 gem 'sass-rails'
@@ -16,6 +16,6 @@ group :development, :test do
 end
 
 group :test do
-	gem 'minitest'
   gem 'shoulda-matchers'
+  gem 'rspec-activemodel-mocks'
 end

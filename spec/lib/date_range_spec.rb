@@ -1,11 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe DateRange do
+RSpec.describe DateRange do
   let(:date) { Date.today }
 
   subject { DateRange.new date }
 
   it { should be_a DateRange }
 
-  its(:month) { should eq date.beginning_of_month..date.end_of_month }
+  it { expect(subject.month).to eq date.beginning_of_month..date.end_of_month }
 end

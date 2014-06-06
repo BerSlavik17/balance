@@ -1,20 +1,20 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Consolidate do
+RSpec.describe Consolidate do
   describe '.initialize' do
     subject { Consolidate.new name: 'Food', sum: 5.42, slug: 'food', income: false, year: 2013, month: 5 }
 
-    its(:name) { should eq 'Food' }
+    it { expect(subject.name).to eq 'Food' }
 
-    its(:sum) { should eq 5.42 }
+    it { expect(subject.sum).to eq 5.42 }
 
-    its(:slug) { should eq 'food' }
+    it { expect(subject.slug).to eq 'food' }
 
-    its(:income?) { should be_false }
+    it { expect(subject.income?).to be false }
 
-    its(:year) { should eq 2013 }
+    it { expect(subject.year).to eq 2013 }
 
-    its(:month) { should eq '05' }
+    it { expect(subject.month).to eq '05' }
   end
 
   describe '.by' do
@@ -28,12 +28,12 @@ describe Consolidate do
       #
       # Item.includes(:category).where(date: date_range).select('SUM(sum) AS sum, category_id').group(:category_id)
       #
-      Item.should_receive(:includes).with(:category) do
+      expect(Item).to receive(:includes).with(:category) do
         double.tap do |a|
-          a.should_receive(:where).with(date: date_range) do
+          expect(a).to receive(:where).with(date: date_range) do
             double.tap do |b|
-              b.should_receive(:select).with('SUM(sum) AS sum, category_id') do
-                double.tap { |c| c.should_receive(:group).with(:category_id) { [item] } }
+              expect(b).to receive(:select).with('SUM(sum) AS sum, category_id') do
+                double.tap { |c| expect(c).to receive(:group).with(:category_id) { [item] } }
               end
             end
           end
@@ -44,5 +44,5 @@ describe Consolidate do
     it { expect { Consolidate.by date_range }.to_not raise_error }
   end
 
-  its(:to_partial_path) { should eq 'consolidates/consolidate' }
+  it { expect(subject.to_partial_path).to eq 'consolidates/consolidate' }
 end
