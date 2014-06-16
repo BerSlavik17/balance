@@ -5,6 +5,8 @@ gem 'sqlite3'
 gem 'unicorn'
 gem 'draper', git: 'git@github.com:drapergem/draper.git'
 gem 'russian'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'sass-rails'
 gem 'coffee-rails'

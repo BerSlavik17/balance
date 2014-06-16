@@ -1,4 +1,5 @@
-//= require jquery-2.0.0
+//= require jquery
+//= require jquery_ujs
 //= require jquery.ui.core
 //= require jquery.ui.datepicker
 //= require jquery.ui.datepicker-ru
@@ -6,7 +7,6 @@
 //= require jquery.ui.widget
 //= require jquery.ui.button
 //= require jquery.ui.dialog
-//= require rails
 //= require_self
 
 $(function() {
