@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails'
 gem 'sqlite3'
-gem 'unicorn'
 gem 'draper', git: 'git@github.com:drapergem/draper.git'
 gem 'russian'
 gem 'jquery-rails'
@@ -12,6 +11,8 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'therubyracer'
+
+gem 'puma'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -11,11 +11,9 @@
     </dict>
     <key>ProgramArguments</key>
     <array>
-      <string>unicorn_rails</string>
-      <string>-c</string>
-      <string>/Users/tksasha/balance/config/unicorn.rb</string>
-      <string>-E</string>
-      <string>production</string>
+      <string>puma</string>
+      <string>-C</string>
+      <string>/Users/tksasha/balance/config/puma.rb</string>
     </array>
     <key>KeepAlive</key><false/>
     <key>WorkingDirectory</key>
