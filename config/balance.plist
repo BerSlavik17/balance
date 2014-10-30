@@ -4,6 +4,8 @@
 <plist version="1.0">
   <dict>
     <key>Label</key><string>balance</string>
+    <key>RunAtLoad</key>
+    <true/>
     <key>EnvironmentVariables</key>
     <dict>
       <key>PATH</key>
@@ -18,7 +20,5 @@
     <key>KeepAlive</key><false/>
     <key>WorkingDirectory</key>
     <string>/Users/tksasha/balance</string>
-    <key>StandardErrorPath</key><string>/Users/tksasha/balance/log/unicorn.stderr.log</string>
-    <key>LaunchOnlyOnce</key><false/>
   </dict>
 </plist>
