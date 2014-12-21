@@ -13,12 +13,6 @@ RSpec.describe CashesController, type: :controller do
     it { expect(subject.send :resource).to be_a Cash }
   end
 
-  describe 'GET new as HTML' do
-    before { get :new }
-
-    it { should respond_with :not_found }
-  end
-
   describe 'POST create as JS' do
     before { @cash = stub_model Cash, save: true }
 

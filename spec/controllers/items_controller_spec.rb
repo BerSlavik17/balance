@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
-  it { expect(subject.mimes_for_respond_to).to include :html }
-  
-  it { expect(subject.mimes_for_respond_to).to include :js }
-
   it { should route(:post, '/items').to(action: :create) }
 
   it { should route(:get, '/items/1/edit').to(action: :edit, id: 1) }

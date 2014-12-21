@@ -1,6 +1,4 @@
 class ItemsController < ApplicationController
-  respond_to :html, :js
-
   helper_method :collection, :resource, :items, :cashes, :consolidates
 
   def create

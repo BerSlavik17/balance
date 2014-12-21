@@ -1,12 +1,8 @@
 class CashesController < ApplicationController
   helper_method :resource, :cashes
 
-  respond_to :js
-
   def new
     @cash = Cash.new
-
-    respond_with @cash
   end
 
   def create

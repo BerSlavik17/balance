@@ -1,8 +1,10 @@
-//= require jquery.ui.core
-//= require jquery.ui.datepicker
-//= require jquery.ui.dialog
-//= require_tree . 
-//= require_self
+/*
+= require jquery-ui/core
+= require jquery-ui/datepicker
+= require jquery-ui/dialog
+= require_tree .
+= require_self
+*/
 
 body {
   padding: 0;
