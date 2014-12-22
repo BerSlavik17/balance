@@ -3,22 +3,22 @@
                        "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
-    <key>Label</key><string>balance</string>
+    <key>KeepAlive</key>
+    <false/>
+    <key>Label</key>
+    <string>balance</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/tksasha/balance/script/server.sh</string>
+    </array>
     <key>RunAtLoad</key>
     <true/>
+    <key>WorkingDirectory</key>
+    <string>/Users/tksasha/balance</string>
     <key>EnvironmentVariables</key>
     <dict>
       <key>PATH</key>
       <string>/Users/tksasha/.ruby/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</string>
     </dict>
-    <key>ProgramArguments</key>
-    <array>
-      <string>puma</string>
-      <string>-C</string>
-      <string>/Users/tksasha/balance/config/puma.rb</string>
-    </array>
-    <key>KeepAlive</key><false/>
-    <key>WorkingDirectory</key>
-    <string>/Users/tksasha/balance</string>
   </dict>
 </plist>
