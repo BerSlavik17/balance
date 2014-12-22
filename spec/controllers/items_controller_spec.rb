@@ -23,8 +23,6 @@ RSpec.describe ItemsController, type: :controller do
 
   it { should have_helper_method :items }
 
-  it { should have_helper_method :cashes }
-
   it { should have_helper_method :consolidates }
 
 	describe '#index.js' do

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  helper_method :collection, :resource, :items, :cashes, :consolidates
+  helper_method :collection, :resource, :items, :consolidates
 
   def create
 		respond_to do |format|

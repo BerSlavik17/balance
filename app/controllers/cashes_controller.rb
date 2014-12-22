@@ -1,6 +1,4 @@
 class CashesController < ApplicationController
-  helper_method :resource, :cashes
-
   def new
     @cash = Cash.new
   end
@@ -8,33 +6,19 @@ class CashesController < ApplicationController
   def create
     @cash = Cash.new(resource_params).decorate
 
-    respond_to do |format|
-      format.js do
-        resource.save ? render(:create) : render(:new)
-      end
-    end
+    render :new unless resource.save
   end
 
   def update
-    respond_to do |format|
-      format.js do
-        if resource.update_attributes(resource_params)
-          render :update
-        else
-          render :edit
-        end
-      end
+    unless resource.update_attributes resource_params
+      render :edit
     end
   end
 
   def destroy
-    respond_to do |format|
-      format.js do
-        resource.destroy
+    resource.destroy
 
-        render :destroy
-      end
-    end
+    render :destroy
   end
 
   private

@@ -13,6 +13,6 @@
 
   <%= content_tag :div, class: 'input-wrapper' do %>
     или 
-    <%= link_to 'Удалить', resource, :method => :delete, :remote => true %>
+    <%= link_to 'Удалить', resource, method: :delete, remote: true, data: { confirm: t(:are_you_sure) } %>
   <% end unless resource.new_record? %>
 <% end %>

@@ -12,3 +12,5 @@ ru:
 
   income: 'Приход'
   expense: 'Расход'
+
+  are_you_sure: 'Вы уверенны?'

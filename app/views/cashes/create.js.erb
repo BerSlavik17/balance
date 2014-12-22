@@ -1,9 +1,9 @@
 (function() {
-  $('#cashes').replaceWith('<%= j render cashes %>')
+  $('#cashes').html('<%= j render cashes %>');
 
-  $('#at_end').html("<%= money Cash.at_end %>")
+  $('#at_end').html("<%= money Cash.at_end %>");
 
-  $('#balance').html("<%= money Cash.balance %>")
+  $('#balance').html("<%= money Cash.balance %>");
 
-  $('#dialog').dialog('close')
+  $('#dialog').dialog('close');
 }());

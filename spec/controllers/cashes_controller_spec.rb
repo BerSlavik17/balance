@@ -1,95 +1,71 @@
 require 'rails_helper'
 
 RSpec.describe CashesController, type: :controller do
-  it { should have_helper_method :resource }
-
-  it { should have_helper_method :cashes }
-
-  describe 'GET new as JS' do
+  describe 'new.js' do
     before { xhr :get, :new, format: :js }
 
     it { should render_template :new }
-
-    it { expect(subject.send :resource).to be_a Cash }
   end
 
-  describe 'POST create as JS' do
-    before { @cash = stub_model Cash, save: true }
+  describe 'create.js' do
+    before { @cash = stub_model Cash }
 
-    before { allow(Cash).to receive(:new) { @cash } }
+    before { expect(Cash).to receive(:new).with('name' => 'Food', sum: 43.28).and_return(@cash) }
 
-    before { post :create, cash: { name: '', sum: 0.0 }, format: :js }
+    context do
+      before { expect(@cash).to receive(:save).and_return(true) }
 
-    it { should render_template :create }
+      before { post :create, cash: { name: 'Food', sum: 43.28 }, format: :js }
 
-    it { should respond_with_content_type :js }
+      it { should render_template :create }
+    end
 
-    it { expect(subject.send :resource).to be_a CashDecorator }
+    context do
+      before { expect(@cash).to receive(:save).and_return(false) }
 
-    it { expect(subject.send :resource_params).to be_permitted }
+      before { post :create, cash: { name: 'Food', sum: 43.28 }, format: :js }
+
+      it { should render_template :new }
+    end
   end
 
-  describe 'POST create as JS with invalid attributes' do
-    before { @cash = stub_model Cash, save: false }
-
-    before { allow(Cash).to receive(:new) { @cash } }
-
-    before { post :create, cash: { name: '' }, format: :js }
-
-    it { should render_template :new }
-
-    it { should respond_with_content_type :js }
-  end
-
-  describe 'GET edit as JS' do
-    let(:cash) { stub_model Cash }
-
-    before { allow(Cash).to receive(:find).with('47') { cash } }
-
+  describe 'edit.js' do
     before { xhr :get, :edit, id: 47, format: :js }
 
     it { should render_template :edit }
-
-    it { should respond_with_content_type :js }
-
-    it { expect(subject.send :resource).to eq cash }
   end
 
-  describe 'PUT update as JS' do
-    let(:cash) { stub_model Cash, save: true }
+  describe 'update.js' do
+    let(:cash) { stub_model Cash }
 
-    before { allow(Cash).to receive(:find).with('61') { cash } }
+    before { expect(Cash).to receive(:find).with('61').and_return(cash) }
 
-    before { put :update, id: 61, cash: { name: '' }, format: :js }
+    context do
+      before { expect(cash).to receive(:update_attributes).with('name' => 'Stuff').and_return(true) }
 
-    it { should render_template :update }
+      before { patch :update, id: 61, cash: { name: 'Stuff' }, format: :js }
 
-    it { should respond_with_content_type :js }
+      it { should render_template :update }
+    end
+
+    context do
+      before { expect(cash).to receive(:update_attributes).with('name' => 'Stuff').and_return(false) }
+
+      before { patch :update, id: 61, cash: { name: 'Stuff' }, format: :js }
+
+      it { should render_template :edit }
+    end
   end
 
-  describe 'PUT update as JS with invalid attributes' do
-    let(:cash) { stub_model Cash, save: false }
+  describe 'destroy.js' do
+    let(:cash) { stub_model Cash }
 
-    before { allow(Cash).to receive(:find).with('73') { cash } }
+    before { expect(Cash).to receive(:find).with('87').and_return(cash) }
 
-    before { put :update, id: 73, cash: { name: '' }, format: :js }
-
-    it { should render_template :edit }
-
-    it { should respond_with_content_type :js }
-  end
-
-  describe 'DELETE destroy as JS' do
-    let(:cash) { Cash.new.tap { |c| allow(c).to receive(:persisted?) { true } } }
-
-    before { allow(Cash).to receive(:find).with('87') { cash } }
-
-    before { expect(cash).to receive(:destroy) { true } }
+    before { expect(cash).to receive(:destroy).and_return(true) }
 
     before { delete :destroy, id: 87, format: :js }
 
     it { should render_template :destroy }
-
-    it { should respond_with_content_type :js }
   end
 end
