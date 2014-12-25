@@ -3,7 +3,7 @@ class Consolidate
 
   attr_reader :name, :sum, :slug, :year
 
-  def initialize(name: name, sum: sum, slug: slug, income: false, year: year, month: month)
+  def initialize name: nil, sum: nil, slug: nil, income: false, year: nil, month: nil
     @name = name
 
     @sum = sum
