@@ -4,7 +4,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe '#months' do
     subject { helper.months }
 
-    it { should eq %w(Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь) }
+    it { should eq %w(Січень Лютий Березень Квітень Травень Червень Липень Серпень Вересень Жовтень Листопад Грудень) }
   end
 
   describe '#current_date' do

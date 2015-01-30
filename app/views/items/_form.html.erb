@@ -13,15 +13,15 @@
   </div>
     
   <div class="input-wrapper">
-    <%= f.text_field :description, class: :description, :placeholder => 'Описание' %>
+    <%= f.text_field :description, class: :description, :placeholder => 'Примітка' %>
   </div>
     
   <div class="input-wrapper">
-    <%= f.submit 'Сохранить', class: :submit %>
+    <%= f.submit 'Зберегти', class: :submit %>
     
     <% if resource.persisted? %>
       или
-      <%= link_to 'Удалить', resource, method: :delete, remote: true, data: { confirm: 'Вы уверенны?' } %>
+      <%= link_to 'Видалити', resource, method: :delete, remote: true, data: { confirm: 'Ви впевненні?' } %>
     <% end %>
   </div>
 <% end %>

@@ -2,6 +2,10 @@
 = require jquery-ui/core
 = require jquery-ui/datepicker
 = require jquery-ui/dialog
+
+= require open-sans
+= require ubuntu
+
 = require_tree .
 = require_self
 */
@@ -11,10 +15,13 @@ body {
   margin: 0;
   font-weight:normal;
   font-size: 13px;
-  font-family: sans-serif
+  font-family: 'Ubuntu', sans-serif;
 }
 
-a { color: green }
+a {
+  color: green;
+  text-decoration: none;
+}
 
 table { border-collapse: collapse }
 

@@ -10,10 +10,10 @@ class Category < ActiveRecord::Base
     ]
   end
 
-  before_save :make_url
+  before_save :assign_slug
 
   private
-  def make_url
-    self.url = Russian::Transliteration.transliterate(self.name).downcase.gsub(/[^a-z]+/, '_')
+  def assign_slug
+    self.slug = Russian::Transliteration.transliterate(self.name).downcase.gsub(/[^a-z]+/, '_')
   end
 end

@@ -2,7 +2,7 @@
 //= require jquery_ujs
 //= require jquery-ui/core
 //= require jquery-ui/datepicker
-//= require jquery-ui/datepicker-ru
+//= require jquery-ui/datepicker-uk
 //= require jquery-ui/position
 //= require jquery-ui/widget
 //= require jquery-ui/button
