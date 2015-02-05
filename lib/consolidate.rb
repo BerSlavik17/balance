@@ -40,7 +40,7 @@ class Consolidate
             sum
           end
 
-          items.push(Consolidate.new name: 'Сумма витрат', sum: sum)
+          items.push(Consolidate.new name: 'Сума витрат', sum: sum)
         end
     end
   end
