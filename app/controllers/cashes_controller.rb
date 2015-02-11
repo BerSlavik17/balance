@@ -4,26 +4,22 @@ class CashesController < ApplicationController
   end
 
   def create
-    @cash = Cash.new(resource_params).decorate
+    @cash = Cash.new resource_params
 
     render :new unless resource.save
   end
 
   def update
-    unless resource.update_attributes resource_params
-      render :edit
-    end
+    render :edit unless resource.update_attributes resource_params
   end
 
   def destroy
     resource.destroy
-
-    render :destroy
   end
 
   private
   def resource
-    @cash ||= Cash.find(params[:id]).decorate
+    @cash ||= Cash.find params[:id]
   end
 
   def resource_params
