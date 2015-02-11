@@ -8,7 +8,7 @@ RSpec.describe ItemsController, type: :controller do
   it { should route(:put, '/items/1').to(action: :update, id: 1) }
 
   it { should route(:get, '/2011').to(action: :index, year: '2011') }
-  
+
   it { should route(:get, '/2011').to(action: :index, year: '2011') }
 
   it { should route(:get, '/2013/02').to(action: :index, year: '2013', month: '02') }
@@ -17,38 +17,38 @@ RSpec.describe ItemsController, type: :controller do
 
   it { should route(:get, '/2009/04/salary').to(action: :index, year: '2009', month: '04', category: 'salary') }
 
-	it { should have_helper_method :collection }
+  it { should have_helper_method :collection }
 
-	it { should have_helper_method :resource }
+  it { should have_helper_method :resource }
 
   it { should have_helper_method :items }
 
   it { should have_helper_method :consolidates }
 
-	describe '#index.js' do
-		before { xhr :get, :index, format: :js }
+  describe '#index.js' do
+    before { xhr :get, :index, format: :js }
 
-		it { should render_template :index }
-	end
+    it { should render_template :index }
+  end
 
-	describe '#create.js' do
-		before { @item = Item.new }
+  describe '#create.js' do
+    before { @item = Item.new }
 
-		before { expect(Item).to receive(:new).with('date' => '2014-04-22') { @item } }
+    before { expect(Item).to receive(:new).with('date' => '2014-04-22') { @item } }
 
-		before { expect(@item).to receive(:save) { true } }
+    before { expect(@item).to receive(:save) { true } }
 
-		before { post :create, item: { date: '2014-04-22' }, format: :js }
+    before { post :create, item: { date: '2014-04-22' }, format: :js }
 
-		it { should render_template :create }
-	end
+    it { should render_template :create }
+  end
 
   describe '#create.js with invalid attributes' do
     before { expect_any_instance_of(Item).to receive(:save) { false } }
 
     before { post :create, item: { foo: 'foo' }, format: :js }
 
-		it { should render_template :new }
+    it { should render_template :new }
   end
 
   describe '#items' do
@@ -60,37 +60,41 @@ RSpec.describe ItemsController, type: :controller do
 
     before do
       #
-      # stub: Item.search(date_range, nil).includes(:category)
+      # Item.search(date_range, nil).includes(:category).decorate
       #
       expect(Item).to receive(:search).with(date_range, nil) do
-        double.tap { |a| expect(a).to receive(:includes).with(:category) { [item] } }
+        double.tap do |a|
+          expect(a).to receive(:includes).with(:category) do
+            double.tap { |b| expect(b).to receive(:decorate) }
+          end
+        end
       end
     end
 
-    it { expect(subject.send :items, date_range).to be_a Draper::CollectionDecorator }
+    it { expect { subject.send :items, date_range }.to_not raise_error }
   end
 
-	describe '#update.js' do
-		let(:item) { stub_model Item }
+  describe '#update.js' do
+    let(:item) { stub_model Item }
 
-		before { expect(Item).to receive(:find).with('10') { item } }
+    before { expect(Item).to receive(:find).with('10') { item } }
 
-		before { expect(item).to receive(:update_attributes).with('date' => '2014-04-22') { true } }
+    before { expect(item).to receive(:update_attributes).with('date' => '2014-04-22') { true } }
 
-		before { put :update, id: 10, item: { date: '2014-04-22' }, format: :js }
+    before { put :update, id: 10, item: { date: '2014-04-22' }, format: :js }
 
-		it { should render_template :update }
-	end
+    it { should render_template :update }
+  end
 
-	describe '#destroy.js' do
-		let(:item) { stub_model Item }
+  describe '#destroy.js' do
+    let(:item) { stub_model Item }
 
-		before { expect(Item).to receive(:find).with('13') { item } }
+    before { expect(Item).to receive(:find).with('13') { item } }
 
-		before { expect(item).to receive(:destroy) }
+    before { expect(item).to receive(:destroy) }
 
-		before { delete :destroy, id: 13, format: :js }
+    before { delete :destroy, id: 13, format: :js }
 
-		it { should render_template :destroy }
-	end
+    it { should render_template :destroy }
+  end
 end

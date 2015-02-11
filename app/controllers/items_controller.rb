@@ -1,37 +1,19 @@
 class ItemsController < ApplicationController
-  helper_method :collection, :resource, :items, :consolidates
+  helper_method :items, :consolidates
 
   def create
-		respond_to do |format|
-			format.js do
-				@item = Item.new(_params).decorate
+    @item = Item.new resource_params
 
-				unless @item.save
-					render :new
-				end
-			end
-		end
+    render :new unless resource.save
   end
 
-	def update
-		respond_to do |format|
-			format.js do
-				if resource.update_attributes(_params)
-					render :update
-				else
-					render :edit
-				end
-			end
-		end
-	end
+  def update
+    render :edit unless resource.update_attributes resource_params
+  end
 
-	def destroy
-		respond_to do |format|
-			format.js do
-				resource.destroy
-			end
-		end
-	end
+  def destroy
+    resource.destroy
+  end
 
   private
   def collection
@@ -43,14 +25,14 @@ class ItemsController < ApplicationController
   end
 
   def items date_range
-    @items ||= Draper::CollectionDecorator.new Item.search(date_range, params[:category]).includes(:category)
+    @items ||= Item.search(date_range, params[:category]).includes(:category).decorate
   end
 
   def consolidates
     @consolidates ||= Consolidate.by DateRange.new(DateFactory.build params).month
   end
 
-  def _params
+  def resource_params
     params.require(:item).permit(:date, :formula, :category_id, :description)
   end
 
