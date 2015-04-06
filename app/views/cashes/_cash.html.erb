@@ -1,4 +1,4 @@
 <tr id="cash_<%= cash.id %>">
   <td class="name"><%= cash.name %></td>
-  <td class="sum"><%= link_to cash.sum, [:edit, cash], :remote => true %></td>
+  <td class="sum"><%= link_to money(cash.sum), [:edit, cash], :remote => true %></td>
 </tr>
