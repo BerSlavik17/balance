@@ -9,23 +9,24 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429061956) do
+ActiveRecord::Schema.define(version: 20150714125736) do
 
-  create_table "cashes", :force => true do |t|
+  create_table "cashes", force: :cascade do |t|
     t.float  "sum"
     t.string "name"
     t.time   "deleted_at"
   end
 
-  create_table "categories", :force => true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string  "name"
-    t.boolean "income", :default => false
+    t.boolean "income",  default: false
     t.string  "slug"
+    t.boolean "visible", default: true
   end
 
-  create_table "items", :force => true do |t|
+  create_table "items", force: :cascade do |t|
     t.date     "date"
     t.float    "sum"
     t.integer  "category_id"
@@ -36,10 +37,10 @@ ActiveRecord::Schema.define(:version => 20130429061956) do
     t.time     "deleted_at"
   end
 
-  add_index "items", ["date", "category_id"], :name => "index_balans_items_on_date_and_category_id"
-  add_index "items", ["date"], :name => "index_balans_items_on_date"
+  add_index "items", ["date", "category_id"], name: "index_balans_items_on_date_and_category_id"
+  add_index "items", ["date"], name: "index_balans_items_on_date"
 
-  create_table "settings", :force => true do |t|
+  create_table "settings", force: :cascade do |t|
     t.string   "key"
     t.string   "value"
     t.datetime "created_at"
