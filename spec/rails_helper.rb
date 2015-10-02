@@ -16,6 +16,14 @@ RSpec.configure do |config|
   config.include RSpec::Rails::Matchers::ActionController, type: :controller
 end
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+
+    with.library :rails
+  end
+end
+
 # stub database
 ActiveRecord::Base.connection.class.send(:define_method, :insert) { |*args| }
 
