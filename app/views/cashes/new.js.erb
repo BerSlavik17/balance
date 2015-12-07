@@ -1,33 +1,11 @@
 (function() {
-  var $dialog = $('#dialog');
+  $('.modal .modal-title').text('Додати залишок');
 
-  if($dialog.length < 1) {
-    var dialog = document.createElement('div');
+  $('.modal .modal-body').html('<%= j render 'form' %>');
 
-    dialog.id = 'dialog';
+  $('.modal').on('shown.bs.modal', function() {
+    $('#cash_sum').focus();
+  });
 
-    $dialog = $(dialog);
-  }
-
-  $dialog.html('<%= j render 'form' %>');
-
-  var openCallback = function() {
-    $('body').css('overflow', 'hidden');
-
-    $('.ui-widget-overlay').one('click', function() { $dialog.dialog('close') });
-
-    $('#cash_form').addClass('new-cash');
-  };
-
-  var closeCallback = function() {
-    $('body').css('overflow', 'auto');
-  };
-
-  $dialog.dialog({
-    modal: true,
-    width: 500,
-    height: 80,
-    open: openCallback,
-    close: closeCallback,
-  })
+  $('.modal').modal('show');
 }());

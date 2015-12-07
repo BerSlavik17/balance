@@ -1,0 +1,9 @@
+.cashes {
+  width: 35%;
+  margin: 20px auto 0;
+}
+
+.cashes tbody + tbody {
+  border: none;
+}
+

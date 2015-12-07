@@ -1,0 +1,5 @@
+$brand-primary: adjust_hue(green, 55);
+$brand-danger: #d9534f;
+
+$link-color: $brand-primary !default;
+$link-hover-color: darken($link-color, 9);

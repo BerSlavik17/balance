@@ -1,19 +1,19 @@
-<table class="cashes">
+<table class="table table-bordered cashes">
   <tbody id="cashes"><%= render cashes %></tbody>
 
   <tbody>
     <tr>
-      <td class="name">Залишок на кінець:</td>
-      <td class="sum" id="at_end"><%= money Cash.at_end %></td>
+      <td class="cash__name">Залишок на кінець</td>
+      <td class="cash__sum" id="at_end"><%= money Cash.at_end %></td>
     </tr>
 
     <tr>
-      <td class="name">Баланс:</td>
-      <td class="sum" id="balance"><%= money Cash.balance %></td>
+      <td class="cash__name">Баланс</td>
+      <td class="cash__sum" id="balance"><%= money Cash.balance %></td>
     </tr>
 
     <tr>
-      <td class="new" colspan="2"><%= link_to '+++', :new_cash, remote: true %></td>
+      <td class="text-right" colspan="2"><%= link_to '+++', :new_cash, remote: true %></td>
     </tr>
   </tbody>
 </table>

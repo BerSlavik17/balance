@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
     <title>Balance on AJAX</title>
+
     <%= stylesheet_link_tag :application %>
 
-    <%= favicon_link_tag 'dollar.png' %>
-
     <link rel="apple-touch-icon" href="<%= image_path 'dollar.png' %>">
+
+    <%= favicon_link_tag 'dollar.png' %>
 
     <%= csrf_meta_tag %>
   </head>
   <body>
-    <%= render 'layouts/header' %>
+    <%= render 'widgets/header' %>
 
-    <%= yield %>
-
-    <div id="ajax-loader">
-      <%= image_tag 'ajax-loader.gif' %>
+    <div class="container-fluid">
+      <%= yield %>
     </div>
+
+    <!--<div id="ajax-loader">
+      <%= image_tag 'ajax-loader.gif' %>
+    </div>-->
 
     <%= javascript_include_tag :application %>
   </body>

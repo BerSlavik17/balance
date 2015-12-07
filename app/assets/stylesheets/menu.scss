@@ -1,0 +1,19 @@
+@import "variables";
+
+.menu__row {
+  text-align: center;
+}
+
+.menu__item {
+  display: inline-block;
+  padding: 0px 5px 2px 7px;
+  margin-bottom: 3px;
+}
+
+.menu__item_active,
+.menu__item_active:hover {
+  background-color: $brand-primary;
+  color: white;
+  border-radius: 3px;
+  border: none;
+}

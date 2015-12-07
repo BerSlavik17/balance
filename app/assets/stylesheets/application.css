@@ -1,96 +1,13 @@
 /*
-= require jquery-ui/core
-= require jquery-ui/datepicker
-= require jquery-ui/dialog
-
-= require open-sans
-= require ubuntu
-
-= require_tree .
-= require_self
+ * = require open-sans
+ * = require bootstrap-rails
+ * = require bootstrap-datepicker3
+ *
+ * = require_tree .
+ * = require_self
 */
 
 body {
-  padding: 0;
-  margin: 0;
-  font-weight:normal;
-  font-size: 13px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
 }
-
-a {
-  color: green;
-  text-decoration: none;
-}
-
-table { border-collapse: collapse }
-
-.header { 
-  background: #eee; 
-  border-bottom: 1px solid #999;
-  padding: 5px;
-  text-align: center;
-}
-
-.years { padding-top: 3px }
-
-.current { 
-  font-weight: normal; 
-  -webkit-border-radius: 5px; 
-  border: 1px solid green; 
-  color: white; 
-  background-color: #494;
-  padding: 0 5px;
-  text-decoration: none
-}
-
-.item { text-align: center; padding: 5px }
-
-optgroup { font-weight:bold }
-
-table.cashes { width: 25%; margin: 3px 37%; background: #eee }
-table.cashes > tbody > tr > td { border: 1px solid #999; padding: 5px }
-table.cashes > tbody > tr > td.sum { text-align: right }
-table.cashes > tbody > tr > td.new { text-align: right; padding: 0 }
-table.cashes > tbody > tr > td.new > a { font-size: 0.8em }
-
-table.consolidates { width:99.2%; margin: 5px 0.4% }
-table.consolidates > tbody > tr > td { border: 1px solid #999; padding: 3px }
-table.consolidates > tbody > tr > td.income { background: #eee }
-table.consolidates > tbody > tr > td.expense { background: white }
-
-table.items > thead > tr > th { font-weight: bold; border: 1px solid #999; padding: 3px; background: #eee }
-table.items td { border: 1px solid #999; padding: 5px }
-table.items td.date { text-align: center }
-table.items td.sum { text-align: right }
-table.items td.category { padding-left: 10px }
-
-option { padding-right: 10px }
-
-.notice { color: green; font-weight: bold; text-align: center }
-.center { text-align: center }
-
-#ajax-loader{ 
-  text-align: center; 
-  display: none; 
-  z-index: 2;
-  position: absolute;
-  top: 40%;
-  left: 40%;
-}
-
-strong { font-weight: bold }
-
-.hidden { display: none }
-
-input.cash_name { width: 100px; padding-left: 3px; }
-input.cash_sum  { width: 100px; text-align: right; }
-
-/* AtBegin Form */
-input#at_begin_sum { 
-  width: 80px;
-  margin: 5px 5px 10px 5px;
-  text-align: right;
-}
-
-input#at_begin_submit { margin-left: 145px }

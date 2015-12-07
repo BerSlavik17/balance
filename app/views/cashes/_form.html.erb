@@ -1,18 +1,11 @@
-<%= form_for resource, remote: true, html: { id: :cash_form, class: 'b-form' } do |f| %>
-  <div class="input-wrapper">
-    <%= f.text_field :sum, class: :sum, placeholder: 'Сума', autofocus: true %>
-  </div>
+<%= simple_form_for resource, remote: true, wrapper: :horizontal_form do |f| %>
+  <%= f.input :sum, as: :string %>
 
-  <div class="input-wrapper">
-    <%= f.text_field :name, class: :name, placeholder: 'Название' %>
-  </div>
+  <%= f.input :name %>
 
-  <div class="input-wrapper">
-    <%= f.submit 'Сохранить', class: :submit %>
+  <div class="form-group row">
+    <div class="col-sm-10 col-sm-offset-2">
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    </div>
   </div>
-
-  <%= content_tag :div, class: 'input-wrapper' do %>
-    или 
-    <%= link_to 'Удалить', resource, method: :delete, remote: true, data: { confirm: t(:are_you_sure) } %>
-  <% end unless resource.new_record? %>
 <% end %>

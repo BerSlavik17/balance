@@ -1,10 +1,13 @@
-ru:
+ua:
   activerecord:
     attributes:
       cash:
-        name: Название
-        sum: Сумма
-        deleted: Удалить
+        sum: Сума
+        name: Назва
+
+  errors:
+    messages:
+      blank: 'не може бути порожнім'
 
   months:
     [nil, 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
