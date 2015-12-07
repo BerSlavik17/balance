@@ -1,11 +1,18 @@
 <%= simple_form_for resource, remote: true, wrapper: :horizontal_form do |f| %>
-  <%= f.input :sum, as: :string %>
-
   <%= f.input :name %>
+
+  <%= f.input :sum, as: :string %>
 
   <div class="form-group row">
     <div class="col-sm-10 col-sm-offset-2">
-      <%= f.button :submit, class: 'btn btn-primary' %>
+      <div class="pull-left">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+
+      <%= content_tag :div, class: 'pull-right' do %>
+        <%= link_to 'Видалити', resource, data: { method: :delete, confirm: 'Ви впевнені?' },
+          remote: true, class: 'btn btn-danger' %>
+      <% end unless resource.new_record? %>
     </div>
   </div>
 <% end %>

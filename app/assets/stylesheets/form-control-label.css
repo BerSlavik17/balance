@@ -1,0 +1,7 @@
+.form-control-label {
+  text-align: right;
+}
+
+.form-control-label abbr {
+  display: none;
+}
