@@ -1,8 +1,4 @@
 (function() {
-  $('#item_form').replaceWith('<%= j render 'form', resource: Item.new %>');
-
-  $('input.date').datepicker();
-
   $('#items').html('<%= j render items(DateRange.new(resource.source.date).month) %>');
 
   $('#at_end').html('<%= money Cash.at_end %>');
@@ -11,5 +7,5 @@
 
   $('#consolidates').html('<%= j render consolidates %>');
 
-  $('#dialog').dialog('close');
+  $('.modal').modal('hide');
 }());

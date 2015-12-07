@@ -1,0 +1,14 @@
+@import "variables";
+
+.datepicker {
+  font-size: 12px;
+}
+
+.datepicker table tbody tr td.active.day {
+  background-color: $brand-primary;
+  border-color: darken($brand-primary, 10);
+}
+
+.datepicker table tbody tr td.active.day:hover {
+  background-color: darken($brand-primary, 5);
+}

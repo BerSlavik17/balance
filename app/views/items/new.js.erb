@@ -1,5 +1,11 @@
 (function() {
-  $('#item_form').replaceWith('<%= j render 'form' %>');
+  $('.item-form').replaceWith('<%= j render 'inline_form', resource: Item.new %>');
 
-  $('.date').datepicker();
+  $('.modal .modal-title').text('Додати Запис');
+
+  $('.modal .modal-body').html('<%= j render 'form' %>');
+
+  $('.bootstrap-datepicker').datepicker(BOOTSTRAP_DATEPICKER_DEFAULTS);
+
+  $('.modal').modal();
 }());

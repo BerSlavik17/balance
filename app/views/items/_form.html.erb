@@ -1,12 +1,31 @@
-<%= simple_form_for resource, remote: true, html: { class: 'item-form' } do |f| %>
-  <%= f.text_field :date, class: 'form-control bootstrap-datepicker item-form__date' %>
+<%= simple_form_for resource, wrapper: :horizontal_form, remote: true, html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :date, as: :string, input_html: { class: 'bootstrap-datepicker' } %>
 
-  <%= f.text_field :formula, class: 'form-control item-form__formula' %>
+  <%= f.input :formula, as: :string %>
 
-  <%= f.select :category_id, grouped_options_for_select(Category.group_by_income, resource.category_id), {},
-    class: 'form-control c-select item-form__category-id' %>
+  <div class="form-group row">
+    <%= f.label :category_id, class: 'form-control-label col-sm-2' %>
+    
+    <div class="col-sm-10">
+      <%= f.select :category_id,
+        grouped_options_for_select(Category.group_by_income, resource.category_id), {}, class: 'form-control c-select' %>
 
-  <%= f.text_field :description, placeholder: 'Description', class: 'form-control item-form__description' %>
+      <%= f.error :category_id %>
+    </div>
+  </div>
 
-  <%= f.button :submit, class: 'btn btn-primary item-form__submit' %>
+  <%= f.input :description %>
+
+  <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="pull-left">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      </div>
+
+      <%= content_tag :div, class: 'pull-right' do %>
+        <%= link_to 'Видалити', resource,
+          data: { method: :delete, confirm: 'Ви впевнені?', remote: true }, class: 'btn btn-danger' %>
+      <% end unless resource.new_record? %>
+    </div>
+  </div>
 <% end %>

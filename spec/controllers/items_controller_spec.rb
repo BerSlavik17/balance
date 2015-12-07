@@ -32,23 +32,34 @@ RSpec.describe ItemsController, type: :controller do
   end
 
   describe '#create.js' do
-    before { @item = Item.new }
+    let(:item) { double }
 
-    before { expect(Item).to receive(:new).with('date' => '2014-04-22') { @item } }
+    let(:params) do
+      {
+        'date' => '2014-04-22',
+        'formula' => '2+2',
+        'category_id' => 1,
+        'description' => 'Buys'
+      }
+    end
 
-    before { expect(@item).to receive(:save) { true } }
+    before { expect(Item).to receive(:new).with(params).and_return(item) }
 
-    before { post :create, item: { date: '2014-04-22' }, format: :js }
+    context do
+      before { expect(item).to receive(:save).and_return(true) }
 
-    it { should render_template :create }
-  end
+      before { post :create, item: params, format: :js }
 
-  describe '#create.js with invalid attributes' do
-    before { expect_any_instance_of(Item).to receive(:save) { false } }
+      it { should render_template :create }
+    end
 
-    before { post :create, item: { foo: 'foo' }, format: :js }
+    context do
+      before { expect(item).to receive(:save).and_return(false) }
 
-    it { should render_template :new }
+      before { post :create, item: params, format: :js }
+
+      it { should render_template :new }
+    end
   end
 
   describe '#items' do
@@ -77,11 +88,20 @@ RSpec.describe ItemsController, type: :controller do
   describe '#update.js' do
     let(:item) { stub_model Item }
 
-    before { expect(Item).to receive(:find).with('10') { item } }
+    let(:params) do
+      {
+        'date' => '2014-04-22',
+        'formula' => '2+2',
+        'category_id' => 1,
+        'description' => 'Buys'
+      }
+    end
 
-    before { expect(item).to receive(:update_attributes).with('date' => '2014-04-22') { true } }
+    before { expect(Item).to receive(:find).with('1').and_return(item) }
 
-    before { put :update, id: 10, item: { date: '2014-04-22' }, format: :js }
+    before { expect(item).to receive(:update!).with(params) }
+
+    before { put :update, id: 1, item: params, format: :js }
 
     it { should render_template :update }
   end

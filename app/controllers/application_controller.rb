@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :collection, :resource
 
-  rescue_from ActionController::UnknownFormat do |exception|
-    render 'public/404', status: :not_found, layout: false, formats: [:html]
+  rescue_from ActiveRecord::RecordInvalid do
+    render :errors, status: :unprocessable_entity
   end
 
   def new
@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
   def create
     build_resource
 
-    render :errors, status: :unprocessable_entity unless resource.save
+    resource.save!
   end
 
   def update
-    render :errors, status: :unprocessable_entity unless resource.update resource_params
+    resource.update! resource_params
   end
 end

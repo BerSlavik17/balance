@@ -1,8 +1,4 @@
 (function() {
-  $('#item_form').replaceWith('<%= j render 'form', resource: Item.new %>');
-
-  $('input.date').datepicker();
-
   $('#items').html('<%= j render items(DateRange.new(resource.date).month) %>');
 
   $('#at_end').html('<%= money Cash.at_end %>');
@@ -10,4 +6,8 @@
   $('#balance').html('<%= money Cash.balance %>');
 
   $('#consolidates').html('<%= j render consolidates %>');
+
+  $('.item-form').replaceWith('<%= j render 'inline_form', resource: Item.new %>');
+
+  $('.modal').modal('hide');
 }());

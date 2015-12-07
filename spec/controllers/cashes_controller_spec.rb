@@ -12,23 +12,11 @@ RSpec.describe CashesController, type: :controller do
 
     before { expect(Cash).to receive(:new).with('name' => 'Food', sum: 43.28).and_return(cash) }
 
-    context do
-      before { expect(cash).to receive(:save).and_return(true) }
+    before { expect(cash).to receive(:save!) }
 
-      before { post :create, cash: { name: 'Food', sum: 43.28 }, format: :js }
+    before { post :create, cash: { name: 'Food', sum: 43.28 }, format: :js }
 
-      it { should render_template :create }
-    end
-
-    context do
-      before { expect(cash).to receive(:save).and_return(false) }
-
-      before { post :create, cash: { name: 'Food', sum: 43.28 }, format: :js }
-
-      it { should render_template :errors }
-
-      it { should respond_with :unprocessable_entity }
-    end
+    it { should render_template :create }
   end
 
   describe 'edit.js' do
@@ -42,23 +30,11 @@ RSpec.describe CashesController, type: :controller do
 
     before { expect(Cash).to receive(:find).with('1').and_return(cash) }
 
-    context do
-      before { expect(cash).to receive(:update).with('name' => 'Stuff').and_return(true) }
+    before { expect(cash).to receive(:update!).with('name' => 'Stuff', 'sum' => 42) }
 
-      before { patch :update, id: 1, cash: { name: 'Stuff' }, format: :js }
+    before { patch :update, id: 1, cash: { name: 'Stuff', sum: 42 }, format: :js }
 
-      it { should render_template :update }
-    end
-
-    context do
-      before { expect(cash).to receive(:update).with('name' => 'Stuff').and_return(false) }
-
-      before { patch :update, id: 1, cash: { name: 'Stuff' }, format: :js }
-
-      it { should render_template :errors }
-
-      it { should respond_with :unprocessable_entity }
-    end
+    it { should render_template :update }
   end
 
   describe 'destroy.js' do

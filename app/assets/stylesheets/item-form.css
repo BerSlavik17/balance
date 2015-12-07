@@ -14,6 +14,7 @@
 
 .item-form__formula {
   width: 20%;
+  text-align: right;
 }
 
 .item-form__category-id {

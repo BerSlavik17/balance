@@ -3,12 +3,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new resource_params
-
+ 
     render :new unless resource.save
-  end
-
-  def update
-    render :edit unless resource.update_attributes resource_params
   end
 
   def destroy
@@ -34,9 +30,5 @@ class ItemsController < ApplicationController
 
   def resource_params
     params.require(:item).permit(:date, :formula, :category_id, :description)
-  end
-
-  def update_resource object, attributes
-    object.update_attributes attributes
   end
 end

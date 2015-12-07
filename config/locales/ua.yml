@@ -2,8 +2,13 @@ ua:
   activerecord:
     attributes:
       cash:
-        sum: Сума
-        name: Назва
+        sum: 'Сума'
+        name: 'Назва'
+      item:
+        date: 'Дата'
+        formula: 'Формула'
+        category_id: 'Категорія'
+        description: 'Примітка'
 
   errors:
     messages:

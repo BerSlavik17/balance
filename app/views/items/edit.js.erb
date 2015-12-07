@@ -1,37 +1,13 @@
 $(function() {
-  var $dialog = $('#dialog');
+  $('.modal .modal-title').text('Змінити залишок');
 
-  if($dialog.length < 1) {
-    var dialog  = document.createElement('div');
+  $('.modal .modal-body').html('<%= j render 'form' %>');
 
-    dialog.id = 'dialog';
-
-    document.body.appendChild(dialog);
-
-    $dialog = $(dialog);
-  }
-
-  $dialog.html('<%= j render 'form' %>');
-
-  var openCallback = function() {
-    $('body').css('overflow', 'hidden');
-
-    $dialog.find('input.date').datepicker();
- 
-    $dialog.find('input.sum').focus();
-
-    $('.ui-widget-overlay').one('click', function() { $dialog.dialog('close') });
-  };
-
-  var closeCallback = function() {
-    $('body').css('overflow', 'auto');
-  };
-
-  $dialog.dialog({
-    modal: true,
-    width: 800,
-    height: 80,
-    open: openCallback,
-    close: closeCallback,
+  $('.modal').on('shown.bs.modal', function() {
+    $('.modal input[name="item[formula]"]').focus();
   });
+
+  $('.modal input[name="item[date]"]').datepicker(BOOTSTRAP_DATEPICKER_DEFAULTS);
+
+  $('.modal').modal();
 }());
