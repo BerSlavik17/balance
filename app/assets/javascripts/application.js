@@ -10,9 +10,9 @@
 var BOOTSTRAP_DATEPICKER_DEFAULTS = { format: 'dd.mm.yyyy', autoclose: true, language: 'ua', todayHighlight: true };
 
 $(function() {
-  // Глобальные AJAX-события
-  // $(document).ajaxStart(function() { $('#ajax-loader').show() });
-  // $(document).ajaxStop(function() { $('#ajax-loader').hide() });
+  // Global AJAX-events
+  $(document).ajaxStart(function() { $('#ajax-loader').show() });
+  $(document).ajaxStop(function() { $('#ajax-loader').hide() });
 
   $('.bootstrap-datepicker').datepicker(BOOTSTRAP_DATEPICKER_DEFAULTS);
 })
