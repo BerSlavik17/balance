@@ -1,5 +1,5 @@
 (function() {
-  $('.item-form').replaceWith('<%= j render 'inline_form', resource: Item.new %>');
+  $('.item-form').trigger('reset');
 
   $('.modal .modal-title').text('Додати запис');
 

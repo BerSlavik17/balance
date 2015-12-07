@@ -5,12 +5,16 @@ class Money
     @money = money.to_s
   end
 
+  #
+  # TODO: spec me
+  #
   def source
     @money.
-      gsub(/[^0-9\+\-\.]+/, '').  # only digits, dots, pluses and minuses allowed
+      gsub(/[^0-9\+\-\.\*]+/, '').  # only digits, dots, pluses, multiple sign and minuses allowed
       gsub(/\+{2,}/, '+').        # replaces '+++' with '+'
       gsub(/\-{2,}/, '-').        # replaces '---' with '-'
-      gsub(/\.{2,}/, '.')         # replaces '...' with '.'
+      gsub(/\.{2,}/, '.').        # replaces '...' with '.'
+      gsub(/\*{2,}/, '*')         # replaces '***' with '*'
   end
 
   def to_f

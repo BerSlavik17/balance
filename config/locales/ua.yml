@@ -6,7 +6,7 @@ ua:
         name: 'Назва'
       item:
         date: 'Дата'
-        formula: 'Формула'
+        formula: 'Сума'
         category_id: 'Категорія'
         description: 'Примітка'
 

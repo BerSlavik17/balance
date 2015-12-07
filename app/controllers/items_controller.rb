@@ -1,11 +1,19 @@
 class ItemsController < ApplicationController
   helper_method :items, :consolidates
 
+  #
+  # TODO: add push state (change URL by ajax)
+  #
+
   def create
     @item = Item.new resource_params
  
     render :new unless resource.save
   end
+
+  #
+  # TODO: implement errors.js.erb for update.js
+  #
 
   def destroy
     resource.destroy

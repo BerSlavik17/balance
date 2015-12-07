@@ -1,4 +1,10 @@
 class CashesController < ApplicationController
+  #
+  # TODO: try to use separate Resources for calculation and reloading tables with cashes and consolidates
+  #
+  # reload after change date or change Cash or Item
+  #
+
   def destroy
     resource.destroy
   end

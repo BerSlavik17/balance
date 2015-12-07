@@ -3,6 +3,10 @@ class Cash < ActiveRecord::Base
 
   validates :sum, numericality: { greater_than_or_equal_to: 0 }
 
+  #
+  # TODO: add Cash#formula like Item#formula
+  #
+
   class << self
     def at_end
       Item.income.sum(:sum) - Item.expense.sum(:sum)
