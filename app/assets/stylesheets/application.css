@@ -1,4 +1,5 @@
 /*
+ * = require ubuntu
  * = require open-sans
  * = require bootstrap-rails
  * = require bootstrap-datepicker3
@@ -8,5 +9,5 @@
 */
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
