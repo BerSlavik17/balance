@@ -2,8 +2,10 @@
 // = require jquery_ujs
 // = require bootstrap/util
 // = require bootstrap/modal
+// = require bootstrap/dropdown
 // = require bootstrap-datepicker/core
 // = require bootstrap-datepicker/locales/bootstrap-datepicker.ua
+// = require bootstrap-select.min
 //
 // = require_self
 
@@ -15,4 +17,6 @@ $(function() {
   $(document).ajaxStop(function() { $('#ajax-loader').hide() });
 
   $('.bootstrap-datepicker').datepicker(BOOTSTRAP_DATEPICKER_DEFAULTS);
-})
+
+  $('select').selectpicker();
+});

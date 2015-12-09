@@ -1,0 +1,15 @@
+@import "variables";
+
+.dropdown-menu .selected {
+  background: $brand-primary;
+}
+
+.dropdown-menu .selected a {
+  color: white;
+  outline: none;
+}
+
+.dropdown-menu li {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}

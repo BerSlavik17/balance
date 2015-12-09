@@ -3,6 +3,7 @@
  * = require open-sans
  * = require bootstrap-rails
  * = require bootstrap-datepicker3
+ * = require bootstrap-select.min
  *
  * = require_tree .
  * = require_self

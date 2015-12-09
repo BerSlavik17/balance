@@ -17,9 +17,15 @@
   text-align: right;
 }
 
-.item-form__category-id {
+.item-form__category-id,
+.item-form .bootstrap-select {
   width: 20%;
   margin-top: -3px;
+  margin-right: 4px;
+}
+
+.item-form .bootstrap-select.form-control {
+  width: 20%;
 }
 
 .item-form__description {
