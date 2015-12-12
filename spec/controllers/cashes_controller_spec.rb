@@ -10,11 +10,13 @@ RSpec.describe CashesController, type: :controller do
   describe 'create.js' do
     let(:cash) { double }
 
-    before { expect(Cash).to receive(:new).with('name' => 'Food', sum: 43.28).and_return(cash) }
+    let(:params) { { 'name' => 'Food', 'formula' => '43.28 + 18.02' } }
+
+    before { expect(Cash).to receive(:new).with(params).and_return(cash) }
 
     before { expect(cash).to receive(:save!) }
 
-    before { post :create, cash: { name: 'Food', sum: 43.28 }, format: :js }
+    before { post :create, cash: params, format: :js }
 
     it { should render_template :create }
   end
@@ -28,11 +30,13 @@ RSpec.describe CashesController, type: :controller do
   describe 'update.js' do
     let(:cash) { double }
 
+    let(:params) { { 'name' => 'Food', 'formula' => '43.28 + 18.03' } }
+
     before { expect(Cash).to receive(:find).with('1').and_return(cash) }
 
-    before { expect(cash).to receive(:update!).with('name' => 'Stuff', 'sum' => 42) }
+    before { expect(cash).to receive(:update!).with(params) }
 
-    before { patch :update, id: 1, cash: { name: 'Stuff', sum: 42 }, format: :js }
+    before { patch :update, id: 1, cash: params, format: :js }
 
     it { should render_template :update }
   end

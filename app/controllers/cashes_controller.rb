@@ -23,6 +23,6 @@ class CashesController < ApplicationController
   end
 
   def resource_params
-    params.require(:cash).permit(:sum, :name)
+    params.require(:cash).permit(:formula, :name)
   end
 end

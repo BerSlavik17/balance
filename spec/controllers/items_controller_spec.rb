@@ -71,13 +71,11 @@ RSpec.describe ItemsController, type: :controller do
 
     before do
       #
-      # Item.search(date_range, nil).includes(:category).decorate
+      # Item.search(date_range, nil).includes(:category)
       #
       expect(Item).to receive(:search).with(date_range, nil) do
         double.tap do |a|
-          expect(a).to receive(:includes).with(:category) do
-            double.tap { |b| expect(b).to receive(:decorate) }
-          end
+          expect(a).to receive(:includes).with(:category)
         end
       end
     end

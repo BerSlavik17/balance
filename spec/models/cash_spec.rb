@@ -1,13 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Cash, type: :model do
+  it { should be_a ActsAsHasFormula }
+
   it { should validate_presence_of :name }
 
-  it { should validate_presence_of :sum }
-  
-  it { should validate_numericality_of(:sum).is_greater_than_or_equal_to(0) }
-
-  it { should_not allow_value(-0.5).for(:sum) }
+  it { should validate_presence_of :formula }
 
   describe '.at_end' do
     before do

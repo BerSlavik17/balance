@@ -1,9 +1,9 @@
 <tr id="<%= dom_id item %>">
   <td class="item__date"><%= item.date %></td>
 
-  <td class="item__sum"><%= link_to item.money, [:edit, item], remote: true %></td>
+  <td class="item__sum"><%= link_to money(item.sum), [:edit, item], remote: true %></td>
   
-  <td class="item__category"><%= item.category_name %></td>
+  <td class="item__category"><%= item.category.name %></td>
 
   <td><%= item.description %></td>
 </tr>

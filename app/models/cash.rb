@@ -1,11 +1,7 @@
 class Cash < ActiveRecord::Base
-  validates :name, :sum, presence: true
+  include ActsAsHasFormula
 
-  validates :sum, numericality: { greater_than_or_equal_to: 0 }
-
-  #
-  # TODO: add Cash#formula like Item#formula
-  #
+  validates :name, :formula, presence: true
 
   class << self
     def at_end

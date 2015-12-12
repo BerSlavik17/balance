@@ -25,11 +25,11 @@ class ItemsController < ApplicationController
   end
 
   def resource
-    @item ||= Item.find(params[:id]).decorate
+    @item ||= Item.find(params[:id])
   end
 
   def items date_range
-    @items ||= Item.search(date_range, params[:category]).includes(:category).decorate
+    @items ||= Item.search(date_range, params[:category]).includes(:category)
   end
 
   def consolidates

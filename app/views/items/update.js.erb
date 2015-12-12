@@ -1,5 +1,5 @@
 (function() {
-  $('#items').html('<%= j render items(DateRange.new(resource.source.date).month) %>');
+  $('#items').html('<%= j render items(DateRange.new(resource.date).month) %>');
 
   $('#at_end').html('<%= money Cash.at_end %>');
 

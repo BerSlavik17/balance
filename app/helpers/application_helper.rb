@@ -8,10 +8,13 @@ module ApplicationHelper
   end
 
   def money sum
-    number_with_delimiter '%.2f' % Money.new(sum).to_f
+    number_with_delimiter '%.2f' % sum
   end
 
+  #
+  # TODO: deprecated
+  #
   def cashes
-    Cash.order(:name).decorate
+    Cash.order(:name)
   end
 end

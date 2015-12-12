@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
+  it { should be_a ActsAsHasFormula }
+
   it { should validate_presence_of :date }
 
   it { should validate_presence_of :category_id }
@@ -75,21 +77,5 @@ RSpec.describe Item, type: :model do
     end
 
     it { expect { Item.expense }.to_not raise_error }
-  end
-
-  describe 'calculate_sum' do
-    before do
-      subject.formula = '1.8+2.4'
-
-      expect(subject).to receive(:sum=).with(4.2)
-    end
-
-    it { expect { subject.send :calculate_sum }.to_not raise_error }
-  end
-
-  context 'before_validation callbacks' do
-    before { expect(subject).to receive :calculate_sum }
-
-    it { expect { subject.valid? }.to_not raise_error }
   end
 end

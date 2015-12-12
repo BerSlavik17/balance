@@ -2,7 +2,7 @@ ua:
   activerecord:
     attributes:
       cash:
-        sum: 'Сума'
+        formula: 'Сума'
         name: 'Назва'
       item:
         date: 'Дата'
