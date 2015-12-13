@@ -23,3 +23,7 @@ ua:
   number:
     format:
       delimiter: ' '
+
+  date:
+    formats:
+      default: '%d.%m.%Y'

@@ -1,5 +1,5 @@
 <tr id="<%= dom_id item %>">
-  <td class="item__date"><%= item.date %></td>
+  <td class="item__date"><%= l item.date %></td>
 
   <td class="item__sum"><%= link_to money(item.sum), [:edit, item], remote: true %></td>
   
