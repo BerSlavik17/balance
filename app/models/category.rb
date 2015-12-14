@@ -8,8 +8,11 @@ class Category < ActiveRecord::Base
   before_save :assign_slug
 
   private
+  #
+  # TODO: BUG
+  #
   def assign_slug
-    self.slug = Russian::Transliteration.transliterate(self.name).downcase.gsub(/[^a-z]+/, '_')
+    #self.slug = Russian::Transliteration.transliterate(self.name).downcase.gsub(/[^a-z]+/, '_')
   end
 
   class << self
