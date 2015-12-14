@@ -1,7 +1,7 @@
 <%= simple_form_for resource, wrapper: :horizontal_form, remote: true, html: { class: 'form-horizontal' } do |f| %>
   <%= f.input :date, as: :string, input_html: { class: 'bootstrap-datepicker' } %>
 
-  <%= f.input :formula %>
+  <%= f.input :formula, as: :string %>
 
   <div class="form-group row">
     <%= f.label :category_id, class: 'form-control-label col-sm-2' %>
