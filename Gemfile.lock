@@ -40,7 +40,7 @@ GEM
     autoprefixer-rails (6.1.2)
       execjs
       json
-    bootstrap (4.0.0.alpha2)
+    bootstrap (4.0.0.alpha3)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
     bootstrap-datepicker-rails (1.5.0)
