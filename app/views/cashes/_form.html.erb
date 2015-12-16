@@ -5,11 +5,11 @@
 
   <div class="form-group row">
     <div class="col-sm-10 col-sm-offset-2">
-      <div class="pull-left">
+      <div class="pull-sm-left">
         <%= f.button :submit, class: 'btn btn-primary' %>
       </div>
 
-      <%= content_tag :div, class: 'pull-right' do %>
+      <%= content_tag :div, class: 'pull-sm-right' do %>
         <%= link_to 'Видалити', resource, data: { method: :delete, confirm: 'Ви впевнені?' },
           remote: true, class: 'btn btn-danger' %>
       <% end unless resource.new_record? %>
