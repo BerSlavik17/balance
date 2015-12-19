@@ -4,14 +4,14 @@
       <% index += 1 %>
 
       <%= link_to month, "/#{ current_date.year }/#{ '%02d' % index  }",
-        class: "menu__item #{ 'menu__item_active' if index == current_date.month }", remote: true %>
+        class: "btn btn-sm #{ 'btn-primary' if index == current_date.month }", remote: true %>
     <% end %>
   </div>
 
   <div class="menu__row">
     <% (2015..Date.today.year).each do |year| %>
       <%= link_to year, "/#{ year }/#{ '%02d' % current_date.month }",
-        class: "menu__item #{ 'menu__item_active' if year == current_date.year }", remote: true %>
+        class: "btn btn-sm #{ 'btn-primary' if year == current_date.year }", remote: true %>
     <% end %>
   </div>
 </div>
