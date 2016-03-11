@@ -11,7 +11,7 @@ gem 'puma'
 gem 'bootstrap'
 gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
-gem 'rake', '10.5.0'
+gem 'rake'
 
 group :development, :test do
   gem 'rspec-rails'
