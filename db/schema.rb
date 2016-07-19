@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -36,10 +35,9 @@ ActiveRecord::Schema.define(version: 20151212105658) do
     t.datetime "updated_at"
     t.text     "formula"
     t.time     "deleted_at"
+    t.index ["date", "category_id"], name: "index_balans_items_on_date_and_category_id"
+    t.index ["date"], name: "index_balans_items_on_date"
   end
-
-  add_index "items", ["date", "category_id"], name: "index_balans_items_on_date_and_category_id"
-  add_index "items", ["date"], name: "index_balans_items_on_date"
 
   create_table "settings", force: :cascade do |t|
     t.string   "key"
