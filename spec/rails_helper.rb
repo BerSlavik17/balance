@@ -33,12 +33,3 @@ end
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
-
-# stub database
-ActiveRecord::Base.connection.class.send(:define_method, :insert) { |*args| }
-
-ActiveRecord::Base.connection.class.send(:define_method, :update) { |*args| }
-
-ActiveRecord::Base.connection.class.send(:define_method, :select) { |*args| }
-
-ActiveRecord::Base.connection.class.send(:define_method, :delete) { |*args| }
