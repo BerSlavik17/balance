@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.2'
+gem 'rails'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'therubyracer'
 gem 'sqlite3'
-gem 'draper'
+gem 'draper', git: 'https://github.com/drapergem/draper'
 gem 'puma'
 gem 'bootstrap'
 gem 'simple_form'
@@ -21,4 +21,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'rspec-activemodel-mocks'
   gem 'rspec-its'
+  gem 'rails-controller-testing'
 end

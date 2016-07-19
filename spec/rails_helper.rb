@@ -13,7 +13,13 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  config.include RSpec::Rails::Matchers::ActionController, type: :controller
+  config.include Permitter
+
+  [:controller, :view, :request].each do |type|
+    config.include ::Rails::Controller::Testing::TestProcess, :type => type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
+    config.include ::Rails::Controller::Testing::Integration, :type => type
+  end
 end
 
 Shoulda::Matchers.configure do |config|
@@ -27,12 +33,3 @@ end
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
-
-# stub database
-ActiveRecord::Base.connection.class.send(:define_method, :insert) { |*args| }
-
-ActiveRecord::Base.connection.class.send(:define_method, :update) { |*args| }
-
-ActiveRecord::Base.connection.class.send(:define_method, :select) { |*args| }
-
-ActiveRecord::Base.connection.class.send(:define_method, :delete) { |*args| }

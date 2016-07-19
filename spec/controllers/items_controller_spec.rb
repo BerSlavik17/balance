@@ -1,32 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
-  it { should route(:post, '/items').to(action: :create) }
-
-  it { should route(:get, '/items/1/edit').to(action: :edit, id: 1) }
-
-  it { should route(:put, '/items/1').to(action: :update, id: 1) }
-
-  it { should route(:get, '/2011').to(action: :index, year: '2011') }
-
-  it { should route(:get, '/2011').to(action: :index, year: '2011') }
-
-  it { should route(:get, '/2013/02').to(action: :index, year: '2013', month: '02') }
-
-  it { should route(:get, '/2010/food').to(action: :index, year: '2010', category: 'food') }
-
-  it { should route(:get, '/2009/04/salary').to(action: :index, year: '2009', month: '04', category: 'salary') }
-
-  it { should have_helper_method :collection }
-
-  it { should have_helper_method :resource }
-
-  it { should have_helper_method :items }
-
-  it { should have_helper_method :consolidates }
-
   describe '#index.js' do
-    before { xhr :get, :index, format: :js }
+    before { get :index, xhr: true, format: :js }
 
     it { should render_template :index }
   end
@@ -35,20 +11,15 @@ RSpec.describe ItemsController, type: :controller do
     let(:item) { double }
 
     let(:params) do
-      {
-        'date' => '2014-04-22',
-        'formula' => '2+2',
-        'category_id' => 1,
-        'description' => 'Buys'
-      }
+      { item: { date: '2014-04-22', formula: '2+2', category_id: '1', description: 'Buys' } }
     end
 
-    before { expect(Item).to receive(:new).with(params).and_return(item) }
+    before { expect(Item).to receive(:new).with(permit! params[:item]).and_return(item) }
 
     context do
       before { expect(item).to receive(:save).and_return(true) }
 
-      before { post :create, item: params, format: :js }
+      before { post :create, params: params, format: :js }
 
       it { should render_template :create }
     end
@@ -56,7 +27,7 @@ RSpec.describe ItemsController, type: :controller do
     context do
       before { expect(item).to receive(:save).and_return(false) }
 
-      before { post :create, item: params, format: :js }
+      before { post :create, params: params, format: :js }
 
       it { should render_template :new }
     end
@@ -83,35 +54,38 @@ RSpec.describe ItemsController, type: :controller do
     it { expect { subject.send :items, date_range }.to_not raise_error }
   end
 
+  describe '#resource' do
+    before { expect(subject).to receive(:params).and_return({ id: 43 }) }
+
+    before { expect(Item).to receive(:find).with(43).and_return(:resource) }
+
+    its(:resource) { should eq :resource }
+  end
+
   describe '#update.js' do
-    let(:item) { stub_model Item }
+    let(:item) { double }
 
     let(:params) do
-      {
-        'date' => '2014-04-22',
-        'formula' => '2+2',
-        'category_id' => 1,
-        'description' => 'Buys'
-      }
+      { item: { date: '2014-04-22', formula: '2+2', category_id: '1', description: 'Buys' }, id: 1 }
     end
 
-    before { expect(Item).to receive(:find).with('1').and_return(item) }
+    before { subject.instance_variable_set :@item, item }
 
-    before { expect(item).to receive(:update!).with(params) }
+    before { expect(item).to receive(:update!).with(permit! params[:item]) }
 
-    before { put :update, id: 1, item: params, format: :js }
+    before { put :update, params: params, format: :js }
 
     it { should render_template :update }
   end
 
   describe '#destroy.js' do
-    let(:item) { stub_model Item }
+    let(:item) { double }
 
-    before { expect(Item).to receive(:find).with('13') { item } }
+    before { subject.instance_variable_set :@item, item }
 
     before { expect(item).to receive(:destroy) }
 
-    before { delete :destroy, id: 13, format: :js }
+    before { delete :destroy, params: { id: 13 }, format: :js }
 
     it { should render_template :destroy }
   end
