@@ -13,7 +13,13 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  config.include RSpec::Rails::Matchers::ActionController, type: :controller
+  config.include Permitter
+
+  [:controller, :view, :request].each do |type|
+    config.include ::Rails::Controller::Testing::TestProcess, :type => type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
+    config.include ::Rails::Controller::Testing::Integration, :type => type
+  end
 end
 
 Shoulda::Matchers.configure do |config|

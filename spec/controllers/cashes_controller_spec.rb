@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CashesController, type: :controller do
   describe 'new.js' do
-    before { xhr :get, :new, format: :js }
+    before { get :new, xhr: true, format: :js }
 
     it { should render_template :new }
   end
@@ -10,33 +10,41 @@ RSpec.describe CashesController, type: :controller do
   describe 'create.js' do
     let(:cash) { double }
 
-    let(:params) { { 'name' => 'Food', 'formula' => '43.28 + 18.02' } }
+    let(:params) { { cash: { name: 'Food', formula: '43.28 + 18.02' } } }
 
-    before { expect(Cash).to receive(:new).with(params).and_return(cash) }
+    before { expect(Cash).to receive(:new).with(permit! params[:cash]).and_return(cash) }
 
     before { expect(cash).to receive(:save!) }
 
-    before { post :create, cash: params, format: :js }
+    before { post :create, params: params, format: :js }
 
     it { should render_template :create }
   end
 
   describe 'edit.js' do
-    before { xhr :get, :edit, id: 47, format: :js }
+    before { get :edit, xhr: true, params: { id: 47 }, format: :js }
 
     it { should render_template :edit }
+  end
+
+  describe '#resource' do
+    before { expect(subject).to receive(:params).and_return({ id: 31 }) }
+
+    before { expect(Cash).to receive(:find).with(31).and_return(:resource) }
+
+    its(:resource) { should eq :resource }
   end
 
   describe 'update.js' do
     let(:cash) { double }
 
-    let(:params) { { 'name' => 'Food', 'formula' => '43.28 + 18.03' } }
+    let(:params) { { cash: { name: 'Food', formula: '43.28 + 18.03' }, id: 1 } }
 
-    before { expect(Cash).to receive(:find).with('1').and_return(cash) }
+    before { subject.instance_variable_set :@cash, cash }
 
-    before { expect(cash).to receive(:update!).with(params) }
+    before { expect(cash).to receive(:update!).with(permit! params[:cash]) }
 
-    before { patch :update, id: 1, cash: params, format: :js }
+    before { patch :update, params: params, format: :js }
 
     it { should render_template :update }
   end
@@ -44,11 +52,11 @@ RSpec.describe CashesController, type: :controller do
   describe 'destroy.js' do
     let(:cash) { double }
 
-    before { expect(Cash).to receive(:find).with('1').and_return(cash) }
+    before { subject.instance_variable_set :@cash, cash }
 
     before { expect(cash).to receive(:destroy).and_return(true) }
 
-    before { delete :destroy, id: 1, format: :js }
+    before { delete :destroy, params: { id: 1 }, format: :js }
 
     it { should render_template :destroy }
   end
