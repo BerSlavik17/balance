@@ -5,8 +5,6 @@
   <dict>
     <key>EnvironmentVariables</key>
     <dict>
-      <key>PORT</key>
-      <string>3001</string>
       <key>RAILS_ENV</key>
       <string>production</string>
       <key>SECRET_KEY_BASE</key>
