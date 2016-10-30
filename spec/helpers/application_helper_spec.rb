@@ -24,5 +24,20 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     it { should eq '400 500.20' }
   end
+
+  describe '#decorated' do
+    before do
+      #
+      # helper.resource.decorate -> :decorated
+      #
+      expect(helper).to receive(:resource) do
+        double.tap { |a| expect(a).to receive(:decorate).and_return(:decorated) }
+      end
+    end
+
+    subject { helper.decorated }
+
+    it { should eq :decorated }
+  end
 end
 

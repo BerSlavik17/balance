@@ -17,4 +17,8 @@ module ApplicationHelper
   def cashes
     Cash.order(:name)
   end
+
+  def decorated
+    resource.decorate
+  end
 end
