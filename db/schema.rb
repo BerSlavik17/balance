@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151212105658) do
+ActiveRecord::Schema.define(version: 20161129150043) do
 
   create_table "cashes", force: :cascade do |t|
     t.decimal "sum",        precision: 10, scale: 2, null: false
