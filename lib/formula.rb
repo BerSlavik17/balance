@@ -9,7 +9,7 @@ class Formula
         gsub(/\.{2,}/, '.').         # replaces '...' with '.'
         gsub(/[\+\-\*\.]{1,}$/, '')  # remove pluses, minuses, dots and multiple signs at end of string
 
-      BigDecimal.new(eval(string).to_s)
+      (eval(string) || 0).to_d
     end
   end
 end
