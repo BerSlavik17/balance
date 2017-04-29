@@ -72,7 +72,7 @@ GEM
     libv8 (3.16.14.19)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    mail (2.6.4)
+    mail (2.6.5)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
     mime-types (3.1)
@@ -184,7 +184,7 @@ DEPENDENCIES
   draper (~> 3.0.0.pre1)
   jquery-rails
   puma
-  rails
+  rails (~> 5.0.0)
   rails-controller-testing
   rake
   rspec-activemodel-mocks
