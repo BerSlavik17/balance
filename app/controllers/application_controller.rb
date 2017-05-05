@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :collection, :resource
 
+  before_action :build_resource, only: :create
+
   rescue_from ActiveRecord::RecordInvalid do
     render :errors, status: :unprocessable_entity
   end
@@ -12,12 +14,34 @@ class ApplicationController < ActionController::Base
   end
 
   def create
-    build_resource
+    respond_to do |format|
+      format.html do
+        if resource.save
+          redirect_to resource
+        else
+          render :new
+        end
+      end
 
-    resource.save!
+      format.json do
+        render :errors unless resource.save
+      end
+    end
   end
 
   def update
-    resource.update! resource_params
+    respond_to do |format|
+      format.html do
+        if resource.update resource_params
+          redirect_to resource
+        else
+          render :edit
+        end
+      end
+
+      format.json do
+        render :errors unless resource.update resource_params
+      end
+    end
   end
 end
